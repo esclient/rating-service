@@ -12,6 +12,6 @@ spring:
     enabled: false
 grpc:
   server:
-    port: 9090
+    port: ${SERVER_PORT}
 management:
   metrics:
