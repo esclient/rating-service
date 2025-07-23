@@ -1,3 +1,17 @@
 spring:
   application:
     name: rating-service
+  datasource:
+    url: "jdbc:postgresql://pg4.sweb.ru:5433/esclient_rtngs"
+    driver-class-name: org.postgresql.Driver
+    username: "esclient_rtngs"
+    password: "XNG2PUKMTN$VAFmF"
+  jpa:
+    show-sql: true
+  liquibase:
+    enabled: false
+grpc:
+  server:
+    port: 9090
+management:
+  metrics:
