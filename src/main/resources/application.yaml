@@ -2,10 +2,10 @@ spring:
   application:
     name: rating-service
   datasource:
-    url: "jdbc:postgresql://pg4.sweb.ru:5433/esclient_rtngs"
+    url: ${DB_URL}
     driver-class-name: org.postgresql.Driver
-    username: "esclient_rtngs"
-    password: "XNG2PUKMTN$VAFmF"
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   jpa:
     show-sql: true
   liquibase:
