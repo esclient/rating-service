@@ -8,16 +8,16 @@ OUT_DIR := src/rating-service/grpc
 
 .PHONY: clean fetch-proto get-stubs update format lint test
 
-ifeq ($(OS),Winwods_NT)
+ifeq ($(OS),Windows_NT)
 MKDIR	 = powershell -Command "New_Item -ItemType Directory -Force -Path"
 RM		 = powershell -NoProfile -Command "Remove-Item -Path '$(TMP_DIR)' -Recurse -Force"
 DOWN	 = powershell -Command "Invoke-WebrRequest -Uri"
 DOWN_OUT = -OutFile
 else
-	MKDIR 	 = mkdir -p
-	RM	  	 = rm -rf $(TMP_DIR)
-	DOWN  	 = wget
-	DOWN_OUT = -O
+MKDIR 	 = mkdir -p
+RM	  	 = rm -rf $(TMP_DIR)
+DOWN  	 = wget
+DOWN_OUT = -O
 endif
 
 
@@ -48,4 +48,3 @@ get-stubs: fetch-proto
 		"$(TMP_DIR)/$(PROTO_NAME)"
 
 update: get-stubs clean
-
