@@ -10,7 +10,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.5.3</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
 
     <groupId>com.esclient</groupId>
@@ -21,7 +21,7 @@
 
     <properties>
         <java.version>17</java.version>
-        <grpc.version>1.72.0</grpc.version>  <!-- Picked latest you had -->
+        <grpc.version>1.72.0</grpc.version>
         <protobuf-java.version>4.28.2</protobuf-java.version>
         <spring-grpc.version>0.9.0</spring-grpc.version>
         <protobuf.version>3.25.1</protobuf.version>
@@ -154,13 +154,17 @@
                 </configuration>
             </plugin>
 
-            <!-- Protobuf Plugin -->
+            <!--
+            Protobuf Maven Plugin (optional if you want Maven to generate proto stubs instead of manual make)
+            Uncomment and configure if you want to generate proto code during build:
+
             <plugin>
                 <groupId>org.xolstice.maven.plugins</groupId>
                 <artifactId>protobuf-maven-plugin</artifactId>
                 <version>0.6.1</version>
                 <configuration>
                     <protoSourceRoot>${project.basedir}/.proto</protoSourceRoot>
+                    <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
                 </configuration>
                 <executions>
                     <execution>
@@ -171,6 +175,7 @@
                     </execution>
                 </executions>
             </plugin>
+            -->
 
             <!-- Spring Boot Plugin -->
             <plugin>
@@ -178,7 +183,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
-            <!-- GraphQL Codegen Plugin (optional, configure schema path properly) -->
+            <!-- GraphQL Codegen Plugin -->
             <plugin>
                 <groupId>io.github.deweyjose</groupId>
                 <artifactId>graphqlcodegen-maven-plugin</artifactId>
@@ -200,28 +205,10 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <!-- Build Helper Plugin to add generated sources -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>add-generated-sources</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>add-source</goal>
-                        </goals>
-                        <configuration>
-                            <sources>
-                                <source>${project.build.directory}/generated-sources</source>
-                            </sources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 
 </project>
+
+
 

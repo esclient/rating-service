@@ -4,7 +4,8 @@ PROTO_TAG ?= v0.0.12
 PROTO_NAME := rating.proto
 
 TMP_DIR := .proto
-OUT_DIR := src/rating-service/grpc
+OUT_DIR := src/main/java
+
 
 .PHONY: clean fetch-proto get-stubs update format lint test
 
@@ -24,13 +25,14 @@ endif
 docker-build:
 		docker build --build-arg PORT=$(PORT) -t mod .
 
-run: docker-build 
-		docker run --rm -it \
-				--env-file .env \
-				-p $(PORT):$(PORT) \
-				-v $(CURDIR):/app \
-				-e WATCHFILES_FORCE_POLLING=true \
-				mod
+run: update docker-build
+	docker run --rm -it \
+		--env-file .env \
+		-p $(PORT):$(PORT) \
+		-v $(CURDIR):/app \
+		-e WATCHFILES_FORCE_POLLING=true \
+		mod
+
 
 clean: 
 		$(RM)
@@ -46,5 +48,6 @@ get-stubs: fetch-proto
 		--java_out="$(OUT_DIR)" \
 		--grpc-java_out="$(OUT_DIR)" \
 		"$(TMP_DIR)/$(PROTO_NAME)"
+
 
 update: get-stubs clean

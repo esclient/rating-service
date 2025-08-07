@@ -6,8 +6,8 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 
-# Copy the .proto directory so protobuf plugin can see the proto files
-COPY .proto ./proto
+
+
 
 # Run the build
 RUN mvn clean package -DskipTests
