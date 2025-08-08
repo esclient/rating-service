@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: rating-service
+  datasource:
+    url: ${DB_URL}
+    driver-class-name: org.postgresql.Driver
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    show-sql: true
+  liquibase:
+    enabled: false
+grpc:
+  server:
+    port: ${SERVER_PORT}
+management:
+  metrics:
