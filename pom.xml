@@ -19,11 +19,13 @@
 
     <properties>
         <java.version>17</java.version>
-        <grpc.version>1.42.2</grpc.version>
-        <protobuf.version>3.21.7</protobuf.version>
-        <spring-grpc.version>2.13.1.RELEASE</spring-grpc.version>
+        <!-- Updated gRPC version to match generated code -->
+        <grpc.version>1.64.0</grpc.version>
+        <!-- Updated protobuf version for compatibility -->
+        <protobuf.version>3.25.3</protobuf.version>
+        <!-- Updated spring-grpc version for compatibility -->
+        <spring-grpc.version>2.15.0.RELEASE</spring-grpc.version>
         <lombok.version>1.18.26</lombok.version>
-        <jakarta.persistence.version>3.1.0</jakarta.persistence.version>
     </properties>
 
     <dependencies>
@@ -48,11 +50,11 @@
             <artifactId>postgresql</artifactId>
         </dependency>
 
-        <!-- Jakarta Persistence API -->
+        <!-- Jakarta Persistence API - matches generated protobuf code -->
         <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
-            <version>${jakarta.persistence.version}</version>
+            <version>3.1.0</version>
         </dependency>
 
         <!-- gRPC dependencies -->
@@ -116,34 +118,6 @@
         </extensions>
 
         <plugins>
-            <!-- 
-                Protobuf plugin is disabled because .proto files are deleted after 'make update'.
-                Generated Java stubs must be committed/available in source folder.
-            -->
-            <!--
-            <plugin>
-                <groupId>org.xolstice.maven.plugins</groupId>
-                <artifactId>protobuf-maven-plugin</artifactId>
-                <version>0.6.1</version>
-                <configuration>
-                    <protoSourceRoot>src/main/proto</protoSourceRoot>
-                    <outputDirectory>${project.build.directory}/generated-sources/protobuf/java</outputDirectory>
-                    <pluginId>grpc-java</pluginId>
-                    <pluginArtifact>io.grpc:protoc-gen-grpc-java:${grpc.version}:exe:${os.detected.classifier}</pluginArtifact>
-                    <protocArtifact>com.google.protobuf:protoc:${protobuf.version}:exe:${os.detected.classifier}</protocArtifact>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>compile-protobuf</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>compile-custom</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
