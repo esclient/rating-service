@@ -1,0 +1,78 @@
+FROM maven:3.9.3-eclipse-temurin-17
+WORKDIR /app
+
+# Copy pom and source code
+COPY pom.xml .
+COPY src ./src
+
+# Remove any existing proto directory to avoid conflicts
+RUN rm -rf src/main/java/com/esclient/ratingservice/proto
+
+# Create the expected directory structure
+RUN mkdir -p src/main/java/com/esclient/ratingservice/proto
+
+# Enhanced Debug with more visible output
+RUN echo "========================================" && \
+    echo "🔍 DEBUGGING: Checking for rating files" && \
+    echo "========================================" && \
+    if [ -d "src/main/java/rating" ]; then \
+        echo "✅ Rating directory EXISTS"; \
+        echo "📁 Files found:"; \
+        ls -la src/main/java/rating/; \
+        echo "📄 Java files:"; \
+        find src/main/java/rating -name "*.java"; \
+        echo "📝 First file content:"; \
+        head -15 $(find src/main/java/rating -name "*.java" | head -1) || echo "No files to read"; \
+    else \
+        echo "❌ Rating directory NOT FOUND"; \
+        echo "📁 What's in src/main/java:"; \
+        ls -la src/main/java/; \
+        echo "🔍 Looking for any .java files:"; \
+        find src/main/java -name "*.java" | head -10; \
+    fi && \
+    echo "========================================"
+
+# Try to continue only if rating directory exists
+RUN if [ -d "src/main/java/rating" ]; then \
+        echo "🔄 Copying rating files..."; \
+        find src/main/java/rating -name "*.java" -exec cp {} src/main/java/com/esclient/ratingservice/proto/ \; && \
+        echo "✅ Files copied. Contents:"; \
+        ls -la src/main/java/com/esclient/ratingservice/proto/; \
+        echo "🔧 Fixing package references..."; \
+        find src/main/java/com/esclient/ratingservice/proto -name "*.java" -exec sed -i \
+            -e 's/package rating;/package com.esclient.ratingservice.proto;/g' \
+            -e 's/rating\.Rating/com.esclient.ratingservice.proto.Rating/g' \
+            {} \; && \
+        echo "✅ Package references fixed"; \
+        echo "📝 Sample fixed file:"; \
+        head -10 src/main/java/com/esclient/ratingservice/proto/*.java | head -20; \
+        rm -rf src/main/java/rating; \
+    else \
+        echo "💀 FATAL: rating directory not found!"; \
+        exit 1; \
+    fi
+
+# Fix imports in existing Java files - handle nested classes correctly
+RUN echo "🔧 Fixing imports in service files..." && \
+    find src/main/java/com/esclient/ratingservice -name "*.java" -exec sed -i \
+        -e 's/import com\.esclient\.ratingservice\.proto\.RateModRequest;/import com.esclient.ratingservice.proto.Rating.RateModRequest;/g' \
+        -e 's/import com\.esclient\.ratingservice\.proto\.RateModResponse;/import com.esclient.ratingservice.proto.Rating.RateModResponse;/g' \
+        -e 's/import rating\.Rating\.RateModRequest;/import com.esclient.ratingservice.proto.Rating.RateModRequest;/g' \
+        -e 's/import rating\.Rating\.RateModResponse;/import com.esclient.ratingservice.proto.Rating.RateModResponse;/g' \
+        {} \; && \
+    echo "✅ Imports fixed"
+
+# Show final state before build
+RUN echo "========================================" && \
+    echo "🏁 FINAL CHECK BEFORE MAVEN BUILD" && \
+    echo "========================================" && \
+    echo "📁 Proto directory contents:"; \
+    ls -la src/main/java/com/esclient/ratingservice/proto/ && \
+    echo "📝 RatingGrpcService imports (line 19):"; \
+    sed -n '15,25p' src/main/java/com/esclient/ratingservice/service/RatingGrpcService.java && \
+    echo "📝 Full RatingGrpcService file:"; \
+    cat src/main/java/com/esclient/ratingservice/service/RatingGrpcService.java && \
+    echo "========================================"
+
+# STOP HERE - don't run Maven yet
+CMD ["echo", "Debug complete - check the output above"]
