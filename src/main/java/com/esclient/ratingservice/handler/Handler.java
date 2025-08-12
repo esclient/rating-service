@@ -1,12 +1,19 @@
-package com.esclient.ratingservice.service;
+package com.esclient.ratingservice.handler;
 
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
 import rating.RatingServiceGrpc;
 import rating.Rating;
+import com.esclient.ratingservice.service.Service;
 
 @GrpcService
-public class RatingGrpcService extends RatingServiceGrpc.RatingServiceImplBase {
+public class Handler extends RatingServiceGrpc.RatingServiceImplBase {
+    private final Service service;
+
+    public Handler(Service service)
+    {
+        this.service = service;
+    }
 
     @Override
     public void rateMod(Rating.RateModRequest request, StreamObserver<Rating.RateModResponse> responseObserver) {
@@ -16,10 +23,8 @@ public class RatingGrpcService extends RatingServiceGrpc.RatingServiceImplBase {
             long authorId = request.getAuthorId();
             int rating = request.getRate();
             
-            // Your business logic here
-            // TODO: Save rating to database
-            // TODO: Validate rating value
-            // TODO: Check if author already rated this mod
+            int rateId = service.addRate(mod_id, author_id, rate);
+            
             
             
             // Build response
