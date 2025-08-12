@@ -1,17 +1,25 @@
 spring:
   application:
     name: rating-service
+
   datasource:
-    url: ${DB_URL}
+    url: ${DATABASE_URL}
     driver-class-name: org.postgresql.Driver
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: none
+
   liquibase:
     enabled: false
+
 grpc:
   server:
-    port: ${SERVER_PORT}
+    port: ${SERVER_PORT:8080}
+
 management:
   metrics:
+    export:
+      simple:
+        enabled: true
