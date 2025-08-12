@@ -1,6 +1,5 @@
 -include .env
-SERVER_PORT ?= 8080
-PROTO_TAG ?= v0.0.12
+PROTO_TAG ?= v0.0.14
 PROTO_NAME := rating.proto
 TMP_DIR := .proto
 OUT_DIR := src/main/java
@@ -20,17 +19,13 @@ DOWN_OUT = -O
 endif
 
 docker-build:
-	docker build --pull --no-cache --build-arg PORT=$(SERVER_PORT) -t rating .
+	docker build --pull --no-cache --build-arg PORT=$(PORT) -t rating .
 
-# Production run
+
 run: update docker-build
 	docker run --rm -it \
 		--env-file .env \
-		-e DB_URL \
-		-e DB_USERNAME \
-		-e DB_PASSWORD \
-		-e SERVER_PORT \
-		-p $(SERVER_PORT):$(SERVER_PORT) \
+		-p $(PORT):$(PORT) \
 		rating
 
 
@@ -41,7 +36,7 @@ fetch-proto:
 	$(MKDIR) "$(TMP_DIR)"
 	$(DOWN) "https://raw.githubusercontent.com/esclient/protos/$(PROTO_TAG)/$(PROTO_NAME)" $(DOWN_OUT) "$(TMP_DIR)/$(PROTO_NAME)"
 
-get-stubs: fetch-proto
+gen-stubs: fetch-proto
 	$(MKDIR) "$(OUT_DIR)"
 	protoc \
 		--proto_path="$(TMP_DIR)" \
@@ -49,5 +44,5 @@ get-stubs: fetch-proto
 		--grpc-java_out="$(OUT_DIR)" \
 		"$(TMP_DIR)/$(PROTO_NAME)"
 
-# Updated so we don't delete generated stubs
-update: clean get-stubs
+
+update: gen-stubs clean

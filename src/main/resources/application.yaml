@@ -16,7 +16,7 @@ spring:
 
 grpc:
   server:
-    port: ${SERVER_PORT:8080}
+    port: ${PORT}
 
 management:
   metrics:

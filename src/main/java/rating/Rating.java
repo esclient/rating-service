@@ -31,10 +31,10 @@ public final class Rating {
     long getAuthorId();
 
     /**
-     * <code>int32 rating = 3;</code>
-     * @return The rating.
+     * <code>int32 rate = 3;</code>
+     * @return The rate.
      */
-    int getRating();
+    int getRate();
   }
   /**
    * Protobuf type {@code rating.RateModRequest}
@@ -98,15 +98,15 @@ public final class Rating {
       return authorId_;
     }
 
-    public static final int RATING_FIELD_NUMBER = 3;
-    private int rating_ = 0;
+    public static final int RATE_FIELD_NUMBER = 3;
+    private int rate_ = 0;
     /**
-     * <code>int32 rating = 3;</code>
-     * @return The rating.
+     * <code>int32 rate = 3;</code>
+     * @return The rate.
      */
     @java.lang.Override
-    public int getRating() {
-      return rating_;
+    public int getRate() {
+      return rate_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -129,8 +129,8 @@ public final class Rating {
       if (authorId_ != 0L) {
         output.writeInt64(2, authorId_);
       }
-      if (rating_ != 0) {
-        output.writeInt32(3, rating_);
+      if (rate_ != 0) {
+        output.writeInt32(3, rate_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -149,9 +149,9 @@ public final class Rating {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(2, authorId_);
       }
-      if (rating_ != 0) {
+      if (rate_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, rating_);
+          .computeInt32Size(3, rate_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -172,8 +172,8 @@ public final class Rating {
           != other.getModId()) return false;
       if (getAuthorId()
           != other.getAuthorId()) return false;
-      if (getRating()
-          != other.getRating()) return false;
+      if (getRate()
+          != other.getRate()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -191,8 +191,8 @@ public final class Rating {
       hash = (37 * hash) + AUTHOR_ID_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getAuthorId());
-      hash = (37 * hash) + RATING_FIELD_NUMBER;
-      hash = (53 * hash) + getRating();
+      hash = (37 * hash) + RATE_FIELD_NUMBER;
+      hash = (53 * hash) + getRate();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -324,7 +324,7 @@ public final class Rating {
         bitField0_ = 0;
         modId_ = 0L;
         authorId_ = 0L;
-        rating_ = 0;
+        rate_ = 0;
         return this;
       }
 
@@ -365,7 +365,7 @@ public final class Rating {
           result.authorId_ = authorId_;
         }
         if (((from_bitField0_ & 0x00000004) != 0)) {
-          result.rating_ = rating_;
+          result.rate_ = rate_;
         }
       }
 
@@ -419,8 +419,8 @@ public final class Rating {
         if (other.getAuthorId() != 0L) {
           setAuthorId(other.getAuthorId());
         }
-        if (other.getRating() != 0) {
-          setRating(other.getRating());
+        if (other.getRate() != 0) {
+          setRate(other.getRate());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -459,7 +459,7 @@ public final class Rating {
                 break;
               } // case 16
               case 24: {
-                rating_ = input.readInt32();
+                rate_ = input.readInt32();
                 bitField0_ |= 0x00000004;
                 break;
               } // case 24
@@ -544,34 +544,34 @@ public final class Rating {
         return this;
       }
 
-      private int rating_ ;
+      private int rate_ ;
       /**
-       * <code>int32 rating = 3;</code>
-       * @return The rating.
+       * <code>int32 rate = 3;</code>
+       * @return The rate.
        */
       @java.lang.Override
-      public int getRating() {
-        return rating_;
+      public int getRate() {
+        return rate_;
       }
       /**
-       * <code>int32 rating = 3;</code>
-       * @param value The rating to set.
+       * <code>int32 rate = 3;</code>
+       * @param value The rate to set.
        * @return This builder for chaining.
        */
-      public Builder setRating(int value) {
+      public Builder setRate(int value) {
         
-        rating_ = value;
+        rate_ = value;
         bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 rating = 3;</code>
+       * <code>int32 rate = 3;</code>
        * @return This builder for chaining.
        */
-      public Builder clearRating() {
+      public Builder clearRate() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        rating_ = 0;
+        rate_ = 0;
         onChanged();
         return this;
       }
@@ -2254,16 +2254,16 @@ public final class Rating {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\014rating.proto\022\006rating\"C\n\016RateModRequest" +
-      "\022\016\n\006mod_id\030\001 \001(\003\022\021\n\tauthor_id\030\002 \001(\003\022\016\n\006r" +
-      "ating\030\003 \001(\005\"\"\n\017RateModResponse\022\017\n\007rate_i" +
-      "d\030\001 \001(\003\"!\n\017GetRatesRequest\022\016\n\006mod_id\030\001 \001" +
-      "(\003\"H\n\020GetRatesResponse\022\023\n\013rates_total\030\001 " +
-      "\001(\003\022\r\n\005likes\030\002 \001(\003\022\020\n\010dislikes\030\003 \001(\0032\212\001\n" +
-      "\rRatingService\022:\n\007RateMod\022\026.rating.RateM" +
-      "odRequest\032\027.rating.RateModResponse\022=\n\010Ge" +
-      "tRates\022\027.rating.GetRatesRequest\032\030.rating" +
-      ".GetRatesResponseb\006proto3"
+      "\n\014rating.proto\022\006rating\"A\n\016RateModRequest" +
+      "\022\016\n\006mod_id\030\001 \001(\003\022\021\n\tauthor_id\030\002 \001(\003\022\014\n\004r" +
+      "ate\030\003 \001(\005\"\"\n\017RateModResponse\022\017\n\007rate_id\030" +
+      "\001 \001(\003\"!\n\017GetRatesRequest\022\016\n\006mod_id\030\001 \001(\003" +
+      "\"H\n\020GetRatesResponse\022\023\n\013rates_total\030\001 \001(" +
+      "\003\022\r\n\005likes\030\002 \001(\003\022\020\n\010dislikes\030\003 \001(\0032\212\001\n\rR" +
+      "atingService\022:\n\007RateMod\022\026.rating.RateMod" +
+      "Request\032\027.rating.RateModResponse\022=\n\010GetR" +
+      "ates\022\027.rating.GetRatesRequest\032\030.rating.G" +
+      "etRatesResponseb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -2274,7 +2274,7 @@ public final class Rating {
     internal_static_rating_RateModRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rating_RateModRequest_descriptor,
-        new java.lang.String[] { "ModId", "AuthorId", "Rating", });
+        new java.lang.String[] { "ModId", "AuthorId", "Rate", });
     internal_static_rating_RateModResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_rating_RateModResponse_fieldAccessorTable = new

@@ -14,19 +14,17 @@ public class RatingGrpcService extends RatingServiceGrpc.RatingServiceImplBase {
             // Extract request data
             long modId = request.getModId();
             long authorId = request.getAuthorId();
-            int rating = request.getRating();
+            int rating = request.getRate();
             
             // Your business logic here
             // TODO: Save rating to database
             // TODO: Validate rating value
             // TODO: Check if author already rated this mod
             
-            // For now, generate a simple rate_id
-            long rateId = System.currentTimeMillis();
             
             // Build response
             Rating.RateModResponse response = Rating.RateModResponse.newBuilder()
-                .setRateId(rateId)
+                .setRateId(1337)
                 .build();
             
             // Send response
