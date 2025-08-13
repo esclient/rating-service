@@ -4,12 +4,13 @@ import net.devh.boot.grpc.server.service.GrpcService;
 import rating.RatingServiceGrpc;
 import rating.Rating;
 import com.esclient.ratingservice.service.RatingService;
+import com.esclient.ratingservice.model.RatingData;
 
 @GrpcService
 public class Handler extends RatingServiceGrpc.RatingServiceImplBase {
-    private final RatingService service;  // Changed from "Service" to "RatingService"
+    private final RatingService service; 
    
-    public Handler(RatingService service) {  // Changed from "Service" to "RatingService"
+    public Handler(RatingService service) {  
         this.service = service;
     }
    
@@ -21,7 +22,7 @@ public class Handler extends RatingServiceGrpc.RatingServiceImplBase {
             long authorId = request.getAuthorId();
             int rating = request.getRate();
            
-            // Use the correct variable names that you declared above
+            
             int rateId = service.rateMod(modId, authorId, rating);
            
             // Build response
@@ -43,20 +44,13 @@ public class Handler extends RatingServiceGrpc.RatingServiceImplBase {
         try {
             long modId = request.getModId();
            
-            // Your business logic here
-            // TODO: Query database for ratings statistics
-            // TODO: Calculate likes, dislikes, total
-           
-            // For now, return mock data
-            long totalRates = 100L;
-            long likes = 75L;
-            long dislikes = 25L;
+            RatingData ratingData = ratingService.getRatings(modId);
            
             // Build response
             Rating.GetRatesResponse response = Rating.GetRatesResponse.newBuilder()
-                .setRatesTotal(totalRates)
-                .setLikes(likes)
-                .setDislikes(dislikes)
+                .setRatesTotal(ratingData.getTotalRates())
+                .setLikes(ratingData.getLikes())
+                .setDislikes(ratingData.getDislikes())
                 .build();
            
             // Send response

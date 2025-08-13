@@ -102,7 +102,7 @@
             <artifactId>micrometer-core</artifactId>
         </dependency>
 
-        <!-- Elasticsearch - Updated for Spring Boot 3.x compatibility -->
+        <!-- Elasticsearch -->
         <dependency>
             <groupId>co.elastic.clients</groupId>
             <artifactId>elasticsearch-java</artifactId>

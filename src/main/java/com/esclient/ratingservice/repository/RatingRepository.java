@@ -33,12 +33,24 @@ public class RatingRepository {
         }
     }
     
-    // Add other methods using the same pattern
+    
     public long getTotalRates(long modId) throws SQLException {
         String sql = "SELECT COUNT(*) FROM rates WHERE mod_id = ?";
         try (Connection conn = dataSource.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setLong(1, modId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next() ? rs.getLong(1) : 0;
+            }
+        }
+    }
+
+    public long getRates(long rate, long modId) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM rates WHERE rate = ? AND mod_id = ?";
+        try (Connection conn = dataSource.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setLong(1, rate);
+            stmt.setLong(2, modId);
             try (ResultSet rs = stmt.executeQuery()) {
                 return rs.next() ? rs.getLong(1) : 0;
             }
