@@ -44,7 +44,7 @@ public class Handler extends RatingServiceGrpc.RatingServiceImplBase {
         try {
             long modId = request.getModId();
            
-            RatingData ratingData = ratingService.getRatings(modId);
+            RatingData ratingData = service.getRatings(modId);
            
             // Build response
             Rating.GetRatesResponse response = Rating.GetRatesResponse.newBuilder()
