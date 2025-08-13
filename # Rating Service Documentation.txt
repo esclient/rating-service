@@ -1,0 +1,587 @@
+# Rating Service Documentation
+
+## 🎯 What This Service Does
+
+The **Rating Service** is a microservice that handles ratings for mods (modifications/plugins). Think of it like a "thumbs up/thumbs down" system where users can rate different mods, and you can get statistics about how many people liked or disliked each mod.
+
+**Key Features:**
+- ✅ Users can rate mods (positive or negative ratings)
+- ✅ Get statistics about mod ratings (total, likes, dislikes)
+- ✅ Built with gRPC for fast communication
+- ✅ Uses PostgreSQL database for storage
+- ✅ Dockerized for easy deployment
+
+---
+
+## 🏗️ Architecture Overview
+
+This service follows a **3-layer architecture** (a common pattern for organizing code):
+
+```
+┌─────────────────┐
+│   Handler       │  ← Receives gRPC requests from clients
+│   (Controller)  │
+└─────────────────┘
+         │
+         ▼
+┌─────────────────┐
+│   Service       │  ← Contains business logic and validation
+│  (Business)     │
+└─────────────────┘
+         │
+         ▼
+┌─────────────────┐
+│   Repository    │  ← Talks to the database
+│   (Data)        │
+└─────────────────┘
+         │
+         ▼
+┌─────────────────┐
+│   PostgreSQL    │  ← Stores the actual data
+│   Database      │
+└─────────────────┘
+```
+
+**Why this structure?**
+- **Separation of concerns**: Each layer has one job
+- **Easy to test**: You can test each layer independently  
+- **Easy to maintain**: Changes in one layer don't break others
+- **Industry standard**: Most professional applications use this pattern
+
+---
+
+## 📁 Project Structure
+
+```
+rating-service/
+├── src/main/java/com/esclient/ratingservice/
+│   ├── RatingServiceApplication.java    # Main application entry point
+│   ├── handler/
+│   │   └── Handler.java                 # gRPC request handler (Controller)
+│   ├── service/
+│   │   └── RatingService.java          # Business logic
+│   ├── repository/
+│   │   └── RatingRepository.java       # Database operations
+│   └── model/
+│       └── RateModMessage.java         # Database entity (not used currently)
+├── RATING-SERVICE
+│   └── rating.proto                    # gRPC API definition
+├── application.yaml                    # Spring configuration
+├── pom.xml                            # Dependencies and build config
+├── Dockerfile                         # How to build Docker image
+└── Makefile                           # Build automation commands
+```
+
+---
+
+## 🔍 Detailed Code Walkthrough
+
+### 1. **Handler.java** - The Front Door 🚪
+
+```java
+@GrpcService
+public class Handler extends RatingServiceGrpc.RatingServiceImplBase
+```
+
+**What it does:**
+- This is like the "front desk" of your service
+- Receives gRPC requests from other services or clients
+- Converts gRPC messages to Java objects and vice versa
+- Calls the business logic (Service layer)
+- Sends responses back to clients
+
+**Key Methods:**
+
+**`rateMod()` - Add a new rating:**
+```java
+public void rateMod(Rating.RateModRequest request, StreamObserver<Rating.RateModResponse> responseObserver)
+```
+- Gets: mod_id, author_id, rate (positive/negative number)
+- Does: Calls service to save rating to database
+- Returns: The ID of the created rating
+
+**`getRates()` - Get rating statistics:**
+```java  
+public void getRates(Rating.GetRatesRequest request, StreamObserver<Rating.GetRatesResponse> responseObserver)
+```
+- Gets: mod_id
+- Does: **Currently returns fake data** (needs implementation!)
+- Should return: total ratings, likes, dislikes for that mod
+
+**Important Notes:**
+- `@GrpcService` tells Spring this handles gRPC requests
+- `StreamObserver` is how gRPC sends responses back
+- Exception handling: If anything goes wrong, it sends the error back to the client
+
+### 2. **RatingService.java** - The Brain 🧠
+
+```java
+@Service
+public final class RatingService
+```
+
+**What it does:**
+- Contains the business logic (the "rules" of your application)
+- Validates data before saving
+- Converts exceptions to user-friendly errors
+- Acts as a bridge between Handler and Repository
+
+**Key Method:**
+
+**`rateMod()` - Process a rating:**
+```java
+public int rateMod(long mod_id, long author_id, int rate) {
+    try {
+        return (int) repository.addRate(mod_id, author_id, rate);
+    } catch (SQLException e) {
+        throw new RuntimeException("Failed to add rating", e);
+    }
+}
+```
+
+**What happens here:**
+1. Takes the rating data
+2. Calls repository to save it in database
+3. If database operation fails, converts SQL error to a generic runtime error
+4. Returns the ID of the new rating
+
+**Why this layer exists:**
+- **Validation**: Could add checks like "rating must be between -5 and +5"
+- **Business rules**: Could add logic like "users can't rate the same mod twice"
+- **Error handling**: Converts technical errors to business errors
+
+### 3. **RatingRepository.java** - The Database Talker 💾
+
+```java
+@Repository  
+public class RatingRepository
+```
+
+**What it does:**
+- Only job is to talk to the database
+- Contains all SQL queries
+- Handles database connections properly
+- Returns raw data (no business logic here)
+
+**Key Methods:**
+
+**`addRate()` - Insert new rating:**
+```java
+public long addRate(long modId, long authorId, int rate) throws SQLException
+```
+**The SQL:**
+```sql
+INSERT INTO rates (author_id, mod_id, rate) VALUES (?, ?, ?)
+```
+**What happens:**
+1. Opens database connection from connection pool
+2. Prepares SQL statement with parameters (prevents SQL injection!)
+3. Executes the insert
+4. Gets the auto-generated ID of the new row
+5. Returns that ID
+6. Automatically closes connection (try-with-resources)
+
+**`getTotalRates()` - Count ratings for a mod:**
+```java
+public long getTotalRates(long modId) throws SQLException
+```
+**The SQL:**
+```sql
+SELECT COUNT(*) FROM rates WHERE mod_id = ?
+```
+
+**Important Technical Details:**
+- Uses `DataSource` instead of raw `Connection` (better for connection pooling)
+- `try-with-resources` automatically closes database connections
+- `PreparedStatement` prevents SQL injection attacks
+- `RETURN_GENERATED_KEYS` gets the auto-generated ID from database
+
+### 4. **RatingServiceApplication.java** - The Starter 🚀
+
+```java
+@SpringBootApplication
+public class RatingServiceApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(RatingServiceApplication.class, args);
+    }
+}
+```
+
+**What it does:**
+- This is the entry point - where the application starts
+- `@SpringBootApplication` tells Spring to:
+  - Scan for components (`@Service`, `@Repository`, `@GrpcService`)
+  - Configure database connections
+  - Start the gRPC server
+  - Set up dependency injection
+
+### 5. **rating.proto** - The Contract 📋
+
+```protobuf
+service RatingService {
+    rpc RateMod(RateModRequest) returns (RateModResponse);
+    rpc GetRates(GetRatesRequest) returns (GetRatesResponse);  
+}
+```
+
+**What this is:**
+- Defines the API contract (what requests/responses look like)
+- Works like an interface that both client and server agree on
+- Gets compiled into Java classes automatically
+
+**Message Types:**
+- `RateModRequest`: mod_id, author_id, rate
+- `RateModResponse`: rate_id (ID of created rating)
+- `GetRatesRequest`: mod_id  
+- `GetRatesResponse`: rates_total, likes, dislikes
+
+---
+
+## ⚙️ Configuration Files
+
+### **application.yaml** - Service Settings
+
+```yaml
+spring:
+  datasource:
+    url: ${DATABASE_URL}           # Gets from environment variable
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true                 # Logs all SQL queries (helpful for debugging)
+    hibernate:
+      ddl-auto: none              # Don't auto-create tables
+grpc:
+  server:
+    port: ${PORT}                 # gRPC server port from environment
+```
+
+**Key Points:**
+- Uses environment variables (`${DATABASE_URL}`, `${PORT}`) for configuration
+- `show-sql: true` means you'll see all database queries in logs
+- `ddl-auto: none` means you need to create database tables manually
+
+### **pom.xml** - Dependencies and Build
+
+**Major Dependencies:**
+- **Spring Boot 3.2.0**: Main framework
+- **PostgreSQL**: Database driver  
+- **gRPC 1.58.0**: For API communication
+- **Spring Data JPA**: For database operations
+- **net.devh grpc-server-spring-boot-starter**: Connects Spring Boot + gRPC
+
+---
+
+## 🚀 How to Run This Service
+
+### **Prerequisites:**
+1. Java 17 installed
+2. Docker installed  
+3. PostgreSQL database available
+
+### **Environment Variables Needed:**
+(.env)
+```
+DATABASE_URL=jdbc:postgresql://localhost:5432/ratings_db?user=username&password=password
+PORT=7777
+```
+
+### **Option 1: Using Make (Recommended)**
+```bash
+# Build and run with Docker
+make run
+```
+
+### **Option 2: Manual Docker**
+```bash
+# Build the Docker image
+docker build -t rating-service .
+
+# Run the container
+docker run --rm -it \
+  -e DATABASE_URL="your_db_url" \
+  -e PORT=7777 \
+  -p 7777:7777 \
+  rating-service
+```
+
+### **Option 3: Direct Java (for development)**
+```bash
+# Build the project
+mvn clean package -DskipTests
+
+# Run the JAR
+java -jar target/rating-service-0.0.1-SNAPSHOT.jar
+```
+
+---
+
+## 🗄️ Database Schema
+
+**Table: `rates`**
+```sql
+CREATE TABLE rates (
+    id SERIAL PRIMARY KEY,          -- Auto-incrementing ID
+    author_id BIGINT NOT NULL,      -- Who made the rating
+    mod_id BIGINT NOT NULL,         -- Which mod was rated  
+    rate INTEGER NOT NULL,          -- The rating value (+1, -1, etc.)
+);
+
+-- Indexes for performance
+CREATE INDEX idx_rates_mod_id ON rates(mod_id);
+CREATE INDEX idx_rates_author_id ON rates(author_id);
+```
+
+---
+
+## 🔌 API Usage Examples
+
+### **Rate a Mod (RateMod)**
+
+**Request:**
+```protobuf
+RateModRequest {
+    mod_id: 12345
+    author_id: 67890  
+    rate: 1           // Positive rating (like)
+}
+```
+
+**Response:**
+```protobuf
+RateModResponse {
+    rate_id: 98765    // ID of the created rating record
+}
+```
+
+### **Get Mod Statistics (GetRates)**
+
+**Request:**
+```protobuf
+GetRatesRequest {
+    mod_id: 12345
+}
+```
+
+**Response:**
+```protobuf
+GetRatesResponse {
+    rates_total: 150  // Total number of ratings
+    likes: 120        // Positive ratings  
+    dislikes: 30      // Negative ratings
+}
+```
+
+---
+
+## 🛠️ Development Workflow
+
+### **Adding a New Feature:**
+
+1. **Update `rating.proto`** - Define new RPC method and messages
+2. **Regenerate Java classes** - Run `make update` 
+3. **Add Repository method** - Write SQL queries
+4. **Add Service method** - Add business logic
+5. **Add Handler method** - Handle gRPC requests
+6. **Test** - Make sure everything works
+
+### **Example: Adding "Delete Rating" feature:**
+
+1. **Proto:**
+```protobuf
+rpc DeleteRating(DeleteRatingRequest) returns (DeleteRatingResponse);
+```
+
+2. **Repository:**
+```java
+public boolean deleteRating(long rateId, long authorId) throws SQLException {
+    String sql = "DELETE FROM rates WHERE id = ? AND author_id = ?";
+    // Implementation
+}
+```
+
+3. **Service:**
+```java
+public boolean deleteRating(long rateId, long authorId) {
+    // Validation and error handling
+    return repository.deleteRating(rateId, authorId);
+}
+```
+
+4. **Handler:**
+```java
+@Override
+public void deleteRating(Rating.DeleteRatingRequest request, 
+                        StreamObserver<Rating.DeleteRatingResponse> responseObserver) {
+    // Handle request/response
+}
+```
+
+---
+
+## 🚨 Current Issues and TODOs
+
+### **Issues to Fix:**
+
+1. **`getRates()` returns fake data**
+   - Currently hardcoded: `totalRates = 100L; likes = 75L; dislikes = 25L`
+   - **Fix:** Implement actual database queries using `getTotalRates()` method
+
+2. **Missing database queries for statistics**
+   - Need methods in Repository: `getLikes()`, `getDislikes()`
+   - Need to call these from Service layer
+
+3. **No error handling for invalid ratings**
+   - Should validate: rating values, duplicate ratings, etc.
+
+4. **RateModMessage.java is not used**
+   - This JPA entity exists but the code uses raw SQL instead
+   - Decision needed: Use JPA entities or remove this file
+
+### **Suggested Improvements:**
+
+1. **Add input validation**
+   - Validate rating ranges (e.g., -5 to +5)
+   - Prevent users from rating same mod multiple times
+
+2. **Add proper logging**
+   - Log important events (new ratings, errors)
+   - Use SLF4J instead of System.out.println
+
+3. **Add health checks**
+   - Add endpoint to check if service is running
+   - Check database connectivity
+
+4. **Add metrics**
+   - Track number of ratings per minute
+   - Monitor response times
+
+---
+
+## 🧪 Testing Strategy
+
+### **Unit Tests Needed:**
+
+**Repository Tests:**
+```java
+@Test
+void addRate_ShouldReturnRateId() {
+    // Test database insertion
+}
+
+@Test  
+void getTotalRates_ShouldReturnCorrectCount() {
+    // Test counting logic
+}
+```
+
+**Service Tests:**
+```java
+@Test
+void rateMod_ShouldCallRepository() {
+    // Test business logic with mocked repository
+}
+```
+
+**Handler Tests:**
+```java
+@Test
+void rateMod_ShouldReturnValidResponse() {
+    // Test gRPC request/response handling
+}
+```
+
+### **Integration Tests:**
+- Test entire flow: Handler → Service → Repository → Database
+- Use TestContainers for real PostgreSQL in tests
+
+---
+
+## 🔐 Security Considerations
+
+### **Current Security Status:**
+- ✅ SQL injection protection (PreparedStatements)  
+- ❌ No authentication/authorization
+- ❌ No rate limiting
+- ❌ No input sanitization
+
+### **Recommended Security Additions:**
+1. **Authentication**: Verify user identity
+2. **Authorization**: Check if user can rate this mod
+3. **Rate limiting**: Prevent spam ratings
+4. **Input validation**: Sanitize all inputs
+5. **Audit logging**: Log who did what when
+
+---
+
+## 📊 Performance Considerations
+
+### **Current Performance:**
+- ✅ Connection pooling (HikariCP)
+- ✅ Prepared statements (faster than raw SQL)
+- ✅ Proper resource cleanup (try-with-resources)
+
+### **Potential Bottlenecks:**
+1. **Database queries**: No caching for popular mods
+2. **No pagination**: `getRates()` could return huge datasets  
+3. **No batching**: Each rating is individual database call
+
+### **Performance Improvements:**
+1. **Add caching** (Redis) for popular mod statistics
+2. **Add database indexes** on commonly queried columns
+3. **Implement pagination** for large result sets
+4. **Use connection pooling** (already implemented)
+
+---
+
+## 🚀 Deployment Guide
+
+### **Docker Deployment:**
+```bash
+# Build image
+docker build -t rating-service:latest .
+
+# Run container
+docker run -d \
+  --name rating-service \
+  -e DATABASE_URL="jdbc:postgresql://db:5432/ratings" \
+  -e PORT=9090 \
+  -p 9090:9090 \
+  rating-service:latest
+```
+
+### **Kubernetes Deployment:**
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rating-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rating-service
+  template:
+    spec:
+      containers:
+      - name: rating-service
+        image: rating-service:latest
+        ports:
+        - containerPort: 9090
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: url
+```
+
+---
+
+
+
+**Next Steps:**
+1. Fix the `getRates()` method to use real data
+2. Add proper input validation  
+3. Add comprehensive tests
+4. Consider adding caching for better performance
+

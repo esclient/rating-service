@@ -5,9 +5,9 @@ import java.sql.SQLException;
 
 @Service
 public final class RatingService {
-    private final RatingRepository repository;  // Changed from "Repository" to "RatingRepository"
+    private final RatingRepository repository;  
    
-    public RatingService(RatingRepository repository) {  // Changed parameter type to "RatingRepository"
+    public RatingService(RatingRepository repository) {  
         this.repository = repository;
     }
    
