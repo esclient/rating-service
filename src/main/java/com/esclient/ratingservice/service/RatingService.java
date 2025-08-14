@@ -9,19 +9,19 @@ import org.springframework.stereotype.Service;
 public final class RatingService {
   private final RatingRepository repository;
 
-  public RatingService(RatingRepository repository) {
+  public RatingService(final RatingRepository repository) {
     this.repository = repository;
   }
 
-  public int rateMod(long mod_id, long author_id, int rate) {
+  public int rateMod(final long modId, final long authorId, final int rate) {
     try {
-      return (int) repository.addRate(mod_id, author_id, rate);
+      return (int) repository.addRate(modId, authorId, rate);
     } catch (SQLException e) {
-      throw new RuntimeException("Failed to add rating", e);
+      throw new RatingServiceException("Failed to add rating", e);
     }
   }
 
-  public RatingData getRatings(long modId) {
+  public RatingData getRatings(final long modId) {
     try {
       long totalRates = repository.getTotalRates(modId);
       long dislikes = repository.getRates(0, modId);
@@ -29,7 +29,7 @@ public final class RatingService {
 
       return new RatingData(totalRates, dislikes, likes);
     } catch (SQLException e) {
-      throw new RuntimeException("Failed to get rating", e);
+      throw new RatingServiceException("Failed to get rating", e);
     }
   }
 }

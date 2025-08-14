@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC
+    "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+    "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+<suppressions>
+    <!-- ignore whitespace around empty braces in these files -->
+    <suppress files="RatingServiceApplication\.java" checks="WhitespaceAround"/>
+    <suppress files="RatingServiceApplicationTests\.java" checks="WhitespaceAround"/>
+    
+    <!-- Spring Boot Application class suppressions -->
+    <suppress files=".*Application\.java" checks="HideUtilityClassConstructor"/>
+    <suppress files=".*Application\.java" checks="FinalClass"/>
+    
+    <!-- Spring Boot Test class suppressions -->
+    <suppress files=".*ApplicationTests\.java" checks="HideUtilityClassConstructor"/>
+    <suppress files=".*ApplicationTests\.java" checks="FinalClass"/>
+    
+    <!-- Spring Repository classes -->
+    <suppress files=".*/repository/.*\.java" checks="DesignForExtension"/>
+    <suppress files=".*/repository/.*\.java" checks="FinalClass"/>
+    <suppress files=".*/repository/.*\.java" checks="HideUtilityClassConstructor"/>
+    
+    <!-- Spring Service classes -->
+    <suppress files=".*/service/.*\.java" checks="DesignForExtension"/>
+    <suppress files=".*/service/.*\.java" checks="FinalClass"/>
+    <suppress files=".*/service/.*\.java" checks="HideUtilityClassConstructor"/>
+    
+    <!-- Spring Controller classes -->
+    <suppress files=".*/controller/.*\.java" checks="DesignForExtension"/>
+    <suppress files=".*/controller/.*\.java" checks="FinalClass"/>
+    <suppress files=".*/controller/.*\.java" checks="HideUtilityClassConstructor"/>
+    
+    <!-- Spring Component classes -->
+    <suppress files=".*/component/.*\.java" checks="DesignForExtension"/>
+    <suppress files=".*/component/.*\.java" checks="FinalClass"/>
+    <suppress files=".*/component/.*\.java" checks="HideUtilityClassConstructor"/>
+    
+    <!-- Spring Configuration classes -->
+    <suppress files=".*/config/.*\.java" checks="DesignForExtension"/>
+    <suppress files=".*/config/.*\.java" checks="FinalClass"/>
+    <suppress files=".*/config/.*\.java" checks="HideUtilityClassConstructor"/>
+    
+    <!-- Handler/gRPC classes -->
+    <suppress files=".*/handler/.*\.java" checks="DesignForExtension"/>
+    <suppress files=".*/handler/.*\.java" checks="FinalClass"/>
+    <suppress files=".*/handler/.*\.java" checks="HideUtilityClassConstructor"/>
+    
+    <!-- Entity/Model classes (often need to be extended by frameworks) -->
+    <suppress files=".*/entity/.*\.java" checks="DesignForExtension"/>
+    <suppress files=".*/entity/.*\.java" checks="FinalClass"/>
+    <suppress files=".*/model/.*\.java" checks="DesignForExtension"/>
+    <suppress files=".*/model/.*\.java" checks="FinalClass"/>
+    
+    <!-- DTO classes (often generated or need flexibility) -->
+    <suppress files=".*/dto/.*\.java" checks="DesignForExtension"/>
+    <suppress files=".*/dto/.*\.java" checks="FinalClass"/>
+    
+    <!-- Exception classes (often need to be extended) -->
+    <suppress files=".*Exception\.java" checks="DesignForExtension"/>
+    <suppress files=".*Exception\.java" checks="FinalClass"/>
+    
+    <!-- Test classes suppressions -->
+    <suppress files=".*/src/test/.*\.java" checks="DesignForExtension"/>
+    <suppress files=".*/src/test/.*\.java" checks="FinalClass"/>
+    <suppress files=".*/src/test/.*\.java" checks="HideUtilityClassConstructor"/>
+    <suppress files=".*/src/test/.*\.java" checks="MagicNumber"/>
+    <suppress files=".*/src/test/.*\.java" checks="MultipleStringLiterals"/>
+    
+    <!-- Common Spring Boot patterns -->
+    <suppress files=".*\.java" checks="MissingJavadocMethod" message="Missing a Javadoc comment for method 'main'"/>
+    <suppress files=".*\.java" checks="MissingJavadocType" message="Missing a Javadoc comment for class.*Application"/>
+</suppressions>

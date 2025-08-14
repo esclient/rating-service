@@ -1,6 +1,10 @@
 package com.esclient.ratingservice.repository;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.sql.DataSource;
 import org.springframework.stereotype.Repository;
 
@@ -8,18 +12,19 @@ import org.springframework.stereotype.Repository;
 public class RatingRepository {
   private final DataSource dataSource;
 
-  public RatingRepository(DataSource dataSource) { // Use DataSource instead of Connection
+  public RatingRepository(final DataSource dataSource) { // Use DataSource instead of Connection
     this.dataSource = dataSource;
   }
 
-  public long addRate(long modId, long authorId, int rate) throws SQLException {
+  public long addRate(final long modId, final long authorId, final int rate) throws SQLException {
     String sql = "INSERT INTO rates (author_id, mod_id, rate) VALUES (?, ?, ?)";
 
     try (Connection conn = dataSource.getConnection(); // Get connection from DataSource
         PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+      final int paramRateIndex = 3; // otherwise the 3 is a magic number
       stmt.setLong(1, authorId);
       stmt.setLong(2, modId);
-      stmt.setInt(3, rate);
+      stmt.setInt(paramRateIndex, rate);
       int affectedRows = stmt.executeUpdate();
       if (affectedRows == 0) {
         throw new SQLException("Creating rating failed, no rows affected.");
@@ -34,7 +39,7 @@ public class RatingRepository {
     }
   }
 
-  public long getTotalRates(long modId) throws SQLException {
+  public long getTotalRates(final long modId) throws SQLException {
     String sql = "SELECT COUNT(*) FROM rates WHERE mod_id = ?";
     try (Connection conn = dataSource.getConnection();
         PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -45,7 +50,7 @@ public class RatingRepository {
     }
   }
 
-  public long getRates(long rate, long modId) throws SQLException {
+  public long getRates(final long rate, final long modId) throws SQLException {
     String sql = "SELECT COUNT(*) FROM rates WHERE rate = ? AND mod_id = ?";
     try (Connection conn = dataSource.getConnection();
         PreparedStatement stmt = conn.prepareStatement(sql)) {

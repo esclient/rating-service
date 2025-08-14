@@ -66,6 +66,12 @@
             <artifactId>jakarta.annotation-api</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>me.paulschwarz</groupId>
+            <artifactId>spring-dotenv</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+
         <!-- Javax Annotations for backward compatibility with generated gRPC code -->
         <dependency>
             <groupId>javax.annotation</groupId>
@@ -172,7 +178,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>3.12.1</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>

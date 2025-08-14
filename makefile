@@ -49,14 +49,14 @@ update: gen-stubs clean
 
 # Formatting - applies code formatting automatically
 format:
-	mvn spotless:apply -Pquality -q
+	mvn spotless:apply -Pquality 
 
 # Linting - runs all quality checks (explicit individual commands)
 lint:
-	mvn spotless:check -Pquality -q
-	mvn checkstyle:check -Pquality -q
-	mvn pmd:check -Pquality -q
-	mvn spotbugs:check -Pquality -q
+	mvn spotless:check -Pquality 
+	mvn checkstyle:check -Pquality 
+	mvn pmd:check -Pquality 
+	mvn spotbugs:check -Pquality 
 
 # Show detailed linting errors (verbose mode)
 lint-verbose:
@@ -67,7 +67,7 @@ lint-verbose:
 
 # Test with coverage report
 test:
-	mvn test jacoco:report
+	mvn test jacoco:report -Pquality
 
 # Development workflow - format, lint, then test
 dev-check: format lint test
