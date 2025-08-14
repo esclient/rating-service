@@ -8,8 +8,11 @@ spring:
     hibernate:
       ddl-auto: create-drop
     show-sql: true
-  main:
-    allow-bean-definition-overriding: true
+
 grpc:
   server:
     enabled: false
+
+# Disable Elasticsearch or other external beans if needed
+elasticsearch:
+  enabled: false
