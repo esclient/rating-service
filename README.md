@@ -1,3 +1,3 @@
 # rating-service
 
-testtest
+test
