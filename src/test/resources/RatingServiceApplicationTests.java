@@ -5,9 +5,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
-@ActiveProfiles("test") // picks up application-test.yml
+@ActiveProfiles("test") // Picks up application-test.yml
 class RatingServiceApplicationTests {
 
     @Test
-    void contextLoads() {}
+    void contextLoads() {
+        // This test will pass if ApplicationContext loads correctly
+    }
 }
