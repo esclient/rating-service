@@ -1,0 +1,13 @@
+name: "lint and test"
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    types: [ opened, synchronize, reopened ]
+jobs:
+  lint-and-test:
+    uses: esclient/esclient-workflows/.github/workflows/lint-and-test-java.yml@main
+    with:
+      java-version: '17'
+      java-distribution: 'temurin'

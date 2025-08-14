@@ -46,3 +46,29 @@ gen-stubs: fetch-proto
 
 
 update: gen-stubs clean
+
+# Formatting - applies code formatting automatically
+format:
+	mvn spotless:apply -Pquality -q
+
+# Linting - runs all quality checks (explicit individual commands)
+lint:
+	mvn spotless:check -Pquality -q
+	mvn checkstyle:check -Pquality -q
+	mvn pmd:check -Pquality -q
+	mvn spotbugs:check -Pquality -q
+
+# Show detailed linting errors (verbose mode)
+lint-verbose:
+	mvn spotless:check -Pquality
+	mvn checkstyle:check -Pquality
+	mvn pmd:check -Pquality
+	mvn spotbugs:check -Pquality
+
+# Test with coverage report
+test:
+	mvn test jacoco:report
+
+# Development workflow - format, lint, then test
+dev-check: format lint test
+	@echo "All checks passed! ✅"

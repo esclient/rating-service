@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <!-- Exclude test files from certain checks -->
+    <Match>
+        <Class name="~.*Test.*"/>
+        <Bug pattern="DM_NEXTINT_VIA_NEXTDOUBLE"/>
+    </Match>
+    
+    <Match>
+        <Class name="~.*Test.*"/>
+        <Bug pattern="DMI_RANDOM_USED_ONLY_ONCE"/>
+    </Match>
+
+    <!-- Exclude generated code if any -->
+    <Match>
+        <Class name="~.*\.generated\..*"/>
+    </Match>
+
+    <!-- Exclude specific false positives common in Spring Boot apps -->
+    <Match>
+        <Bug pattern="EI_EXPOSE_REP"/>
+        <Method name="~get.*"/>
+    </Match>
+
+    <Match>
+        <Bug pattern="EI_EXPOSE_REP2"/>
+        <Method name="~set.*"/>
+    </Match>
+
+    <!-- Exclude serialization warnings for DTOs/Entities -->
+    <Match>
+        <Class name="~.*\.(dto|entity|model)\..*"/>
+        <Bug pattern="SE_NO_SERIALVERSIONID"/>
+    </Match>
+
+    <!-- Exclude utility class constructor warnings for Spring components -->
+    <Match>
+        <Bug pattern="UWF_UNWRITTEN_FIELD"/>
+        <Field name="~.*"/>
+        <Class name="~.*\.(config|configuration)\..*"/>
+    </Match>
+</FindBugsFilter>
