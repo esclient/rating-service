@@ -1,8 +1,13 @@
 # Compiled class file
 *.class
 
+# Maven build directory
+target/
+
 # env file for privacy
 .env
+
+.vscode
 
 # Log file
 *.log

@@ -21,13 +21,11 @@ endif
 docker-build:
 	docker build --pull --no-cache --build-arg PORT=$(PORT) -t rating .
 
-
-run: update docker-build
+run: docker-build
 	docker run --rm -it \
 		--env-file .env \
 		-p $(PORT):$(PORT) \
 		rating
-
 
 clean:
 	$(RM)
@@ -44,5 +42,19 @@ gen-stubs: fetch-proto
 		--grpc-java_out="$(OUT_DIR)" \
 		"$(TMP_DIR)/$(PROTO_NAME)"
 
-
 update: gen-stubs clean
+
+format:
+	mvn spotless:apply -Pquality 
+
+lint:
+	mvn spotless:check -Pquality 
+	mvn checkstyle:check -Pquality 
+	mvn pmd:check -Pquality 
+	mvn spotbugs:check -Pquality 
+
+test:
+	mvn test jacoco:report -Pquality
+
+dev-check: format lint test
+	@echo "All checks passed! ✅"
