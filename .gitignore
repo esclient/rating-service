@@ -7,6 +7,8 @@ target/
 # env file for privacy
 .env
 
+.vscode
+
 # Log file
 *.log
 
