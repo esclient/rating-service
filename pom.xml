@@ -120,6 +120,19 @@
             <artifactId>elasticsearch-java</artifactId>
             <version>8.11.0</version>
         </dependency>
+        
+        <!-- JSON Logging Support -->
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>7.4</version>
+        </dependency>
+
+        <!-- For MDC (Mapped Diagnostic Context) support in async operations -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
 
         <!-- Lombok -->
         <dependency>
