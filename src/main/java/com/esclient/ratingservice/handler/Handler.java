@@ -27,9 +27,12 @@ public final class Handler extends RatingServiceGrpc.RatingServiceImplBase {
       // Extract request data
       long modId = request.getModId();
       long authorId = request.getAuthorId();
-      int rating = request.getRate();
+      int rate = request.getRate();
 
-      int rateId = service.rateMod(modId, authorId, rating);
+      validateRateModRequest(modId, authorId);
+
+      // Call service
+      int rateId = service.rateMod(modId, authorId, rate);
 
       // Build response
       Rating.RateModResponse response =
@@ -103,6 +106,19 @@ public final class Handler extends RatingServiceGrpc.RatingServiceImplBase {
               .withDescription("Unexpected error occurred")
               .withCause(e)
               .asRuntimeException());
+    }
+  }
+
+  private void validateRateModRequest(final long modId, final long authorId) {
+    if (modId <= 0) {
+      IllegalArgumentException e = new IllegalArgumentException("modId must be positive");
+      service.logError(e);
+      throw e;
+    }
+    if (authorId <= 0) {
+      IllegalArgumentException e = new IllegalArgumentException("authorId must be positive");
+      service.logError(e);
+      throw e;
     }
   }
 }

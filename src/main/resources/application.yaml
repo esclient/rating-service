@@ -1,18 +1,17 @@
 spring:
   application:
     name: rating-service
-
   datasource:
     url: ${DATABASE_URL}
     driver-class-name: org.postgresql.Driver
-
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: none
-
   liquibase:
     enabled: false
+  profiles:
+    active: ${ENVIRONMENT:development}
 
 grpc:
   server:
@@ -23,3 +22,18 @@ management:
     export:
       simple:
         enabled: true
+
+# Logging Configuration
+logging:
+  level:
+    root: ${LOG_LEVEL:INFO}
+    com.esclient: ${LOG_LEVEL:DEBUG}
+    org.springframework: WARN
+    org.hibernate: WARN
+    io.grpc: INFO
+  file:
+    name: logs/rating-service.log
+    path: logs
+  pattern:
+    console: ""  # Disable default pattern (we use JSON)
+    file: ""     # Disable default pattern (we use JSON)
