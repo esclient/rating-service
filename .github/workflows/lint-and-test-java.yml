@@ -7,7 +7,7 @@ on:
     types: [ opened, synchronize, reopened ]
 jobs:
   lint-and-test:
-    uses: esclient/esclient-workflows/.github/workflows/lint-and-test-java.yml@main
+    uses: esclient/tools/.github/workflows/lint-and-test-java.yml@main
     with:
       java-version: '17'
       java-distribution: 'temurin'
