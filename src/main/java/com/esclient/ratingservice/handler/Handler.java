@@ -29,7 +29,7 @@ public final class Handler extends RatingServiceGrpc.RatingServiceImplBase {
       long authorId = request.getAuthorId();
       int rate = request.getRate();
 
-      validateRateModRequest(modId, authorId, rate);
+      validateRateModRequest(modId, authorId);
 
       // Call service
       int rateId = service.rateMod(modId, authorId, rate);
@@ -109,7 +109,7 @@ public final class Handler extends RatingServiceGrpc.RatingServiceImplBase {
     }
   }
 
-  private void validateRateModRequest(final long modId, final long authorId, final int rate) {
+  private void validateRateModRequest(final long modId, final long authorId) {
     if (modId <= 0) {
       IllegalArgumentException e = new IllegalArgumentException("modId must be positive");
       service.logError(e);
@@ -117,12 +117,6 @@ public final class Handler extends RatingServiceGrpc.RatingServiceImplBase {
     }
     if (authorId <= 0) {
       IllegalArgumentException e = new IllegalArgumentException("authorId must be positive");
-      service.logError(e);
-      throw e;
-    }
-    if (rate < 0 || rate > 1) {
-      IllegalArgumentException e =
-          new IllegalArgumentException("rating is invalid, must be either 1 or 0");
       service.logError(e);
       throw e;
     }
