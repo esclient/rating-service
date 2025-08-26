@@ -31,13 +31,4 @@ public final class RatingConstants {
     // Prevent instantiation of utility class
   }
 
-  /**
-   * Validates if the given rating value is within the valid range.
-   *
-   * @param rating the rating value to validate
-   * @return true if the rating is valid, false otherwise
-   */
-  public static boolean isValidRating(final int rating) {
-    return rating >= MIN_RATING && rating <= MAX_RATING;
-  }
 }
