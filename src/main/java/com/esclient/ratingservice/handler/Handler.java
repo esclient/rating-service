@@ -1,5 +1,6 @@
 package com.esclient.ratingservice.handler;
 
+import com.esclient.ratingservice.constants.RatingConstants;
 import com.esclient.ratingservice.model.RatingData;
 import com.esclient.ratingservice.service.RatingService;
 import io.grpc.Status;
@@ -27,12 +28,14 @@ public final class Handler extends RatingServiceGrpc.RatingServiceImplBase {
       // Extract request data
       long modId = request.getModId();
       long authorId = request.getAuthorId();
-      int rate = request.getRate();
+      Rating.Rate rateEnum = request.getRate();
 
       validateRateModRequest(modId, authorId);
 
+      int rateValue = convertRateEnumToInteger(rateEnum);
+
       // Call service
-      int rateId = service.rateMod(modId, authorId, rate);
+      int rateId = service.rateMod(modId, authorId, rateValue);
 
       // Build response
       Rating.RateModResponse response =
@@ -78,8 +81,11 @@ public final class Handler extends RatingServiceGrpc.RatingServiceImplBase {
       Rating.GetRatesResponse response =
           Rating.GetRatesResponse.newBuilder()
               .setRatesTotal(ratingData.getTotalRates())
-              .setLikes(ratingData.getLikes())
-              .setDislikes(ratingData.getDislikes())
+              .setRate1(ratingData.getRate1Count())
+              .setRate2(ratingData.getRate2Count())
+              .setRate3(ratingData.getRate3Count())
+              .setRate4(ratingData.getRate4Count())
+              .setRate5(ratingData.getRate5Count())
               .build();
 
       // Send response
@@ -119,6 +125,26 @@ public final class Handler extends RatingServiceGrpc.RatingServiceImplBase {
       IllegalArgumentException e = new IllegalArgumentException("authorId must be positive");
       service.logError(e);
       throw e;
+    }
+  }
+
+  private int convertRateEnumToInteger(final Rating.Rate rate) {
+    switch (rate) {
+      case RATE_1:
+        return RatingConstants.RATE_1;
+      case RATE_2:
+        return RatingConstants.RATE_2;
+      case RATE_3:
+        return RatingConstants.RATE_3;
+      case RATE_4:
+        return RatingConstants.RATE_4;
+      case RATE_5:
+        return RatingConstants.RATE_5;
+      case RATE_UNSPECIFIED:
+      default:
+        IllegalArgumentException e = new IllegalArgumentException("Invalid rate: " + rate);
+        service.logError(e);
+        throw e;
     }
   }
 }

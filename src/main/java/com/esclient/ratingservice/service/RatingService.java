@@ -1,5 +1,6 @@
 package com.esclient.ratingservice.service;
 
+import com.esclient.ratingservice.constants.RatingConstants;
 import com.esclient.ratingservice.model.RatingData;
 import com.esclient.ratingservice.repository.RatingRepository;
 import java.sql.SQLException;
@@ -56,10 +57,13 @@ public final class RatingService {
 
     try {
       long totalRates = repository.getTotalRates(modId);
-      long dislikes = repository.getRates(0, modId);
-      long likes = repository.getRates(1, modId);
+      long rate1Count = repository.getRates(RatingConstants.RATE_1, modId);
+      long rate2Count = repository.getRates(RatingConstants.RATE_2, modId);
+      long rate3Count = repository.getRates(RatingConstants.RATE_3, modId);
+      long rate4Count = repository.getRates(RatingConstants.RATE_4, modId);
+      long rate5Count = repository.getRates(RatingConstants.RATE_5, modId);
 
-      return new RatingData(totalRates, dislikes, likes);
+      return new RatingData(totalRates, rate1Count, rate2Count, rate3Count, rate4Count, rate5Count);
 
     } catch (SQLException e) {
       LOGGER.error("Failed to get ratings for mod {}", modId, e);
