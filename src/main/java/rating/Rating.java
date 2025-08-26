@@ -14,6 +14,150 @@ public final class Rating {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
+  /**
+   * Protobuf enum {@code rating.Rate}
+   */
+  public enum Rate
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>RATE_UNSPECIFIED = 0;</code>
+     */
+    RATE_UNSPECIFIED(0),
+    /**
+     * <code>RATE_1 = 1;</code>
+     */
+    RATE_1(1),
+    /**
+     * <code>RATE_2 = 2;</code>
+     */
+    RATE_2(2),
+    /**
+     * <code>RATE_3 = 3;</code>
+     */
+    RATE_3(3),
+    /**
+     * <code>RATE_4 = 4;</code>
+     */
+    RATE_4(4),
+    /**
+     * <code>RATE_5 = 5;</code>
+     */
+    RATE_5(5),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>RATE_UNSPECIFIED = 0;</code>
+     */
+    public static final int RATE_UNSPECIFIED_VALUE = 0;
+    /**
+     * <code>RATE_1 = 1;</code>
+     */
+    public static final int RATE_1_VALUE = 1;
+    /**
+     * <code>RATE_2 = 2;</code>
+     */
+    public static final int RATE_2_VALUE = 2;
+    /**
+     * <code>RATE_3 = 3;</code>
+     */
+    public static final int RATE_3_VALUE = 3;
+    /**
+     * <code>RATE_4 = 4;</code>
+     */
+    public static final int RATE_4_VALUE = 4;
+    /**
+     * <code>RATE_5 = 5;</code>
+     */
+    public static final int RATE_5_VALUE = 5;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static Rate valueOf(int value) {
+      return forNumber(value);
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
+    public static Rate forNumber(int value) {
+      switch (value) {
+        case 0: return RATE_UNSPECIFIED;
+        case 1: return RATE_1;
+        case 2: return RATE_2;
+        case 3: return RATE_3;
+        case 4: return RATE_4;
+        case 5: return RATE_5;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<Rate>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        Rate> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<Rate>() {
+            public Rate findValueByNumber(int number) {
+              return Rate.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return rating.Rating.getDescriptor().getEnumTypes().get(0);
+    }
+
+    private static final Rate[] VALUES = values();
+
+    public static Rate valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private Rate(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:rating.Rate)
+  }
+
   public interface RateModRequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:rating.RateModRequest)
       com.google.protobuf.MessageOrBuilder {
@@ -31,10 +175,15 @@ public final class Rating {
     long getAuthorId();
 
     /**
-     * <code>int32 rate = 3;</code>
+     * <code>.rating.Rate rate = 3;</code>
+     * @return The enum numeric value on the wire for rate.
+     */
+    int getRateValue();
+    /**
+     * <code>.rating.Rate rate = 3;</code>
      * @return The rate.
      */
-    int getRate();
+    rating.Rating.Rate getRate();
   }
   /**
    * Protobuf type {@code rating.RateModRequest}
@@ -49,6 +198,7 @@ public final class Rating {
       super(builder);
     }
     private RateModRequest() {
+      rate_ = 0;
     }
 
     @java.lang.Override
@@ -101,12 +251,19 @@ public final class Rating {
     public static final int RATE_FIELD_NUMBER = 3;
     private int rate_ = 0;
     /**
-     * <code>int32 rate = 3;</code>
+     * <code>.rating.Rate rate = 3;</code>
+     * @return The enum numeric value on the wire for rate.
+     */
+    @java.lang.Override public int getRateValue() {
+      return rate_;
+    }
+    /**
+     * <code>.rating.Rate rate = 3;</code>
      * @return The rate.
      */
-    @java.lang.Override
-    public int getRate() {
-      return rate_;
+    @java.lang.Override public rating.Rating.Rate getRate() {
+      rating.Rating.Rate result = rating.Rating.Rate.forNumber(rate_);
+      return result == null ? rating.Rating.Rate.UNRECOGNIZED : result;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -129,8 +286,8 @@ public final class Rating {
       if (authorId_ != 0L) {
         output.writeInt64(2, authorId_);
       }
-      if (rate_ != 0) {
-        output.writeInt32(3, rate_);
+      if (rate_ != rating.Rating.Rate.RATE_UNSPECIFIED.getNumber()) {
+        output.writeEnum(3, rate_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -149,9 +306,9 @@ public final class Rating {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(2, authorId_);
       }
-      if (rate_ != 0) {
+      if (rate_ != rating.Rating.Rate.RATE_UNSPECIFIED.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, rate_);
+          .computeEnumSize(3, rate_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -172,8 +329,7 @@ public final class Rating {
           != other.getModId()) return false;
       if (getAuthorId()
           != other.getAuthorId()) return false;
-      if (getRate()
-          != other.getRate()) return false;
+      if (rate_ != other.rate_) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -192,7 +348,7 @@ public final class Rating {
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getAuthorId());
       hash = (37 * hash) + RATE_FIELD_NUMBER;
-      hash = (53 * hash) + getRate();
+      hash = (53 * hash) + rate_;
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -419,8 +575,8 @@ public final class Rating {
         if (other.getAuthorId() != 0L) {
           setAuthorId(other.getAuthorId());
         }
-        if (other.getRate() != 0) {
-          setRate(other.getRate());
+        if (other.rate_ != 0) {
+          setRateValue(other.getRateValue());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -459,7 +615,7 @@ public final class Rating {
                 break;
               } // case 16
               case 24: {
-                rate_ = input.readInt32();
+                rate_ = input.readEnum();
                 bitField0_ |= 0x00000004;
                 break;
               } // case 24
@@ -544,29 +700,50 @@ public final class Rating {
         return this;
       }
 
-      private int rate_ ;
+      private int rate_ = 0;
       /**
-       * <code>int32 rate = 3;</code>
-       * @return The rate.
+       * <code>.rating.Rate rate = 3;</code>
+       * @return The enum numeric value on the wire for rate.
        */
-      @java.lang.Override
-      public int getRate() {
+      @java.lang.Override public int getRateValue() {
         return rate_;
       }
       /**
-       * <code>int32 rate = 3;</code>
-       * @param value The rate to set.
+       * <code>.rating.Rate rate = 3;</code>
+       * @param value The enum numeric value on the wire for rate to set.
        * @return This builder for chaining.
        */
-      public Builder setRate(int value) {
-        
+      public Builder setRateValue(int value) {
         rate_ = value;
         bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 rate = 3;</code>
+       * <code>.rating.Rate rate = 3;</code>
+       * @return The rate.
+       */
+      @java.lang.Override
+      public rating.Rating.Rate getRate() {
+        rating.Rating.Rate result = rating.Rating.Rate.forNumber(rate_);
+        return result == null ? rating.Rating.Rate.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.rating.Rate rate = 3;</code>
+       * @param value The rate to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRate(rating.Rating.Rate value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000004;
+        rate_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.rating.Rate rate = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearRate() {
@@ -1610,16 +1787,34 @@ public final class Rating {
     long getRatesTotal();
 
     /**
-     * <code>int64 likes = 2;</code>
-     * @return The likes.
+     * <code>int64 rate_1 = 2;</code>
+     * @return The rate1.
      */
-    long getLikes();
+    long getRate1();
 
     /**
-     * <code>int64 dislikes = 3;</code>
-     * @return The dislikes.
+     * <code>int64 rate_2 = 3;</code>
+     * @return The rate2.
      */
-    long getDislikes();
+    long getRate2();
+
+    /**
+     * <code>int64 rate_3 = 4;</code>
+     * @return The rate3.
+     */
+    long getRate3();
+
+    /**
+     * <code>int64 rate_4 = 5;</code>
+     * @return The rate4.
+     */
+    long getRate4();
+
+    /**
+     * <code>int64 rate_5 = 6;</code>
+     * @return The rate5.
+     */
+    long getRate5();
   }
   /**
    * Protobuf type {@code rating.GetRatesResponse}
@@ -1672,26 +1867,59 @@ public final class Rating {
       return ratesTotal_;
     }
 
-    public static final int LIKES_FIELD_NUMBER = 2;
-    private long likes_ = 0L;
+    public static final int RATE_1_FIELD_NUMBER = 2;
+    private long rate1_ = 0L;
     /**
-     * <code>int64 likes = 2;</code>
-     * @return The likes.
+     * <code>int64 rate_1 = 2;</code>
+     * @return The rate1.
      */
     @java.lang.Override
-    public long getLikes() {
-      return likes_;
+    public long getRate1() {
+      return rate1_;
     }
 
-    public static final int DISLIKES_FIELD_NUMBER = 3;
-    private long dislikes_ = 0L;
+    public static final int RATE_2_FIELD_NUMBER = 3;
+    private long rate2_ = 0L;
     /**
-     * <code>int64 dislikes = 3;</code>
-     * @return The dislikes.
+     * <code>int64 rate_2 = 3;</code>
+     * @return The rate2.
      */
     @java.lang.Override
-    public long getDislikes() {
-      return dislikes_;
+    public long getRate2() {
+      return rate2_;
+    }
+
+    public static final int RATE_3_FIELD_NUMBER = 4;
+    private long rate3_ = 0L;
+    /**
+     * <code>int64 rate_3 = 4;</code>
+     * @return The rate3.
+     */
+    @java.lang.Override
+    public long getRate3() {
+      return rate3_;
+    }
+
+    public static final int RATE_4_FIELD_NUMBER = 5;
+    private long rate4_ = 0L;
+    /**
+     * <code>int64 rate_4 = 5;</code>
+     * @return The rate4.
+     */
+    @java.lang.Override
+    public long getRate4() {
+      return rate4_;
+    }
+
+    public static final int RATE_5_FIELD_NUMBER = 6;
+    private long rate5_ = 0L;
+    /**
+     * <code>int64 rate_5 = 6;</code>
+     * @return The rate5.
+     */
+    @java.lang.Override
+    public long getRate5() {
+      return rate5_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1711,11 +1939,20 @@ public final class Rating {
       if (ratesTotal_ != 0L) {
         output.writeInt64(1, ratesTotal_);
       }
-      if (likes_ != 0L) {
-        output.writeInt64(2, likes_);
+      if (rate1_ != 0L) {
+        output.writeInt64(2, rate1_);
       }
-      if (dislikes_ != 0L) {
-        output.writeInt64(3, dislikes_);
+      if (rate2_ != 0L) {
+        output.writeInt64(3, rate2_);
+      }
+      if (rate3_ != 0L) {
+        output.writeInt64(4, rate3_);
+      }
+      if (rate4_ != 0L) {
+        output.writeInt64(5, rate4_);
+      }
+      if (rate5_ != 0L) {
+        output.writeInt64(6, rate5_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -1730,13 +1967,25 @@ public final class Rating {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(1, ratesTotal_);
       }
-      if (likes_ != 0L) {
+      if (rate1_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(2, likes_);
+          .computeInt64Size(2, rate1_);
       }
-      if (dislikes_ != 0L) {
+      if (rate2_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(3, dislikes_);
+          .computeInt64Size(3, rate2_);
+      }
+      if (rate3_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(4, rate3_);
+      }
+      if (rate4_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, rate4_);
+      }
+      if (rate5_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(6, rate5_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -1755,10 +2004,16 @@ public final class Rating {
 
       if (getRatesTotal()
           != other.getRatesTotal()) return false;
-      if (getLikes()
-          != other.getLikes()) return false;
-      if (getDislikes()
-          != other.getDislikes()) return false;
+      if (getRate1()
+          != other.getRate1()) return false;
+      if (getRate2()
+          != other.getRate2()) return false;
+      if (getRate3()
+          != other.getRate3()) return false;
+      if (getRate4()
+          != other.getRate4()) return false;
+      if (getRate5()
+          != other.getRate5()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -1773,12 +2028,21 @@ public final class Rating {
       hash = (37 * hash) + RATES_TOTAL_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getRatesTotal());
-      hash = (37 * hash) + LIKES_FIELD_NUMBER;
+      hash = (37 * hash) + RATE_1_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getLikes());
-      hash = (37 * hash) + DISLIKES_FIELD_NUMBER;
+          getRate1());
+      hash = (37 * hash) + RATE_2_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getDislikes());
+          getRate2());
+      hash = (37 * hash) + RATE_3_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getRate3());
+      hash = (37 * hash) + RATE_4_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getRate4());
+      hash = (37 * hash) + RATE_5_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getRate5());
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1909,8 +2173,11 @@ public final class Rating {
         super.clear();
         bitField0_ = 0;
         ratesTotal_ = 0L;
-        likes_ = 0L;
-        dislikes_ = 0L;
+        rate1_ = 0L;
+        rate2_ = 0L;
+        rate3_ = 0L;
+        rate4_ = 0L;
+        rate5_ = 0L;
         return this;
       }
 
@@ -1948,10 +2215,19 @@ public final class Rating {
           result.ratesTotal_ = ratesTotal_;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
-          result.likes_ = likes_;
+          result.rate1_ = rate1_;
         }
         if (((from_bitField0_ & 0x00000004) != 0)) {
-          result.dislikes_ = dislikes_;
+          result.rate2_ = rate2_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.rate3_ = rate3_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.rate4_ = rate4_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.rate5_ = rate5_;
         }
       }
 
@@ -2002,11 +2278,20 @@ public final class Rating {
         if (other.getRatesTotal() != 0L) {
           setRatesTotal(other.getRatesTotal());
         }
-        if (other.getLikes() != 0L) {
-          setLikes(other.getLikes());
+        if (other.getRate1() != 0L) {
+          setRate1(other.getRate1());
         }
-        if (other.getDislikes() != 0L) {
-          setDislikes(other.getDislikes());
+        if (other.getRate2() != 0L) {
+          setRate2(other.getRate2());
+        }
+        if (other.getRate3() != 0L) {
+          setRate3(other.getRate3());
+        }
+        if (other.getRate4() != 0L) {
+          setRate4(other.getRate4());
+        }
+        if (other.getRate5() != 0L) {
+          setRate5(other.getRate5());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -2040,15 +2325,30 @@ public final class Rating {
                 break;
               } // case 8
               case 16: {
-                likes_ = input.readInt64();
+                rate1_ = input.readInt64();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 16
               case 24: {
-                dislikes_ = input.readInt64();
+                rate2_ = input.readInt64();
                 bitField0_ |= 0x00000004;
                 break;
               } // case 24
+              case 32: {
+                rate3_ = input.readInt64();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              case 40: {
+                rate4_ = input.readInt64();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 40
+              case 48: {
+                rate5_ = input.readInt64();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 48
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -2098,66 +2398,162 @@ public final class Rating {
         return this;
       }
 
-      private long likes_ ;
+      private long rate1_ ;
       /**
-       * <code>int64 likes = 2;</code>
-       * @return The likes.
+       * <code>int64 rate_1 = 2;</code>
+       * @return The rate1.
        */
       @java.lang.Override
-      public long getLikes() {
-        return likes_;
+      public long getRate1() {
+        return rate1_;
       }
       /**
-       * <code>int64 likes = 2;</code>
-       * @param value The likes to set.
+       * <code>int64 rate_1 = 2;</code>
+       * @param value The rate1 to set.
        * @return This builder for chaining.
        */
-      public Builder setLikes(long value) {
+      public Builder setRate1(long value) {
         
-        likes_ = value;
+        rate1_ = value;
         bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       /**
-       * <code>int64 likes = 2;</code>
+       * <code>int64 rate_1 = 2;</code>
        * @return This builder for chaining.
        */
-      public Builder clearLikes() {
+      public Builder clearRate1() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        likes_ = 0L;
+        rate1_ = 0L;
         onChanged();
         return this;
       }
 
-      private long dislikes_ ;
+      private long rate2_ ;
       /**
-       * <code>int64 dislikes = 3;</code>
-       * @return The dislikes.
+       * <code>int64 rate_2 = 3;</code>
+       * @return The rate2.
        */
       @java.lang.Override
-      public long getDislikes() {
-        return dislikes_;
+      public long getRate2() {
+        return rate2_;
       }
       /**
-       * <code>int64 dislikes = 3;</code>
-       * @param value The dislikes to set.
+       * <code>int64 rate_2 = 3;</code>
+       * @param value The rate2 to set.
        * @return This builder for chaining.
        */
-      public Builder setDislikes(long value) {
+      public Builder setRate2(long value) {
         
-        dislikes_ = value;
+        rate2_ = value;
         bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
-       * <code>int64 dislikes = 3;</code>
+       * <code>int64 rate_2 = 3;</code>
        * @return This builder for chaining.
        */
-      public Builder clearDislikes() {
+      public Builder clearRate2() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        dislikes_ = 0L;
+        rate2_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long rate3_ ;
+      /**
+       * <code>int64 rate_3 = 4;</code>
+       * @return The rate3.
+       */
+      @java.lang.Override
+      public long getRate3() {
+        return rate3_;
+      }
+      /**
+       * <code>int64 rate_3 = 4;</code>
+       * @param value The rate3 to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRate3(long value) {
+        
+        rate3_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 rate_3 = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRate3() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        rate3_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long rate4_ ;
+      /**
+       * <code>int64 rate_4 = 5;</code>
+       * @return The rate4.
+       */
+      @java.lang.Override
+      public long getRate4() {
+        return rate4_;
+      }
+      /**
+       * <code>int64 rate_4 = 5;</code>
+       * @param value The rate4 to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRate4(long value) {
+        
+        rate4_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 rate_4 = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRate4() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        rate4_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long rate5_ ;
+      /**
+       * <code>int64 rate_5 = 6;</code>
+       * @return The rate5.
+       */
+      @java.lang.Override
+      public long getRate5() {
+        return rate5_;
+      }
+      /**
+       * <code>int64 rate_5 = 6;</code>
+       * @param value The rate5 to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRate5(long value) {
+        
+        rate5_ = value;
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 rate_5 = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRate5() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        rate5_ = 0L;
         onChanged();
         return this;
       }
@@ -2254,16 +2650,20 @@ public final class Rating {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\014rating.proto\022\006rating\"A\n\016RateModRequest" +
-      "\022\016\n\006mod_id\030\001 \001(\003\022\021\n\tauthor_id\030\002 \001(\003\022\014\n\004r" +
-      "ate\030\003 \001(\005\"\"\n\017RateModResponse\022\017\n\007rate_id\030" +
-      "\001 \001(\003\"!\n\017GetRatesRequest\022\016\n\006mod_id\030\001 \001(\003" +
-      "\"H\n\020GetRatesResponse\022\023\n\013rates_total\030\001 \001(" +
-      "\003\022\r\n\005likes\030\002 \001(\003\022\020\n\010dislikes\030\003 \001(\0032\212\001\n\rR" +
-      "atingService\022:\n\007RateMod\022\026.rating.RateMod" +
-      "Request\032\027.rating.RateModResponse\022=\n\010GetR" +
-      "ates\022\027.rating.GetRatesRequest\032\030.rating.G" +
-      "etRatesResponseb\006proto3"
+      "\n\014rating.proto\022\006rating\"O\n\016RateModRequest" +
+      "\022\016\n\006mod_id\030\001 \001(\003\022\021\n\tauthor_id\030\002 \001(\003\022\032\n\004r" +
+      "ate\030\003 \001(\0162\014.rating.Rate\"\"\n\017RateModRespon" +
+      "se\022\017\n\007rate_id\030\001 \001(\003\"!\n\017GetRatesRequest\022\016" +
+      "\n\006mod_id\030\001 \001(\003\"w\n\020GetRatesResponse\022\023\n\013ra" +
+      "tes_total\030\001 \001(\003\022\016\n\006rate_1\030\002 \001(\003\022\016\n\006rate_" +
+      "2\030\003 \001(\003\022\016\n\006rate_3\030\004 \001(\003\022\016\n\006rate_4\030\005 \001(\003\022" +
+      "\016\n\006rate_5\030\006 \001(\003*X\n\004Rate\022\024\n\020RATE_UNSPECIF" +
+      "IED\020\000\022\n\n\006RATE_1\020\001\022\n\n\006RATE_2\020\002\022\n\n\006RATE_3\020" +
+      "\003\022\n\n\006RATE_4\020\004\022\n\n\006RATE_5\020\0052\212\001\n\rRatingServ" +
+      "ice\022:\n\007RateMod\022\026.rating.RateModRequest\032\027" +
+      ".rating.RateModResponse\022=\n\010GetRates\022\027.ra" +
+      "ting.GetRatesRequest\032\030.rating.GetRatesRe" +
+      "sponseb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -2292,7 +2692,7 @@ public final class Rating {
     internal_static_rating_GetRatesResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rating_GetRatesResponse_descriptor,
-        new java.lang.String[] { "RatesTotal", "Likes", "Dislikes", });
+        new java.lang.String[] { "RatesTotal", "Rate1", "Rate2", "Rate3", "Rate4", "Rate5", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

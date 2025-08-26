@@ -1,5 +1,5 @@
 -include .env
-PROTO_TAG ?= v0.0.14
+PROTO_TAG ?= v0.0.18
 PROTO_NAME := rating.proto
 TMP_DIR := .proto
 OUT_DIR := src/main/java
