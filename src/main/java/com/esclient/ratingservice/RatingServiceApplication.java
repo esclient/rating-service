@@ -2,10 +2,13 @@ package com.esclient.ratingservice;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+import com.esclient.ratingservice.service.InfisicalService;
 
 @SpringBootApplication
 @SuppressWarnings({"checkstyle:HideUtilityClassConstructor", "PMD.UseUtilityClass"})
@@ -16,14 +19,29 @@ public class RatingServiceApplication implements CommandLineRunner {
   @Value("${grpc.server.port}")
   private int grpcPort;
 
+  @Autowired
+  private InfisicalService infisicalService;
+  private ConfigurableApplicationContext applicationContext;
+
   public static void main(final String[] args) {
     SpringApplication.run(RatingServiceApplication.class, args);
   }
 
   @Override
   public final void run(final String... args) {
-    LOGGER.info("Rating Service started successfully");
-    LOGGER.info("gRPC server listening on port: {}", grpcPort);
-    LOGGER.debug("Application startup completed with args: {}", (Object[]) args);
+      LOGGER.info("Rating Service started successfully");
+      LOGGER.info("gRPC server listening on port: {}", grpcPort);
+    
+      try {
+          infisicalService.getSecret("DATABASE_URL", "your-project-id", "development", "/"); //needs to be changed
+          LOGGER.info("Retrieved secret from Infisical");
+      } catch (Exception e) {
+          LOGGER.error("Failed to retrieve secret from Infisical: {}", e.getMessage());
+          LOGGER.error("Application cannot continue without required secrets. Shutting down...");
+          SpringApplication.exit(applicationContext, () -> 1);
+          return;
+      }
+    
+      LOGGER.debug("Application startup completed with args: {}", (Object[]) args);
   }
 }

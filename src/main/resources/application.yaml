@@ -37,3 +37,10 @@ logging:
   pattern:
     console: ""  # Disable default pattern (we use JSON)
     file: ""     # Disable default pattern (we use JSON)
+
+infisical:
+  site-url: ${INFISICAL_SITE_URL:https://app.infisical.com}
+  client-id: ${INFISICAL_CLIENT_ID}
+  client-secret: ${INFISICAL_CLIENT_SECRET}
+  project-id: ${INFISICAL_PROJECT_ID}
+  environment: ${INFISICAL_ENVIRONMENT:production}
