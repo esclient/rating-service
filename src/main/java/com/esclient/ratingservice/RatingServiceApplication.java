@@ -19,8 +19,19 @@ public class RatingServiceApplication implements CommandLineRunner {
   @Value("${grpc.server.port}")
   private int grpcPort;
 
+  @Value("${INFISICAL_PROJECT_ID}")
+  private String infisicalProjectId;
+  
+  @Value("${INFISICAL_ENVIRONMENT}")
+  private String infisicalEnvironment;
+  
+  @Value("${INFISICAL_SECRET_PATH}")
+  private String infisicalSecretPath;
+
   @Autowired
   private InfisicalService infisicalService;
+
+  @Autowired
   private ConfigurableApplicationContext applicationContext;
 
   public static void main(final String[] args) {
@@ -33,7 +44,7 @@ public class RatingServiceApplication implements CommandLineRunner {
       LOGGER.info("gRPC server listening on port: {}", grpcPort);
     
       try {
-          infisicalService.getSecret("DATABASE_URL", "your-project-id", "development", "/"); //needs to be changed
+          infisicalService.getSecret("DATABASE_URL", infisicalProjectId, infisicalEnvironment, infisicalSecretPath);
           LOGGER.info("Retrieved secret from Infisical");
       } catch (Exception e) {
           LOGGER.error("Failed to retrieve secret from Infisical: {}", e.getMessage());
