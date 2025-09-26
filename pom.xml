@@ -148,7 +148,7 @@
         <dependency>
             <groupId>com.infisical</groupId>
             <artifactId>sdk</artifactId>
-            <version>3.0.0</version>
+            <version>3.0.3</version>
         </dependency>
 
         <!-- Updated Spring Test for compatibility with Spring Boot 3.2.0 -->
@@ -156,6 +156,7 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
         </dependency>
+    
     </dependencies>
 
     <build>
