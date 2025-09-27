@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<profile>
+    <name>Rating Service Quality Profile</name>
+    <language>java</language>
+    <rules>
+        <!-- Code Smells -->
+        <rule>
+            <repositoryKey>java</repositoryKey>
+            <key>S1135</key> <!-- TODO tags should be handled -->
+            <priority>MINOR</priority>
+        </rule>
+        <rule>
+            <repositoryKey>java</repositoryKey>
+            <key>S1068</key> <!-- Unused private fields should be removed -->
+            <priority>MAJOR</priority>
+        </rule>
+        <rule>
+            <repositoryKey>java</repositoryKey>
+            <key>S1172</key> <!-- Unused method parameters should be removed -->
+            <priority>MAJOR</priority>
+        </rule>
+        <rule>
+            <repositoryKey>java</repositoryKey>
+            <key>S1481</key> <!-- Unused local variables should be removed -->
+            <priority>MINOR</priority>
+        </rule>
+        
+        <!-- Bugs -->
+        <rule>
+            <repositoryKey>java</repositoryKey>
+            <key>S2095</key> <!-- Resources should be closed -->
+            <priority>BLOCKER</priority>
+        </rule>
+        <rule>
+            <repositoryKey>java</repositoryKey>
+            <key>S2259</key> <!-- Null pointers should not be dereferenced -->
+            <priority>BLOCKER</priority>
+        </rule>
+        <rule>
+            <repositoryKey>java</repositoryKey>
+            <key>S2201</key> <!-- Return values from functions without side effects should not be ignored -->
+            <priority>CRITICAL</priority>
+        </rule>
+        
+        <!-- Security -->
+        <rule>
+            <repositoryKey>java</repositoryKey>
+            <key>S2245</key> <!-- Using pseudorandom number generators (PRNGs) is security-sensitive -->
+            <priority>CRITICAL</priority>
+        </rule>
+        <rule>
+            <repositoryKey>java</repositoryKey>
+            <key>S5542</key> <!-- Encryption algorithms should be robust -->
+            <priority>CRITICAL</priority>
+        </rule>
+        
+        <!-- Performance -->
+        <rule>
+            <repositoryKey>java</repositoryKey>
+            <key>S1643</key> <!-- Strings should not be concatenated using '+' in a loop -->
+            <priority>MAJOR</priority>
+        </rule>
+        <rule>
+            <repositoryKey>java</repositoryKey>
+            <key>S1155</key> <!-- Collection.isEmpty() should be used to test for emptiness -->
+            <priority>MINOR</priority>
+        </rule>
+        
+        <!-- Spring Boot specific rules -->
+        <rule>
+            <repositoryKey>java</repositoryKey>
+            <key>S4684</key> <!-- Persistence unit should be configured with "hibernate.connection.handling_mode" -->
+            <priority>MAJOR</priority>
+        </rule>
+        <rule>
+            <repositoryKey>java</repositoryKey>
+            <key>S6813</key> <!-- Avoid hardcoded Spring profiles -->
+            <priority>MAJOR</priority>
+        </rule>
+    </rules>
+</profile>

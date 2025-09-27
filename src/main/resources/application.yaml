@@ -1,10 +1,29 @@
 spring:
   application:
     name: rating-service
+  datasource:
+    # These will be set by DataSourceConfig using Infisical
+    url: # Retrieved from Infisical DATABASE_URL
+    username: # Will be extracted from URL or retrieved separately
+    password: # Will be extracted from URL or retrieved separately
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 300000
+      max-lifetime: 900000
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
   liquibase:
     enabled: false
   profiles:
@@ -19,6 +38,13 @@ management:
     export:
       simple:
         enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
 
 # Logging Configuration
 logging:
@@ -28,6 +54,7 @@ logging:
     org.springframework: WARN
     org.hibernate: WARN
     io.grpc: INFO
+    org.springframework.boot.autoconfigure: WARN
   file:
     name: logs/rating-service.log
     path: logs
@@ -35,9 +62,11 @@ logging:
     console: ""  # Disable default pattern (we use JSON)
     file: ""     # Disable default pattern (we use JSON)
 
+# Infisical Configuration
 infisical:
   site-url: ${INFISICAL_SITE_URL:https://app.infisical.com}
   client-id: ${INFISICAL_CLIENT_ID}
   client-secret: ${INFISICAL_CLIENT_SECRET}
   project-id: ${INFISICAL_PROJECT_ID}
   environment: ${INFISICAL_ENVIRONMENT:production}
+  secret-path: ${INFISICAL_SECRET_PATH:/rating-service}

@@ -8,8 +8,8 @@ import org.springframework.test.context.ActiveProfiles;
 @ActiveProfiles("test") // Picks up application-test.yml
 class RatingServiceApplicationTests {
 
-    @Test
-    void contextLoads() {
-        // This test will pass if ApplicationContext loads correctly
-    }
+  @Test
+  void contextLoads() {
+    // This test will pass if ApplicationContext loads correctly
+  }
 }

@@ -1,8 +1,9 @@
 -include .env
-PROTO_TAG ?= v0.0.18
+PROTO_TAG ?= v0.1.1
 PROTO_NAME := rating.proto
 TMP_DIR := .proto
 OUT_DIR := src/main/java
+DOCKER   ?= docker
 
 .PHONY: clean fetch-proto get-stubs update format lint test docker-build run run-dev
 
@@ -49,9 +50,20 @@ format:
 
 lint:
 	mvn spotless:check -Pquality 
-	mvn checkstyle:check -Pquality 
-	mvn pmd:check -Pquality 
+	mvn checkstyle:check -Pquality  
 	mvn spotbugs:check -Pquality 
+
+.PHONY: sonar-server-start
+sonar-server-start:
+	$(DOCKER) run -d --name sonarqube -p 9000:9000 sonarqube:latest
+
+.PHONY: sonar-server-stop
+sonar-server-stop:
+	$(DOCKER) stop sonarqube && $(DOCKER) rm sonarqube
+
+.PHONY: sonar
+sonar:
+	mvn sonar:sonar -Pquality -Dsonar.login=$$SONAR_TOKEN
 
 test:
 	mvn test jacoco:report -Pquality
