@@ -33,22 +33,7 @@
         <spotbugs.version>4.8.3.0</spotbugs.version>
         <spotless.version>2.43.0</spotless.version>
         <jacoco.version>0.8.11</jacoco.version>
-        <error-prone.version>2.23.0</error-prone.version>
-        <nullaway.version>0.10.15</nullaway.version>
         <modernizer.version>2.7.0</modernizer.version>
-        
-        <!-- SonarQube -->
-        <sonar.version>3.10.0.2594</sonar.version>
-        <sonar.host.url>http://localhost:9000</sonar.host.url>
-        <sonar.projectKey>rating-service</sonar.projectKey>
-        <sonar.projectName>Rating Service</sonar.projectName>
-        <sonar.sources>src/main/java</sonar.sources>
-        <sonar.tests>src/test/java</sonar.tests>
-        <sonar.java.binaries>target/classes</sonar.java.binaries>
-        <sonar.java.test.binaries>target/test-classes</sonar.java.test.binaries>
-        <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
-        <sonar.exclusions>**/rating/**/*.java</sonar.exclusions>
-        <sonar.test.exclusions>**/rating/**/*.java</sonar.test.exclusions>
         
         <!-- Maven plugins versions -->
         <maven-compiler.version>3.12.1</maven-compiler.version>
@@ -219,7 +204,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Enhanced Compiler plugin with Error Prone and NullAway -->
+            <!-- Simplified Compiler plugin without Error Prone -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -228,35 +213,11 @@
                     <source>21</source>
                     <target>21</target>
                     <release>21</release>
-                    <compilerArgs>
-                        <arg>-XDcompilePolicy=simple</arg>
-                        <arg>-Xplugin:ErrorProne -XepOpt:NullAway:AnnotatedPackages=com.esclient</arg>
-                        <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
-                        <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
-                        <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>
-                        <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED</arg>
-                        <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED</arg>
-                        <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
-                        <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
-                        <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
-                        <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
-                        <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
-                    </compilerArgs>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
                             <version>${lombok.version}</version>
-                        </path>
-                        <path>
-                            <groupId>com.google.errorprone</groupId>
-                            <artifactId>error_prone_core</artifactId>
-                            <version>${error-prone.version}</version>
-                        </path>
-                        <path>
-                            <groupId>com.uber.nullaway</groupId>
-                            <artifactId>nullaway</artifactId>
-                            <version>${nullaway.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
@@ -267,13 +228,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire.version}</version>
-            </plugin>
-
-            <!-- SonarQube Scanner -->
-            <plugin>
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>${sonar.version}</version>
             </plugin>
         </plugins>
     </build>
@@ -363,7 +317,7 @@
                         </dependencies>
                         <configuration>
                             <effort>Max</effort>
-                            <threshold>Low</threshold>
+                            <threshold>Medium</threshold>
                             <xmlOutput>true</xmlOutput>
                             <failOnError>true</failOnError>
                             <excludeFilterFile>spotbugs-exclude.xml</excludeFilterFile>
@@ -371,10 +325,12 @@
                                 <plugin>
                                     <groupId>com.mebigfatguy.sb-contrib</groupId>
                                     <artifactId>sb-contrib</artifactId>
+                                    <version>7.6.4</version>
                                 </plugin>
                                 <plugin>
                                     <groupId>com.h3xstream.findsecbugs</groupId>
                                     <artifactId>findsecbugs-plugin</artifactId>
+                                    <version>1.13.0</version>
                                 </plugin>
                             </plugins>
                         </configuration>

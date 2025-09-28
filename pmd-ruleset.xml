@@ -2,18 +2,17 @@
 <ruleset name="Custom PMD Ruleset"
          xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0
          https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
-
     <description>PMD ruleset for Rating Service</description>
-
+    
     <!-- Best Practices -->
     <rule ref="category/java/bestpractices.xml">
         <exclude name="JUnitTestsShouldIncludeAssert"/>
         <exclude name="JUnitAssertionsShouldIncludeMessage"/>
         <exclude name="GuardLogStatement"/>
     </rule>
-
+    
     <!-- Code Style -->
     <rule ref="category/java/codestyle.xml">
         <exclude name="AtLeastOneConstructor"/>
@@ -21,64 +20,64 @@
         <exclude name="ShortVariable"/>
         <exclude name="LongVariable"/>
         <exclude name="CommentDefaultAccessModifier"/>
-        <exclude name="DefaultPackage"/>
         <exclude name="CallSuperInConstructor"/>
-        <exclude name="AbstractNaming"/>
         <exclude name="LocalVariableCouldBeFinal"/>
         <exclude name="MethodArgumentCouldBeFinal"/>
+        <exclude name="ShortMethodName"/>
+        <exclude name="LinguisticNaming"/>
     </rule>
-
+    
     <!-- Design -->
     <rule ref="category/java/design.xml">
         <exclude name="LawOfDemeter"/>
         <exclude name="LoosePackageCoupling"/>
         <exclude name="DataClass"/>
         <exclude name="TooManyMethods"/>
+        <exclude name="TooManyFields"/>
+        <exclude name="CyclomaticComplexity"/>
+        <exclude name="NPathComplexity"/>
     </rule>
-
+    
     <!-- Error Prone -->
-    <rule ref="category/java/errorprone.xml">
-        <exclude name="BeanMembersShouldSerialize"/>
-        <exclude name="DataflowAnomalyAnalysis"/>
-    </rule>
-
+    <rule ref="category/java/errorprone.xml"/>
+    
     <!-- Multithreading -->
     <rule ref="category/java/multithreading.xml"/>
-
+    
     <!-- Performance -->
     <rule ref="category/java/performance.xml">
         <exclude name="AvoidInstantiatingObjectsInLoops"/>
     </rule>
-
+    
     <!-- Security -->
     <rule ref="category/java/security.xml"/>
-
+    
     <!-- Custom rules with modified properties -->
     <rule ref="category/java/design.xml/TooManyFields">
         <properties>
             <property name="maxfields" value="15"/>
         </properties>
     </rule>
-
+    
     <rule ref="category/java/design.xml/CyclomaticComplexity">
         <properties>
             <property name="methodReportLevel" value="10"/>
             <property name="classReportLevel" value="40"/>
         </properties>
     </rule>
-
+    
     <rule ref="category/java/design.xml/NPathComplexity">
         <properties>
             <property name="reportLevel" value="200"/>
         </properties>
     </rule>
-
+    
     <rule ref="category/java/codestyle.xml/ShortMethodName">
         <properties>
             <property name="minimum" value="3"/>
         </properties>
     </rule>
-
+    
     <rule ref="category/java/codestyle.xml/LinguisticNaming">
         <properties>
             <property name="ignoredAnnotations" value="java.lang.Override"/>

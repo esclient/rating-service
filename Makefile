@@ -52,19 +52,7 @@ lint:
 	mvn spotless:check -Pquality 
 	mvn checkstyle:check -Pquality  
 	mvn spotbugs:check -Pquality 
-
-.PHONY: sonar-server-start
-sonar-server-start:
-	$(DOCKER) run -d --name sonarqube -p 9000:9000 sonarqube:latest
-
-.PHONY: sonar-server-stop
-sonar-server-stop:
-	$(DOCKER) stop sonarqube && $(DOCKER) rm sonarqube
-
-.PHONY: sonar
-sonar:
-	mvn sonar:sonar -Pquality -Dsonar.login=$$SONAR_TOKEN
-
+	mvn pmd:check -Pquality
 test:
 	mvn test jacoco:report -Pquality
 
