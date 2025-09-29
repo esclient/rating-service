@@ -5,9 +5,16 @@ on:
   pull_request:
     branches: [ main ]
     types: [ opened, synchronize, reopened ]
+
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   lint-and-test:
     uses: esclient/tools/.github/workflows/lint-and-test-java.yml@main
     with:
       java-version: '17'
       java-distribution: 'temurin'
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
