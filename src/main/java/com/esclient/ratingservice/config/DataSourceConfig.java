@@ -51,14 +51,16 @@ public class DataSourceConfig {
   private String retrieveDatabaseUrl() {
     try {
       LOGGER.info("Attempting to configure DataSource with Infisical secrets...");
-      
-      String lookupMessage = String.format(
-          "Looking for DATABASE_URL in project: %s, environment: %s, path: %s",
-          infisicalProjectId, infisicalEnvironment, infisicalSecretPath);
+
+      String lookupMessage =
+          String.format(
+              "Looking for DATABASE_URL in project: %s, environment: %s, path: %s",
+              infisicalProjectId, infisicalEnvironment, infisicalSecretPath);
       LOGGER.info(lookupMessage);
 
-      String databaseUrl = infisicalService.getSecret(
-          "DATABASE_URL", infisicalProjectId, infisicalEnvironment, infisicalSecretPath);
+      String databaseUrl =
+          infisicalService.getSecret(
+              "DATABASE_URL", infisicalProjectId, infisicalEnvironment, infisicalSecretPath);
 
       if (databaseUrl != null && !databaseUrl.isBlank()) {
         LOGGER.info("Successfully retrieved DATABASE_URL from Infisical");
@@ -69,26 +71,28 @@ public class DataSourceConfig {
       }
 
     } catch (IllegalArgumentException e) {
-      LOGGER.warn("Invalid configuration for Infisical: {}. Using fallback configuration.", 
-                  e.getMessage());
+      LOGGER.warn(
+          "Invalid configuration for Infisical: {}. Using fallback configuration.", e.getMessage());
       return fallbackDatabaseUrl;
     } catch (RuntimeException e) {
-      LOGGER.warn("Failed to retrieve DATABASE_URL from Infisical: {}. Using fallback configuration.", 
-                  e.getMessage());
+      LOGGER.warn(
+          "Failed to retrieve DATABASE_URL from Infisical: {}. Using fallback configuration.",
+          e.getMessage());
       LOGGER.info("Using fallback database configuration: {}", maskUrl(fallbackDatabaseUrl));
       return fallbackDatabaseUrl;
     }
   }
 
-  private DataSource createDataSource(String databaseUrl) {
+  private DataSource createDataSource(final String databaseUrl) {
     try {
       DatabaseUrlComponents components = parsePostgreSQLUrl(databaseUrl);
 
-      DataSourceBuilder<?> builder = DataSourceBuilder.create()
-          .url(components.jdbcUrl())
-          .username(components.username())
-          .password(components.password())
-          .driverClassName("org.postgresql.Driver");
+      DataSourceBuilder<?> builder =
+          DataSourceBuilder.create()
+              .url(components.jdbcUrl())
+              .username(components.username())
+              .password(components.password())
+              .driverClassName("org.postgresql.Driver");
 
       DataSource dataSource = builder.build();
       LOGGER.info("DataSource configured successfully");
@@ -109,7 +113,7 @@ public class DataSourceConfig {
     if (url.startsWith(POSTGRESQL_PREFIX)) {
       return parsePostgresUrl(url);
     }
-    
+
     if (url.startsWith(JDBC_POSTGRESQL_PREFIX)) {
       return new DatabaseUrlComponents(url, null, null);
     }
@@ -118,7 +122,7 @@ public class DataSourceConfig {
     return new DatabaseUrlComponents(JDBC_PREFIX + url, null, null);
   }
 
-  private DatabaseUrlComponents parsePostgresUrl(String url) {
+  private DatabaseUrlComponents parsePostgresUrl(final String url) {
     // Remove the postgresql:// prefix
     String urlWithoutProtocol = url.substring(POSTGRESQL_PREFIX.length());
 
@@ -131,7 +135,7 @@ public class DataSourceConfig {
     }
   }
 
-  private DatabaseUrlComponents parseUrlWithCredentials(String urlWithoutProtocol) {
+  private DatabaseUrlComponents parseUrlWithCredentials(final String urlWithoutProtocol) {
     String[] credentialsAndHost = urlWithoutProtocol.split("@", 2);
     if (credentialsAndHost.length != 2) {
       throw new DataSourceConfigurationException("Invalid URL format: missing host after @");
@@ -166,7 +170,7 @@ public class DataSourceConfig {
     if (url == null) {
       return "null";
     }
-    
+
     if (url.contains("://") && url.contains("@")) {
       int protocolEnd = url.indexOf("://") + PROTOCOL_SEPARATOR_LENGTH;
       int atIndex = url.lastIndexOf('@');
@@ -178,11 +182,20 @@ public class DataSourceConfig {
   @Override
   public String toString() {
     return "DataSourceConfig{"
-        + "infisicalService=" + infisicalService
-        + ", infisicalProjectId='" + infisicalProjectId + '\''
-        + ", infisicalEnvironment='" + infisicalEnvironment + '\''
-        + ", infisicalSecretPath='" + infisicalSecretPath + '\''
-        + ", fallbackDatabaseUrl='" + maskUrl(fallbackDatabaseUrl) + '\''
+        + "infisicalService="
+        + infisicalService
+        + ", infisicalProjectId='"
+        + infisicalProjectId
+        + '\''
+        + ", infisicalEnvironment='"
+        + infisicalEnvironment
+        + '\''
+        + ", infisicalSecretPath='"
+        + infisicalSecretPath
+        + '\''
+        + ", fallbackDatabaseUrl='"
+        + maskUrl(fallbackDatabaseUrl)
+        + '\''
         + '}';
   }
 

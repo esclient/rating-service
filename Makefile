@@ -47,14 +47,21 @@ update: gen-stubs clean
 
 format:
 	mvn spotless:apply -Pquality 
+	@echo "spotless formatting applied! ✅"
 
 lint:
 	mvn spotless:check -Pquality 
-	mvn checkstyle:check -Pquality  
+	@echo "spotless check done! ✅"
+	mvn checkstyle:check -Pquality
+	@echo "checkstyle check done! ✅"  
 	mvn spotbugs:check -Pquality 
-	mvn pmd:check -Pquality
+	@echo "spotbugs check done! ✅"
+	mvn modernizer:modernizer -Pquality
+	@echo "modernizer check done! ✅"
+	@echo "Linting done! ✅"
 test:
 	mvn test jacoco:report -Pquality
+	@echo "jacoco testing done! ✅"
 
 dev-check: format lint test
 	@echo "All checks passed! ✅"
