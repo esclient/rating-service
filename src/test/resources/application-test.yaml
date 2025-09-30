@@ -10,7 +10,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
-    show-sql: true
+    show-sql: false
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 
 grpc:
   server:
@@ -21,7 +24,10 @@ grpc:
 INFISICAL_PROJECT_ID: test-project-id
 INFISICAL_ENVIRONMENT: test
 INFISICAL_SECRET_PATH: /test
+INFISICAL_CLIENT_ID: test-client-id
+INFISICAL_CLIENT_SECRET: test-client-secret
 
 logging:
   level:
-    root: INFO
+    root: WARN
+    com.esclient.ratingservice: INFO
