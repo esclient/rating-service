@@ -11,9 +11,17 @@ spring:
     hibernate:
       ddl-auto: create-drop
     show-sql: true
+
 grpc:
   server:
     enabled: false
+    port: 9090
+
+# Mock Infisical configuration for tests
+INFISICAL_PROJECT_ID: test-project-id
+INFISICAL_ENVIRONMENT: test
+INFISICAL_SECRET_PATH: /test
+
 logging:
   level:
     root: INFO
