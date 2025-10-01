@@ -375,17 +375,6 @@
                         <groupId>org.jacoco</groupId>
                         <artifactId>jacoco-maven-plugin</artifactId>
                         <version>${jacoco.version}</version>
-                        <configuration>
-                            <excludes>
-                                <configuration>
-                                    <excludes>
-                                        <exclude>**/RatingServiceGrpc*</exclude>
-                                        <exclude>**/Rating.class</exclude>
-                                        <exclude>**/config/*Config.class</exclude>
-                                    </excludes>
-                                </configuration>
-                            </excludes>
-                        </configuration>
                         <executions>
                             <execution>
                                 <goals>
@@ -398,6 +387,14 @@
                                 <goals>
                                     <goal>report</goal>
                                 </goals>
+                                 <configuration>
+                                    <excludes>
+                                        <exclude>**/RatingServiceGrpc*.class</exclude>
+                                        <exclude>**/Rating.class</exclude>
+                                        <exclude>**/RatingOrBuilder.class</exclude>
+                                        <exclude>**/*OuterClass.class</exclude>
+                                    </excludes>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
