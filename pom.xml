@@ -377,7 +377,13 @@
                         <version>${jacoco.version}</version>
                         <configuration>
                             <excludes>
-                                <exclude>rating/**/*</exclude>
+                                <configuration>
+                                    <excludes>
+                                        <exclude>**/RatingServiceGrpc*</exclude>
+                                        <exclude>**/Rating.class</exclude>
+                                        <exclude>**/config/*Config.class</exclude>
+                                    </excludes>
+                                </configuration>
                             </excludes>
                         </configuration>
                         <executions>
