@@ -1,6 +1,7 @@
 package com.esclient.ratingservice.config;
 
 import com.esclient.ratingservice.service.InfisicalService;
+import com.esclient.ratingservice.service.SecretConfigException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -69,15 +70,17 @@ public class SecretsConfigService {
    * Retrieve a secret from Infisical using default path "/" with exception throwing Use this when
    * you want to handle the exception in the calling code
    */
-  public String getSecretOrThrow(final String secretName) throws RuntimeException {
+  public String getSecretOrThrow(final String secretName) {
+    if (secretName == null || secretName.trim().isEmpty()) {
+      throw new SecretConfigException("Secret name cannot be null or empty");
+    }
     return getSecretOrThrow(secretName, "/");
   }
 
   /** Retrieve a secret from Infisical with custom path with exception throwing */
-  public String getSecretOrThrow(final String secretName, final String path)
-      throws RuntimeException {
+  public String getSecretOrThrow(final String secretName, final String path) {
     if (secretName == null || secretName.trim().isEmpty()) {
-      throw new IllegalArgumentException("Secret name cannot be null or empty");
+      throw new SecretConfigException("Secret name cannot be null or empty");
     }
 
     // Use the 4-parameter method with path support

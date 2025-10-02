@@ -5,6 +5,7 @@ import com.infisical.sdk.config.SdkConfig;
 import com.infisical.sdk.models.Secret;
 import com.infisical.sdk.resources.AuthClient;
 import com.infisical.sdk.resources.SecretsClient;
+import com.infisical.sdk.util.InfisicalException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -52,9 +53,12 @@ public class InfisicalService {
 
       LOGGER.info(
           "Infisical SDK initialized and authenticated successfully with host: {}", siteUrl);
-    } catch (Exception e) {
-      LOGGER.error("Failed to initialize Infisical SDK: {}", e.getMessage(), e);
-      throw new RuntimeException("Infisical initialization failed", e);
+    } catch (InfisicalException e) {
+      throw new RatingServiceException(
+          String.format(
+              "Failed to initialize Infisical SDK for host '%s' (cause: %s)",
+              siteUrl, e.getMessage()),
+          e);
     }
   }
 
@@ -101,18 +105,18 @@ public class InfisicalService {
         return secret.getSecretValue();
       } else {
         LOGGER.warn("Secret '{}' not found or has null value", secretName);
-        throw new RuntimeException("Secret '" + secretName + "' not found or has null value");
+        throw new RatingServiceException(
+            String.format(
+                "Secret '%s' not found or has null value (project=%s, env=%s, path=%s)",
+                secretName, projectId, environment, processedPath),
+            null);
       }
-    } catch (Exception e) {
-      LOGGER.error(
-          "Failed to retrieve secret '{}' from project '{}' environment '{}' path '{}': {}",
-          secretName,
-          projectId,
-          environment,
-          secretPath,
-          e.getMessage(),
+    } catch (InfisicalException e) {
+      throw new RatingServiceException(
+          String.format(
+              "Failed to retrieve secret '%s' from project '%s' environment '%s' path '%s'",
+              secretName, projectId, environment, secretPath),
           e);
-      throw new RuntimeException("Failed to retrieve secret: " + secretName, e);
     }
   }
 }

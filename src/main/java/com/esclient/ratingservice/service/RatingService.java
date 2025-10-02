@@ -26,8 +26,8 @@ public final class RatingService {
 
   public void logError(final Exception e) {
     // Use string formatting to avoid CRLF_INJECTION_LOGS warning
-    final String modId = MDC.get("mod_id");
-    final String authorId = MDC.get("author_id");
+    final String modId = MDC_MOD_ID;
+    final String authorId = MDC_AUTHOR_ID;
     final String rate = MDC.get("rate");
     final String message =
         String.format(
