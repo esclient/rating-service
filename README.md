@@ -1,3 +1,3 @@
 # rating-service
 
-removed pmd
+testing
