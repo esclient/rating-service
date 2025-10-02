@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 @SuppressWarnings({"checkstyle:HideUtilityClassConstructor", "PMD.UseUtilityClass"})
@@ -29,8 +28,6 @@ public class RatingServiceApplication implements CommandLineRunner {
   private String infisicalSecretPath;
 
   @Autowired private SecretsConfigService secretsConfigService;
-
-  @Autowired private ConfigurableApplicationContext applicationContext;
 
   public static void main(final String[] args) {
     SpringApplication.run(RatingServiceApplication.class, args);
