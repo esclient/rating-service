@@ -1,12 +1,11 @@
-FROM maven:3.9.3-eclipse-temurin-17 AS build
-WORKDIR /app
+FROM maven:3.9.9-eclipse-temurin-21 AS build
 
+WORKDIR /app
 COPY pom.xml .
 COPY src ./src
-
 RUN mvn -B -DskipTests clean package
 
-FROM eclipse-temurin:17-jre-jammy
+FROM eclipse-temurin:21-jre-jammy
 WORKDIR /app
 
 RUN addgroup --system app && adduser --system --ingroup app app
@@ -17,3 +16,4 @@ RUN mkdir -p /app/logs && chown -R app:app /app
 
 USER app
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+

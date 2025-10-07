@@ -1,17 +1,65 @@
 spring:
-  profiles: test
+  config:
+    activate:
+      on-profile: test
+  application:
+    name: rating-service-test
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration
+      - org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration
   datasource:
-    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:mem:testdb;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH
     driver-class-name: org.h2.Driver
     username: sa
-    password:
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
-    show-sql: true
+    password: ""
+    hikari:
+      jdbc-url: jdbc:h2:mem:testdb;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH
+      driver-class-name: org.h2.Driver
+      username: sa
+      password: ""
+      maximum-pool-size: 5
+      minimum-idle: 1
+      connection-timeout: 30000
+      idle-timeout: 300000
+      max-lifetime: 900000
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+  h2:
+    console:
+      enabled: false
+  liquibase:
+    enabled: false
+
 grpc:
   server:
     enabled: false
+
+infisical:
+  site-url: https://mock.infisical.com
+  client-id: test-client-id
+  client-secret: test-client-secret
+  project-id: test-project-id
+  environment: test
+  secret-path: /test
+
 logging:
   level:
-    root: INFO
+    root: WARN
+    com.esclient.ratingservice: INFO
+    org.springframework: WARN
+    org.hibernate: OFF
+  file:
+    name: logs/rating-service-test.log
+
+
+
+# Mock Infisical configuration for tests
+INFISICAL_PROJECT_ID: test-project-id
+INFISICAL_ENVIRONMENT: test
+INFISICAL_SECRET_PATH: /test
+INFISICAL_CLIENT_ID: test-client-id
+INFISICAL_CLIENT_SECRET: test-client-secret
