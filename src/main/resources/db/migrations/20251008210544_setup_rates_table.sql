@@ -12,5 +12,4 @@ CREATE INDEX IF NOT EXISTS idx_rates_mod_author ON rates(mod_id, author_id);
 -- +goose Down
 DROP INDEX IF EXISTS idx_rates_mod_author;
 DROP INDEX IF EXISTS idx_rates_mod_id;
-DROP INDEX IF EXISTS idx_rates_author_id;
 DROP TABLE IF EXISTS rates;
