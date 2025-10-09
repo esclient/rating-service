@@ -6,7 +6,6 @@ CREATE TABLE IF NOT EXISTS rates (
     rate BIGINT NOT NULL
 );
 
-CREATE INDEX IF NOT EXISTS idx_rates_author_id ON rates(author_id);
 CREATE INDEX IF NOT EXISTS idx_rates_mod_id ON rates(mod_id);
 CREATE INDEX IF NOT EXISTS idx_rates_mod_author ON rates(mod_id, author_id);
 
