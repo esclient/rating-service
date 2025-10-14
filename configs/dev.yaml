@@ -1,0 +1,3 @@
+DATABASE_URL: "postgresql://esclient_devrate:3SWCGWNNr!NQZCS3@pg4.sweb.ru:5433/esclient_devrate"
+HOST: "0.0.0.0"
+PORT: "7003"

@@ -1,0 +1,3 @@
+DATABASE_URL: "{vault:rating-service/prod#database_url}"
+HOST: "{vault:rating-service/prod#host}"
+PORT: "{vault:rating-service/prod#port}"

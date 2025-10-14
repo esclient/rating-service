@@ -1,6 +1,5 @@
 package com.esclient.ratingservice.config;
 
-import com.esclient.ratingservice.service.InfisicalService;
 import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,33 +14,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 @Configuration
 @Profile("!test")
 public class DataSourceConfig {
-
-  // Static fields first
   private static final Logger LOGGER = LoggerFactory.getLogger(DataSourceConfig.class);
   private static final int PROTOCOL_SEPARATOR_LENGTH = 3;
-  private static final String JDBC_PREFIX = "jdbc:"; // Fix duplicate literals
+  private static final String JDBC_PREFIX = "jdbc:";
   private static final String POSTGRESQL_PREFIX = "postgresql://";
   private static final String JDBC_POSTGRESQL_PREFIX = "jdbc:postgresql://";
-
-  // Instance fields after static fields
-  private final InfisicalService infisicalService;
-
-  @Value("${infisical.project-id}")
-  private String infisicalProjectId;
-
-  @Value("${infisical.environment}")
-  private String infisicalEnvironment;
-
-  @Value("${infisical.secret-path}")
-  private String infisicalSecretPath;
-
-  // Fallback properties
-  @Value("${DATABASE_URL:jdbc:h2:mem:testdb}")
-  private String fallbackDatabaseUrl;
-
-  public DataSourceConfig(final InfisicalService infisicalService) {
-    this.infisicalService = infisicalService;
-  }
 
   @Bean
   @Primary
@@ -54,15 +31,13 @@ public class DataSourceConfig {
     try {
       LOGGER.info("Attempting to configure DataSource with Infisical secrets...");
 
-      String lookupMessage =
-          String.format(
-              "Looking for DATABASE_URL in project: %s, environment: %s, path: %s",
-              infisicalProjectId, infisicalEnvironment, infisicalSecretPath);
+      String lookupMessage = String.format(
+          "Looking for DATABASE_URL in project: %s, environment: %s, path: %s",
+          infisicalProjectId, infisicalEnvironment, infisicalSecretPath);
       LOGGER.info(lookupMessage);
 
-      String databaseUrl =
-          infisicalService.getSecret(
-              "DATABASE_URL", infisicalProjectId, infisicalEnvironment, infisicalSecretPath);
+      String databaseUrl = infisicalService.getSecret(
+          "DATABASE_URL", infisicalProjectId, infisicalEnvironment, infisicalSecretPath);
 
       if (databaseUrl != null && !databaseUrl.isBlank()) {
         LOGGER.info("Successfully retrieved DATABASE_URL from Infisical");
@@ -89,12 +64,11 @@ public class DataSourceConfig {
     try {
       DatabaseUrlComponents components = parsePostgreSQLUrl(databaseUrl);
 
-      DataSourceBuilder<?> builder =
-          DataSourceBuilder.create()
-              .url(components.jdbcUrl())
-              .username(components.username())
-              .password(components.password())
-              .driverClassName("org.postgresql.Driver");
+      DataSourceBuilder<?> builder = DataSourceBuilder.create()
+          .url(components.jdbcUrl())
+          .username(components.username())
+          .password(components.password())
+          .driverClassName("org.postgresql.Driver");
 
       DataSource dataSource = builder.build();
       LOGGER.info("DataSource configured successfully");
@@ -161,7 +135,8 @@ public class DataSourceConfig {
     return new DatabaseUrlComponents(jdbcUrl, username, password);
   }
 
-  private record DatabaseUrlComponents(String jdbcUrl, String username, String password) {}
+  private record DatabaseUrlComponents(String jdbcUrl, String username, String password) {
+  }
 
   @Bean
   public JdbcTemplate jdbcTemplate(final DataSource dataSource) {

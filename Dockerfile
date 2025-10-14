@@ -16,4 +16,3 @@ RUN mkdir -p /app/logs && chown -R app:app /app
 
 USER app
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
-
