@@ -1,9 +1,7 @@
 package com.esclient.ratingservice;
 
-import com.esclient.ratingservice.config.SecretsConfigService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,9 +15,6 @@ public class RatingServiceApplication implements CommandLineRunner {
 
   @Value("${grpc.server.port}")
   private int grpcPort;
-
-  @Autowired
-  private SecretsConfigService secretsConfigService;
 
   public static void main(final String[] args) {
     SpringApplication.run(RatingServiceApplication.class, args);
