@@ -5,11 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.esclient.ratingservice.config.SecretsConfigService;
-import com.esclient.ratingservice.config.TestDataSourceConfig;
 import com.esclient.ratingservice.constants.RatingConstants;
 import com.esclient.ratingservice.model.RatingData;
-import com.esclient.ratingservice.service.InfisicalService;
 import com.esclient.ratingservice.service.RatingService;
 import com.esclient.ratingservice.service.RatingServiceException;
 import net.devh.boot.grpc.server.autoconfigure.GrpcServerAutoConfiguration;
@@ -21,27 +18,19 @@ import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 
-@SpringBootTest(
-    properties = "grpc.server.port=-1",
-    webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest(properties = "grpc.server.port=-1", webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @ActiveProfiles("test")
-@Import(TestDataSourceConfig.class)
-@EnableAutoConfiguration(
-    exclude = {GrpcServerFactoryAutoConfiguration.class, GrpcServerAutoConfiguration.class})
+@EnableAutoConfiguration(exclude = { GrpcServerFactoryAutoConfiguration.class, GrpcServerAutoConfiguration.class })
 class RatingServiceApplicationTests {
 
-  @MockBean private SecretsConfigService secretsConfigService;
+  @Autowired
+  private RatingService ratingService;
 
-  @MockBean private InfisicalService infisicalService;
-
-  @Autowired private RatingService ratingService;
-
-  @Autowired private JdbcTemplate jdbcTemplate;
+  @Autowired
+  private JdbcTemplate jdbcTemplate;
 
   @BeforeEach
   void setUp() {
@@ -78,13 +67,12 @@ class RatingServiceApplicationTests {
     assertNotNull(result);
 
     // Verify the rating was actually saved
-    Integer count =
-        jdbcTemplate.queryForObject(
-            "SELECT COUNT(*) FROM rates WHERE mod_id = ? AND author_id = ? AND rate = ?",
-            Integer.class,
-            modId,
-            authorId,
-            rate);
+    Integer count = jdbcTemplate.queryForObject(
+        "SELECT COUNT(*) FROM rates WHERE mod_id = ? AND author_id = ? AND rate = ?",
+        Integer.class,
+        modId,
+        authorId,
+        rate);
     assertEquals(1, count);
   }
 
@@ -116,9 +104,8 @@ class RatingServiceApplicationTests {
     assertNotNull(result1);
     assertNotNull(result2);
 
-    Integer count =
-        jdbcTemplate.queryForObject(
-            "SELECT COUNT(*) FROM rates WHERE mod_id = ?", Integer.class, modId);
+    Integer count = jdbcTemplate.queryForObject(
+        "SELECT COUNT(*) FROM rates WHERE mod_id = ?", Integer.class, modId);
     assertEquals(2, count);
   }
 

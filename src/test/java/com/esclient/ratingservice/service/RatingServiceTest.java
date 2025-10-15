@@ -1,7 +1,6 @@
 package com.esclient.ratingservice.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -142,12 +141,4 @@ class RatingServiceTest {
     assertTrue(result.contains("repository"));
   }
 
-  @Test
-  void testSecretConfigException() {
-    String message = "Configuration error";
-    SecretConfigException exception = new SecretConfigException(message);
-
-    assertEquals(message, exception.getMessage());
-    assertNull(exception.getCause());
-  }
 }
