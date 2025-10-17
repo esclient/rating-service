@@ -90,7 +90,7 @@
     <build>
         <finalName>rating-service</finalName>
         <sourceDirectory>src</sourceDirectory>
-        <testSourceDirectory>tests</testSourceDirectory>
+        <testSourceDirectory>src/tests</testSourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
