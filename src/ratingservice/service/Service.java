@@ -141,7 +141,7 @@ public final class Service {
     }
   }
 
-  private ServiceException translateRateSqlException(
+  private IllegalStateException translateRateSqlException(
       final long modId, final long authorId, final int rate, final SQLException e) {
     String sqlState = e.getSQLState();
     String message;
@@ -158,10 +158,10 @@ public final class Service {
     }
     LOGGER.error(
         "Failed to add rating for mod {} by author {} with rate {}", modId, authorId, rate, e);
-    return new ServiceException(message, e);
+    return new IllegalStateException(message, e);
   }
 
-  private ServiceException translateReadSqlException(final long modId, final SQLException e) {
+  private IllegalStateException translateReadSqlException(final long modId, final SQLException e) {
     String sqlState = e.getSQLState();
     String message;
     if (sqlState != null) {
@@ -176,7 +176,7 @@ public final class Service {
       message = "Database error occurred while retrieving ratings: " + e.getMessage();
     }
     LOGGER.error("Failed to get ratings for mod {}", modId, e);
-    return new ServiceException(message, e);
+    return new IllegalStateException(message, e);
   }
 
   @Override

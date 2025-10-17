@@ -5,8 +5,6 @@ import io.grpc.StatusRuntimeException;
 import io.grpc.stub.StreamObserver;
 import java.util.concurrent.CompletionException;
 import java.util.concurrent.ExecutionException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import rating.Rating;
 import rating.RatingServiceGrpc;
 import ratingservice.constants.Constants;
@@ -14,8 +12,6 @@ import ratingservice.service.Service;
 
 @SuppressWarnings({"checkstyle:RedundantModifier", "checkstyle:FinalParameters"})
 public final class Handler extends RatingServiceGrpc.RatingServiceImplBase {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Handler.class);
 
   private final Service service;
 
@@ -33,8 +29,6 @@ public final class Handler extends RatingServiceGrpc.RatingServiceImplBase {
     try {
       rateValue = convertRateEnumToInteger(request.getRate());
     } catch (IllegalArgumentException e) {
-      LOGGER.warn(
-          "Invalid rate value for mod {} by author {}: {}", modId, authorId, e.getMessage());
       respondWithStatus(
           responseObserver,
           Status.INVALID_ARGUMENT,
@@ -120,7 +114,6 @@ public final class Handler extends RatingServiceGrpc.RatingServiceImplBase {
           cause);
       return;
     }
-    LOGGER.error("Unhandled exception in {} handler", operation, cause);
     respondWithStatus(responseObserver, Status.INTERNAL, defaultMessage, cause);
   }
 

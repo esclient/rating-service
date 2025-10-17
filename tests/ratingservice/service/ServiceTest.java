@@ -65,7 +65,7 @@ class ServiceTest {
         assertThrows(ExecutionException.class, () -> await(service.rateMod(1L, 2L, 5)));
 
     Throwable cause = exception.getCause();
-    assertTrue(cause instanceof ServiceException);
+    assertTrue(cause instanceof IllegalStateException);
     assertTrue(cause.getMessage().contains(expectedMessagePart));
     assertEquals(sqlException, cause.getCause());
   }
@@ -90,7 +90,7 @@ class ServiceTest {
         assertThrows(ExecutionException.class, () -> await(service.rateMod(1L, 2L, 5)));
 
     Throwable cause = exception.getCause();
-    assertTrue(cause instanceof ServiceException);
+    assertTrue(cause instanceof IllegalStateException);
     assertTrue(cause.getMessage().contains("Database error occurred"));
     assertEquals(sqlException, cause.getCause());
   }
@@ -163,7 +163,7 @@ class ServiceTest {
         assertThrows(ExecutionException.class, () -> await(service.getRatings(1L)));
 
     Throwable cause = exception.getCause();
-    assertTrue(cause instanceof ServiceException);
+    assertTrue(cause instanceof IllegalStateException);
     assertTrue(cause.getMessage().contains(expectedMessagePart));
     assertEquals(sqlException, cause.getCause());
   }
@@ -188,7 +188,7 @@ class ServiceTest {
         assertThrows(ExecutionException.class, () -> await(service.getRatings(1L)));
 
     Throwable cause = exception.getCause();
-    assertTrue(cause instanceof ServiceException);
+    assertTrue(cause instanceof IllegalStateException);
     assertTrue(cause.getMessage().contains("Database error occurred"));
     assertEquals(sqlException, cause.getCause());
   }

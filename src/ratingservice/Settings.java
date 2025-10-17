@@ -21,7 +21,6 @@ import java.util.Map;
 import java.util.stream.Stream;
 import javax.sql.DataSource;
 import org.postgresql.ds.PGSimpleDataSource;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 
@@ -155,8 +154,6 @@ public final class Settings {
 
   public static final class DataSourceFactory {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DataSourceFactory.class);
-
     private DataSourceFactory() {
       // Utility class
     }
@@ -182,12 +179,6 @@ public final class Settings {
       }
 
       applyParameters(pgDataSource, components.parameters());
-
-      LOGGER.info(
-          "Configured DataSource for {}:{} / {}",
-          components.host(),
-          components.port(),
-          components.database());
 
       return pgDataSource;
     }
@@ -345,8 +336,6 @@ public final class Settings {
 
   public static final class LoggingConfigurator {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(LoggingConfigurator.class);
-
     private final String rootLogLevel;
     private final String serviceName;
     private final String environment;
@@ -383,15 +372,8 @@ public final class Settings {
         Level level = Level.valueOf(rootLogLevel.toUpperCase(Locale.ROOT));
         rootLogger.setLevel(level);
       } catch (IllegalArgumentException e) {
-        LOGGER.warn("Invalid log level '{}', using default INFO", rootLogLevel);
         rootLogger.setLevel(Level.INFO);
       }
-
-      LOGGER.info(
-          "Logging configured successfully - Level: {}, Service: {}, Environment: {}",
-          rootLogLevel,
-          serviceName,
-          environment);
     }
   }
 }
