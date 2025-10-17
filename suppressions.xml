@@ -4,8 +4,8 @@
     "https://checkstyle.org/dtds/suppressions_1_2.dtd">
 <suppressions>
     <!-- ignore whitespace around empty braces in these files -->
-    <suppress files="RatingServiceApplication\.java" checks="WhitespaceAround"/>
-    <suppress files="RatingServiceApplicationTests\.java" checks="WhitespaceAround"/>
+    <suppress files="ServiceApplication\.java" checks="WhitespaceAround"/>
+    <suppress files="ServiceApplicationTests\.java" checks="WhitespaceAround"/>
     
     <!-- Spring Boot Application class suppressions -->
     <suppress files=".*Application\.java" checks="HideUtilityClassConstructor"/>

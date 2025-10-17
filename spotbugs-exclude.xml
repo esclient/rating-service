@@ -33,11 +33,11 @@
    
     <!-- Exclude EI_EXPOSE_REP2 for Spring dependency injection constructors -->
     <Match>
-        <Class name="com.esclient.ratingservice.repository.RatingRepository" />
+        <Class name="ratingservice.repository.Repository" />
         <Bug pattern="EI_EXPOSE_REP2" />
     </Match>
     <Match>
-        <Class name="com.esclient.ratingservice.service.RatingService" />
+        <Class name="ratingservice.service.Service" />
         <Bug pattern="EI_EXPOSE_REP2" />
     </Match>
    
