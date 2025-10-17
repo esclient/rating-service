@@ -27,7 +27,7 @@ gen-stubs: fetch-proto
 update: gen-stubs clean
 
 format:
-    mvn spotless:apply -Pquality
+    @echo "Code formatter not configured."
 
 lint:
     mvn -DskipTests verify
