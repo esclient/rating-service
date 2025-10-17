@@ -31,8 +31,7 @@ public final class Service {
     this.executor = Objects.requireNonNull(executor, "executor");
   }
 
-  public CompletionStage<Integer> rateMod(
-      final long modId, final long authorId, final int rate) {
+  public CompletionStage<Integer> rateMod(final long modId, final long authorId, final int rate) {
     Map<String, String> context = buildContext("rate_mod", modId, authorId, rate);
     return runAsync(
         context,
@@ -69,8 +68,7 @@ public final class Service {
             long rate3Count = repository.getRates(Constants.RATE_3, modId);
             long rate4Count = repository.getRates(Constants.RATE_4, modId);
             long rate5Count = repository.getRates(Constants.RATE_5, modId);
-            return new Data(
-                totalRates, rate1Count, rate2Count, rate3Count, rate4Count, rate5Count);
+            return new Data(totalRates, rate1Count, rate2Count, rate3Count, rate4Count, rate5Count);
           } catch (SQLException e) {
             throw translateReadSqlException(modId, e);
           }
@@ -137,8 +135,7 @@ public final class Service {
     if (rate < Constants.MIN_RATING || rate > Constants.MAX_RATING) {
       IllegalArgumentException exception =
           new IllegalArgumentException(
-              "rate must be between " + Constants.MIN_RATING + " and "
-                  + Constants.MAX_RATING);
+              "rate must be between " + Constants.MIN_RATING + " and " + Constants.MAX_RATING);
       LOGGER.warn("Validation failed: {}", exception.getMessage());
       throw exception;
     }
@@ -150,13 +147,9 @@ public final class Service {
     String message;
     if (sqlState != null) {
       if (sqlState.startsWith("23")) {
-        message =
-            "Database constraint violation while adding rating: "
-                + e.getMessage();
+        message = "Database constraint violation while adding rating: " + e.getMessage();
       } else if (sqlState.startsWith("08")) {
-        message =
-            "Database connection error while adding rating: "
-                + e.getMessage();
+        message = "Database connection error while adding rating: " + e.getMessage();
       } else {
         message = "Database error occurred while adding rating: " + e.getMessage();
       }
@@ -164,27 +157,18 @@ public final class Service {
       message = "Database error occurred while adding rating: " + e.getMessage();
     }
     LOGGER.error(
-        "Failed to add rating for mod {} by author {} with rate {}",
-        modId,
-        authorId,
-        rate,
-        e);
+        "Failed to add rating for mod {} by author {} with rate {}", modId, authorId, rate, e);
     return new ServiceException(message, e);
   }
 
-  private ServiceException translateReadSqlException(
-      final long modId, final SQLException e) {
+  private ServiceException translateReadSqlException(final long modId, final SQLException e) {
     String sqlState = e.getSQLState();
     String message;
     if (sqlState != null) {
       if (sqlState.startsWith("08")) {
-        message =
-            "Database connection error while retrieving ratings: "
-                + e.getMessage();
+        message = "Database connection error while retrieving ratings: " + e.getMessage();
       } else if (sqlState.startsWith("42")) {
-        message =
-            "Database query error while retrieving ratings: "
-                + e.getMessage();
+        message = "Database query error while retrieving ratings: " + e.getMessage();
       } else {
         message = "Database error occurred while retrieving ratings: " + e.getMessage();
       }
@@ -200,4 +184,3 @@ public final class Service {
     return "Service{" + "repository=" + repository + '}';
   }
 }
-

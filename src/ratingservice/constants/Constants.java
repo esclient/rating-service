@@ -16,4 +16,3 @@ public final class Constants {
     throw new UnsupportedOperationException("Utility class");
   }
 }
-

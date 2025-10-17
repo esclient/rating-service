@@ -1,26 +1,27 @@
 package ratingservice;
 
+import io.grpc.netty.shaded.io.grpc.netty.NettyServerBuilder;
+import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import javax.sql.DataSource;
-import ratingservice.config.AppConfig;
-import ratingservice.config.DataSourceFactory;
-import ratingservice.config.DatabaseInitializer;
-import ratingservice.config.LoggingConfigurator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import ratingservice.Settings.AppConfig;
+import ratingservice.Settings.DataSourceFactory;
+import ratingservice.Settings.LoggingConfigurator;
 import ratingservice.handler.Handler;
 import ratingservice.repository.Repository;
 import ratingservice.service.Service;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public final class ServiceApplication {
+public final class Server {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(ServiceApplication.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(Server.class);
 
-  private ServiceApplication() {
+  private Server() {
     // Utility class
   }
 
@@ -43,17 +44,17 @@ public final class ServiceApplication {
     DataSource dataSource = null;
     try {
       dataSource = DataSourceFactory.create(config);
-      DatabaseInitializer initializer = new DatabaseInitializer();
-      initializer.initialize(dataSource);
-
       Repository repository = new Repository(dataSource);
       Service service = new Service(repository, workerPool);
       Handler handler = new Handler(service);
 
-      try (GrpcServer server = new GrpcServer(config.grpcPort(), handler)) {
-        server.start();
+      io.grpc.Server grpcServer = null;
+      try {
+        grpcServer = startServer(config.grpcPort(), handler);
         LOGGER.info("Rating Service started successfully");
-        server.blockUntilShutdown();
+        grpcServer.awaitTermination();
+      } finally {
+        shutdownServer(grpcServer);
       }
     } catch (Exception e) {
       LOGGER.error("Application terminated due to error", e);
@@ -61,6 +62,37 @@ public final class ServiceApplication {
     } finally {
       closeDataSource(dataSource);
       shutdownExecutor(workerPool);
+    }
+  }
+
+  private static io.grpc.Server startServer(final int port, final Handler handler)
+      throws IOException {
+    io.grpc.Server server = NettyServerBuilder.forPort(port).addService(handler).build();
+    server.start();
+    LOGGER.info("gRPC server listening on port {}", port);
+    Runtime.getRuntime()
+        .addShutdownHook(
+            new Thread(
+                () -> {
+                  LOGGER.info("Shutdown requested - stopping gRPC server");
+                  shutdownServer(server);
+                },
+                "grpc-shutdown-hook"));
+    return server;
+  }
+
+  private static void shutdownServer(final io.grpc.Server server) {
+    if (server == null) {
+      return;
+    }
+    server.shutdown();
+    try {
+      if (!server.awaitTermination(30, TimeUnit.SECONDS)) {
+        server.shutdownNow();
+      }
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      server.shutdownNow();
     }
   }
 
@@ -103,4 +135,3 @@ public final class ServiceApplication {
     }
   }
 }
-

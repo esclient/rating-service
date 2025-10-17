@@ -23,12 +23,9 @@ import ratingservice.service.Service;
 @ExtendWith(MockitoExtension.class)
 final class HandlerTest {
 
-  @Mock
-  private Service ratingService;
-  @Mock
-  private StreamObserver<Rating.RateModResponse> rateModObserver;
-  @Mock
-  private StreamObserver<Rating.GetRatesResponse> getRatesObserver;
+  @Mock private Service ratingService;
+  @Mock private StreamObserver<Rating.RateModResponse> rateModObserver;
+  @Mock private StreamObserver<Rating.GetRatesResponse> getRatesObserver;
 
   private Handler handler;
 
@@ -39,18 +36,19 @@ final class HandlerTest {
 
   @Test
   void rateMod_shouldEmitResponseAndComplete() {
-    when(ratingService.rateMod(1L, 2L, 5))
-        .thenReturn(CompletableFuture.completedFuture(42));
+    when(ratingService.rateMod(1L, 2L, 5)).thenReturn(CompletableFuture.completedFuture(42));
 
-    Rating.RateModRequest request = Rating.RateModRequest.newBuilder()
-        .setModId(1L)
-        .setAuthorId(2L)
-        .setRate(Rating.Rate.RATE_5)
-        .build();
+    Rating.RateModRequest request =
+        Rating.RateModRequest.newBuilder()
+            .setModId(1L)
+            .setAuthorId(2L)
+            .setRate(Rating.Rate.RATE_5)
+            .build();
 
     handler.rateMod(request, rateModObserver);
 
-    ArgumentCaptor<Rating.RateModResponse> responseCaptor = ArgumentCaptor.forClass(Rating.RateModResponse.class);
+    ArgumentCaptor<Rating.RateModResponse> responseCaptor =
+        ArgumentCaptor.forClass(Rating.RateModResponse.class);
     verify(rateModObserver, timeout(200)).onNext(responseCaptor.capture());
     assertEquals(42, responseCaptor.getValue().getRateId());
     verify(rateModObserver, timeout(200)).onCompleted();
@@ -60,14 +58,14 @@ final class HandlerTest {
   void rateMod_shouldReturnInvalidArgumentForNegativeModId() {
     when(ratingService.rateMod(0L, 2L, 3))
         .thenReturn(
-            CompletableFuture.failedFuture(
-                new IllegalArgumentException("modId must be positive")));
+            CompletableFuture.failedFuture(new IllegalArgumentException("modId must be positive")));
 
-    Rating.RateModRequest request = Rating.RateModRequest.newBuilder()
-        .setModId(0L)
-        .setAuthorId(2L)
-        .setRate(Rating.Rate.RATE_3)
-        .build();
+    Rating.RateModRequest request =
+        Rating.RateModRequest.newBuilder()
+            .setModId(0L)
+            .setAuthorId(2L)
+            .setRate(Rating.Rate.RATE_3)
+            .build();
 
     handler.rateMod(request, rateModObserver);
 
@@ -81,14 +79,14 @@ final class HandlerTest {
   @Test
   void rateMod_shouldTranslateServiceIllegalState() {
     when(ratingService.rateMod(1L, 2L, 1))
-        .thenReturn(
-            CompletableFuture.failedFuture(new IllegalStateException("state")));
+        .thenReturn(CompletableFuture.failedFuture(new IllegalStateException("state")));
 
-    Rating.RateModRequest request = Rating.RateModRequest.newBuilder()
-        .setModId(1L)
-        .setAuthorId(2L)
-        .setRate(Rating.Rate.RATE_1)
-        .build();
+    Rating.RateModRequest request =
+        Rating.RateModRequest.newBuilder()
+            .setModId(1L)
+            .setAuthorId(2L)
+            .setRate(Rating.Rate.RATE_1)
+            .build();
 
     handler.rateMod(request, rateModObserver);
 
@@ -103,11 +101,12 @@ final class HandlerTest {
     when(ratingService.rateMod(1L, 2L, 4))
         .thenReturn(CompletableFuture.failedFuture(new RuntimeException("boom")));
 
-    Rating.RateModRequest request = Rating.RateModRequest.newBuilder()
-        .setModId(1L)
-        .setAuthorId(2L)
-        .setRate(Rating.Rate.RATE_4)
-        .build();
+    Rating.RateModRequest request =
+        Rating.RateModRequest.newBuilder()
+            .setModId(1L)
+            .setAuthorId(2L)
+            .setRate(Rating.Rate.RATE_4)
+            .build();
 
     handler.rateMod(request, rateModObserver);
 
@@ -120,14 +119,14 @@ final class HandlerTest {
   @Test
   void getRates_shouldEmitMappedResponse() {
     Data data = new Data(10, 1, 2, 3, 4, 5);
-    when(ratingService.getRatings(7L))
-        .thenReturn(CompletableFuture.completedFuture(data));
+    when(ratingService.getRatings(7L)).thenReturn(CompletableFuture.completedFuture(data));
 
     Rating.GetRatesRequest request = Rating.GetRatesRequest.newBuilder().setModId(7L).build();
 
     handler.getRates(request, getRatesObserver);
 
-    ArgumentCaptor<Rating.GetRatesResponse> responseCaptor = ArgumentCaptor.forClass(Rating.GetRatesResponse.class);
+    ArgumentCaptor<Rating.GetRatesResponse> responseCaptor =
+        ArgumentCaptor.forClass(Rating.GetRatesResponse.class);
     verify(getRatesObserver, timeout(200)).onNext(responseCaptor.capture());
     Rating.GetRatesResponse response = responseCaptor.getValue();
     assertEquals(10, response.getRatesTotal());
@@ -142,8 +141,7 @@ final class HandlerTest {
   @Test
   void getRates_shouldTranslateServiceErrors() {
     when(ratingService.getRatings(9L))
-        .thenReturn(
-            CompletableFuture.failedFuture(new IllegalArgumentException("bad")));
+        .thenReturn(CompletableFuture.failedFuture(new IllegalArgumentException("bad")));
 
     Rating.GetRatesRequest request = Rating.GetRatesRequest.newBuilder().setModId(9L).build();
 

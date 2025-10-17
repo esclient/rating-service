@@ -27,7 +27,7 @@ gen-stubs: fetch-proto
 update: gen-stubs clean
 
 format:
-    @echo "Code formatter not configured."
+    mvn fmt:format
 
 lint:
     mvn -DskipTests verify
@@ -35,4 +35,4 @@ lint:
 test:
     mvn test
 
-prepare: test
+prepare: format lint test

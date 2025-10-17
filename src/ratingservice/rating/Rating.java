@@ -8,90 +8,67 @@ package rating;
 @com.google.protobuf.Generated
 public final class Rating extends com.google.protobuf.GeneratedFile {
   private Rating() {}
+
   static {
     com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
-      com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
-      /* major= */ 4,
-      /* minor= */ 32,
-      /* patch= */ 1,
-      /* suffix= */ "",
-      Rating.class.getName());
-  }
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistryLite registry) {
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 32,
+        /* patch= */ 1,
+        /* suffix= */ "",
+        Rating.class.getName());
   }
 
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistry registry) {
-    registerAllExtensions(
-        (com.google.protobuf.ExtensionRegistryLite) registry);
+  public static void registerAllExtensions(com.google.protobuf.ExtensionRegistryLite registry) {}
+
+  public static void registerAllExtensions(com.google.protobuf.ExtensionRegistry registry) {
+    registerAllExtensions((com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  /**
-   * Protobuf enum {@code rating.Rate}
-   */
-  public enum Rate
-      implements com.google.protobuf.ProtocolMessageEnum {
-    /**
-     * <code>RATE_UNSPECIFIED = 0;</code>
-     */
+
+  /** Protobuf enum {@code rating.Rate} */
+  public enum Rate implements com.google.protobuf.ProtocolMessageEnum {
+    /** <code>RATE_UNSPECIFIED = 0;</code> */
     RATE_UNSPECIFIED(0),
-    /**
-     * <code>RATE_1 = 1;</code>
-     */
+    /** <code>RATE_1 = 1;</code> */
     RATE_1(1),
-    /**
-     * <code>RATE_2 = 2;</code>
-     */
+    /** <code>RATE_2 = 2;</code> */
     RATE_2(2),
-    /**
-     * <code>RATE_3 = 3;</code>
-     */
+    /** <code>RATE_3 = 3;</code> */
     RATE_3(3),
-    /**
-     * <code>RATE_4 = 4;</code>
-     */
+    /** <code>RATE_4 = 4;</code> */
     RATE_4(4),
-    /**
-     * <code>RATE_5 = 5;</code>
-     */
+    /** <code>RATE_5 = 5;</code> */
     RATE_5(5),
     UNRECOGNIZED(-1),
     ;
 
     static {
       com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
-        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
-        /* major= */ 4,
-        /* minor= */ 32,
-        /* patch= */ 1,
-        /* suffix= */ "",
-        Rate.class.getName());
+          com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+          /* major= */ 4,
+          /* minor= */ 32,
+          /* patch= */ 1,
+          /* suffix= */ "",
+          Rate.class.getName());
     }
-    /**
-     * <code>RATE_UNSPECIFIED = 0;</code>
-     */
-    public static final int RATE_UNSPECIFIED_VALUE = 0;
-    /**
-     * <code>RATE_1 = 1;</code>
-     */
-    public static final int RATE_1_VALUE = 1;
-    /**
-     * <code>RATE_2 = 2;</code>
-     */
-    public static final int RATE_2_VALUE = 2;
-    /**
-     * <code>RATE_3 = 3;</code>
-     */
-    public static final int RATE_3_VALUE = 3;
-    /**
-     * <code>RATE_4 = 4;</code>
-     */
-    public static final int RATE_4_VALUE = 4;
-    /**
-     * <code>RATE_5 = 5;</code>
-     */
-    public static final int RATE_5_VALUE = 5;
 
+    /** <code>RATE_UNSPECIFIED = 0;</code> */
+    public static final int RATE_UNSPECIFIED_VALUE = 0;
+
+    /** <code>RATE_1 = 1;</code> */
+    public static final int RATE_1_VALUE = 1;
+
+    /** <code>RATE_2 = 2;</code> */
+    public static final int RATE_2_VALUE = 2;
+
+    /** <code>RATE_3 = 3;</code> */
+    public static final int RATE_3_VALUE = 3;
+
+    /** <code>RATE_4 = 4;</code> */
+    public static final int RATE_4_VALUE = 4;
+
+    /** <code>RATE_5 = 5;</code> */
+    public static final int RATE_5_VALUE = 5;
 
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
@@ -117,52 +94,55 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
      */
     public static Rate forNumber(int value) {
       switch (value) {
-        case 0: return RATE_UNSPECIFIED;
-        case 1: return RATE_1;
-        case 2: return RATE_2;
-        case 3: return RATE_3;
-        case 4: return RATE_4;
-        case 5: return RATE_5;
-        default: return null;
+        case 0:
+          return RATE_UNSPECIFIED;
+        case 1:
+          return RATE_1;
+        case 2:
+          return RATE_2;
+        case 3:
+          return RATE_3;
+        case 4:
+          return RATE_4;
+        case 5:
+          return RATE_5;
+        default:
+          return null;
       }
     }
 
-    public static com.google.protobuf.Internal.EnumLiteMap<Rate>
-        internalGetValueMap() {
+    public static com.google.protobuf.Internal.EnumLiteMap<Rate> internalGetValueMap() {
       return internalValueMap;
     }
-    private static final com.google.protobuf.Internal.EnumLiteMap<
-        Rate> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<Rate>() {
-            public Rate findValueByNumber(int number) {
-              return Rate.forNumber(number);
-            }
-          };
 
-    public final com.google.protobuf.Descriptors.EnumValueDescriptor
-        getValueDescriptor() {
+    private static final com.google.protobuf.Internal.EnumLiteMap<Rate> internalValueMap =
+        new com.google.protobuf.Internal.EnumLiteMap<Rate>() {
+          public Rate findValueByNumber(int number) {
+            return Rate.forNumber(number);
+          }
+        };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor getValueDescriptor() {
       if (this == UNRECOGNIZED) {
         throw new java.lang.IllegalStateException(
             "Can't get the descriptor of an unrecognized enum value.");
       }
       return getDescriptor().getValues().get(ordinal());
     }
-    public final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptorForType() {
+
+    public final com.google.protobuf.Descriptors.EnumDescriptor getDescriptorForType() {
       return getDescriptor();
     }
-    public static com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptor() {
+
+    public static com.google.protobuf.Descriptors.EnumDescriptor getDescriptor() {
       return rating.Rating.getDescriptor().getEnumTypes().get(0);
     }
 
     private static final Rate[] VALUES = values();
 
-    public static Rate valueOf(
-        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+    public static Rate valueOf(com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
+        throw new java.lang.IllegalArgumentException("EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
         return UNRECOGNIZED;
@@ -179,60 +159,67 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
     // @@protoc_insertion_point(enum_scope:rating.Rate)
   }
 
-  public interface RateModRequestOrBuilder extends
+  public interface RateModRequestOrBuilder
+      extends
       // @@protoc_insertion_point(interface_extends:rating.RateModRequest)
       com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>int64 mod_id = 1;</code>
+     *
      * @return The modId.
      */
     long getModId();
 
     /**
      * <code>int64 author_id = 2;</code>
+     *
      * @return The authorId.
      */
     long getAuthorId();
 
     /**
      * <code>.rating.Rate rate = 3;</code>
+     *
      * @return The enum numeric value on the wire for rate.
      */
     int getRateValue();
+
     /**
      * <code>.rating.Rate rate = 3;</code>
+     *
      * @return The rate.
      */
     rating.Rating.Rate getRate();
   }
-  /**
-   * Protobuf type {@code rating.RateModRequest}
-   */
-  public static final class RateModRequest extends
-      com.google.protobuf.GeneratedMessage implements
+
+  /** Protobuf type {@code rating.RateModRequest} */
+  public static final class RateModRequest extends com.google.protobuf.GeneratedMessage
+      implements
       // @@protoc_insertion_point(message_implements:rating.RateModRequest)
       RateModRequestOrBuilder {
-  private static final long serialVersionUID = 0L;
+    private static final long serialVersionUID = 0L;
+
     static {
       com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
-        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
-        /* major= */ 4,
-        /* minor= */ 32,
-        /* patch= */ 1,
-        /* suffix= */ "",
-        RateModRequest.class.getName());
+          com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+          /* major= */ 4,
+          /* minor= */ 32,
+          /* patch= */ 1,
+          /* suffix= */ "",
+          RateModRequest.class.getName());
     }
+
     // Use RateModRequest.newBuilder() to construct.
     private RateModRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
+
     private RateModRequest() {
       rate_ = 0;
     }
 
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
       return rating.Rating.internal_static_rating_RateModRequest_descriptor;
     }
 
@@ -246,8 +233,10 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
 
     public static final int MOD_ID_FIELD_NUMBER = 1;
     private long modId_ = 0L;
+
     /**
      * <code>int64 mod_id = 1;</code>
+     *
      * @return The modId.
      */
     @java.lang.Override
@@ -257,8 +246,10 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
 
     public static final int AUTHOR_ID_FIELD_NUMBER = 2;
     private long authorId_ = 0L;
+
     /**
      * <code>int64 author_id = 2;</code>
+     *
      * @return The authorId.
      */
     @java.lang.Override
@@ -268,23 +259,30 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
 
     public static final int RATE_FIELD_NUMBER = 3;
     private int rate_ = 0;
+
     /**
      * <code>.rating.Rate rate = 3;</code>
+     *
      * @return The enum numeric value on the wire for rate.
      */
-    @java.lang.Override public int getRateValue() {
+    @java.lang.Override
+    public int getRateValue() {
       return rate_;
     }
+
     /**
      * <code>.rating.Rate rate = 3;</code>
+     *
      * @return The rate.
      */
-    @java.lang.Override public rating.Rating.Rate getRate() {
+    @java.lang.Override
+    public rating.Rating.Rate getRate() {
       rating.Rating.Rate result = rating.Rating.Rate.forNumber(rate_);
       return result == null ? rating.Rating.Rate.UNRECOGNIZED : result;
     }
 
     private byte memoizedIsInitialized = -1;
+
     @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -296,8 +294,7 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
     }
 
     @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+    public void writeTo(com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
       if (modId_ != 0L) {
         output.writeInt64(1, modId_);
       }
@@ -317,16 +314,13 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
 
       size = 0;
       if (modId_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, modId_);
+        size += com.google.protobuf.CodedOutputStream.computeInt64Size(1, modId_);
       }
       if (authorId_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(2, authorId_);
+        size += com.google.protobuf.CodedOutputStream.computeInt64Size(2, authorId_);
       }
       if (rate_ != rating.Rating.Rate.RATE_UNSPECIFIED.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(3, rate_);
+        size += com.google.protobuf.CodedOutputStream.computeEnumSize(3, rate_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -336,17 +330,15 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof rating.Rating.RateModRequest)) {
         return super.equals(obj);
       }
       rating.Rating.RateModRequest other = (rating.Rating.RateModRequest) obj;
 
-      if (getModId()
-          != other.getModId()) return false;
-      if (getAuthorId()
-          != other.getAuthorId()) return false;
+      if (getModId() != other.getModId()) return false;
+      if (getAuthorId() != other.getAuthorId()) return false;
       if (rate_ != other.rate_) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
@@ -360,11 +352,9 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + MOD_ID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getModId());
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(getModId());
       hash = (37 * hash) + AUTHOR_ID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getAuthorId());
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(getAuthorId());
       hash = (37 * hash) + RATE_FIELD_NUMBER;
       hash = (53 * hash) + rate_;
       hash = (29 * hash) + getUnknownFields().hashCode();
@@ -372,107 +362,107 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       return hash;
     }
 
-    public static rating.Rating.RateModRequest parseFrom(
-        java.nio.ByteBuffer data)
+    public static rating.Rating.RateModRequest parseFrom(java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static rating.Rating.RateModRequest parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        java.nio.ByteBuffer data, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static rating.Rating.RateModRequest parseFrom(
-        com.google.protobuf.ByteString data)
+
+    public static rating.Rating.RateModRequest parseFrom(com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static rating.Rating.RateModRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static rating.Rating.RateModRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static rating.Rating.RateModRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        byte[] data, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static rating.Rating.RateModRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input);
+      return com.google.protobuf.GeneratedMessage.parseWithIOException(PARSER, input);
     }
+
     public static rating.Rating.RateModRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        java.io.InputStream input, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage.parseWithIOException(
+          PARSER, input, extensionRegistry);
     }
 
     public static rating.Rating.RateModRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseDelimitedWithIOException(PARSER, input);
+      return com.google.protobuf.GeneratedMessage.parseDelimitedWithIOException(PARSER, input);
     }
 
     public static rating.Rating.RateModRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        java.io.InputStream input, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage.parseDelimitedWithIOException(
+          PARSER, input, extensionRegistry);
     }
-    public static rating.Rating.RateModRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
+
+    public static rating.Rating.RateModRequest parseFrom(com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input);
+      return com.google.protobuf.GeneratedMessage.parseWithIOException(PARSER, input);
     }
+
     public static rating.Rating.RateModRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage.parseWithIOException(
+          PARSER, input, extensionRegistry);
     }
 
     @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() {
+      return newBuilder();
+    }
+
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
+
     public static Builder newBuilder(rating.Rating.RateModRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+
     @java.lang.Override
     public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
+      return this == DEFAULT_INSTANCE ? new Builder() : new Builder().mergeFrom(this);
     }
 
     @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+    protected Builder newBuilderForType(com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
-    /**
-     * Protobuf type {@code rating.RateModRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+
+    /** Protobuf type {@code rating.RateModRequest} */
+    public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder>
+        implements
         // @@protoc_insertion_point(builder_implements:rating.RateModRequest)
         rating.Rating.RateModRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
         return rating.Rating.internal_static_rating_RateModRequest_descriptor;
       }
 
@@ -485,15 +475,12 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       }
 
       // Construct using rating.Rating.RateModRequest.newBuilder()
-      private Builder() {
+      private Builder() {}
 
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      private Builder(com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
-
       }
+
       @java.lang.Override
       public Builder clear() {
         super.clear();
@@ -505,8 +492,7 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       }
 
       @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
         return rating.Rating.internal_static_rating_RateModRequest_descriptor;
       }
 
@@ -527,7 +513,9 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       @java.lang.Override
       public rating.Rating.RateModRequest buildPartial() {
         rating.Rating.RateModRequest result = new rating.Rating.RateModRequest(this);
-        if (bitField0_ != 0) { buildPartial0(result); }
+        if (bitField0_ != 0) {
+          buildPartial0(result);
+        }
         onBuilt();
         return result;
       }
@@ -548,7 +536,7 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof rating.Rating.RateModRequest) {
-          return mergeFrom((rating.Rating.RateModRequest)other);
+          return mergeFrom((rating.Rating.RateModRequest) other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -592,27 +580,31 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
               case 0:
                 done = true;
                 break;
-              case 8: {
-                modId_ = input.readInt64();
-                bitField0_ |= 0x00000001;
-                break;
-              } // case 8
-              case 16: {
-                authorId_ = input.readInt64();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 16
-              case 24: {
-                rate_ = input.readEnum();
-                bitField0_ |= 0x00000004;
-                break;
-              } // case 24
-              default: {
-                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                  done = true; // was an endgroup tag
-                }
-                break;
-              } // default:
+              case 8:
+                {
+                  modId_ = input.readInt64();
+                  bitField0_ |= 0x00000001;
+                  break;
+                } // case 8
+              case 16:
+                {
+                  authorId_ = input.readInt64();
+                  bitField0_ |= 0x00000002;
+                  break;
+                } // case 16
+              case 24:
+                {
+                  rate_ = input.readEnum();
+                  bitField0_ |= 0x00000004;
+                  break;
+                } // case 24
+              default:
+                {
+                  if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                    done = true; // was an endgroup tag
+                  }
+                  break;
+                } // default:
             } // switch (tag)
           } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -622,19 +614,24 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
         } // finally
         return this;
       }
+
       private int bitField0_;
 
-      private long modId_ ;
+      private long modId_;
+
       /**
        * <code>int64 mod_id = 1;</code>
+       *
        * @return The modId.
        */
       @java.lang.Override
       public long getModId() {
         return modId_;
       }
+
       /**
        * <code>int64 mod_id = 1;</code>
+       *
        * @param value The modId to set.
        * @return This builder for chaining.
        */
@@ -645,8 +642,10 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
         onChanged();
         return this;
       }
+
       /**
        * <code>int64 mod_id = 1;</code>
+       *
        * @return This builder for chaining.
        */
       public Builder clearModId() {
@@ -656,17 +655,21 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
         return this;
       }
 
-      private long authorId_ ;
+      private long authorId_;
+
       /**
        * <code>int64 author_id = 2;</code>
+       *
        * @return The authorId.
        */
       @java.lang.Override
       public long getAuthorId() {
         return authorId_;
       }
+
       /**
        * <code>int64 author_id = 2;</code>
+       *
        * @param value The authorId to set.
        * @return This builder for chaining.
        */
@@ -677,8 +680,10 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
         onChanged();
         return this;
       }
+
       /**
        * <code>int64 author_id = 2;</code>
+       *
        * @return This builder for chaining.
        */
       public Builder clearAuthorId() {
@@ -689,15 +694,20 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       }
 
       private int rate_ = 0;
+
       /**
        * <code>.rating.Rate rate = 3;</code>
+       *
        * @return The enum numeric value on the wire for rate.
        */
-      @java.lang.Override public int getRateValue() {
+      @java.lang.Override
+      public int getRateValue() {
         return rate_;
       }
+
       /**
        * <code>.rating.Rate rate = 3;</code>
+       *
        * @param value The enum numeric value on the wire for rate to set.
        * @return This builder for chaining.
        */
@@ -707,8 +717,10 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
         onChanged();
         return this;
       }
+
       /**
        * <code>.rating.Rate rate = 3;</code>
+       *
        * @return The rate.
        */
       @java.lang.Override
@@ -716,20 +728,26 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
         rating.Rating.Rate result = rating.Rating.Rate.forNumber(rate_);
         return result == null ? rating.Rating.Rate.UNRECOGNIZED : result;
       }
+
       /**
        * <code>.rating.Rate rate = 3;</code>
+       *
        * @param value The rate to set.
        * @return This builder for chaining.
        */
       public Builder setRate(rating.Rating.Rate value) {
-        if (value == null) { throw new NullPointerException(); }
+        if (value == null) {
+          throw new NullPointerException();
+        }
         bitField0_ |= 0x00000004;
         rate_ = value.getNumber();
         onChanged();
         return this;
       }
+
       /**
        * <code>.rating.Rate rate = 3;</code>
+       *
        * @return This builder for chaining.
        */
       public Builder clearRate() {
@@ -744,6 +762,7 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
 
     // @@protoc_insertion_point(class_scope:rating.RateModRequest)
     private static final rating.Rating.RateModRequest DEFAULT_INSTANCE;
+
     static {
       DEFAULT_INSTANCE = new rating.Rating.RateModRequest();
     }
@@ -752,27 +771,28 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<RateModRequest>
-        PARSER = new com.google.protobuf.AbstractParser<RateModRequest>() {
-      @java.lang.Override
-      public RateModRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        Builder builder = newBuilder();
-        try {
-          builder.mergeFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(builder.buildPartial());
-        } catch (com.google.protobuf.UninitializedMessageException e) {
-          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(e)
-              .setUnfinishedMessage(builder.buildPartial());
-        }
-        return builder.buildPartial();
-      }
-    };
+    private static final com.google.protobuf.Parser<RateModRequest> PARSER =
+        new com.google.protobuf.AbstractParser<RateModRequest>() {
+          @java.lang.Override
+          public RateModRequest parsePartialFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+            Builder builder = newBuilder();
+            try {
+              builder.mergeFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+              throw e.setUnfinishedMessage(builder.buildPartial());
+            } catch (com.google.protobuf.UninitializedMessageException e) {
+              throw e.asInvalidProtocolBufferException()
+                  .setUnfinishedMessage(builder.buildPartial());
+            } catch (java.io.IOException e) {
+              throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                  .setUnfinishedMessage(builder.buildPartial());
+            }
+            return builder.buildPartial();
+          }
+        };
 
     public static com.google.protobuf.Parser<RateModRequest> parser() {
       return PARSER;
@@ -787,45 +807,46 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
     public rating.Rating.RateModRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
-
   }
 
-  public interface RateModResponseOrBuilder extends
+  public interface RateModResponseOrBuilder
+      extends
       // @@protoc_insertion_point(interface_extends:rating.RateModResponse)
       com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>int64 rate_id = 1;</code>
+     *
      * @return The rateId.
      */
     long getRateId();
   }
-  /**
-   * Protobuf type {@code rating.RateModResponse}
-   */
-  public static final class RateModResponse extends
-      com.google.protobuf.GeneratedMessage implements
+
+  /** Protobuf type {@code rating.RateModResponse} */
+  public static final class RateModResponse extends com.google.protobuf.GeneratedMessage
+      implements
       // @@protoc_insertion_point(message_implements:rating.RateModResponse)
       RateModResponseOrBuilder {
-  private static final long serialVersionUID = 0L;
+    private static final long serialVersionUID = 0L;
+
     static {
       com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
-        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
-        /* major= */ 4,
-        /* minor= */ 32,
-        /* patch= */ 1,
-        /* suffix= */ "",
-        RateModResponse.class.getName());
+          com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+          /* major= */ 4,
+          /* minor= */ 32,
+          /* patch= */ 1,
+          /* suffix= */ "",
+          RateModResponse.class.getName());
     }
+
     // Use RateModResponse.newBuilder() to construct.
     private RateModResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
-    private RateModResponse() {
-    }
 
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    private RateModResponse() {}
+
+    public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
       return rating.Rating.internal_static_rating_RateModResponse_descriptor;
     }
 
@@ -839,8 +860,10 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
 
     public static final int RATE_ID_FIELD_NUMBER = 1;
     private long rateId_ = 0L;
+
     /**
      * <code>int64 rate_id = 1;</code>
+     *
      * @return The rateId.
      */
     @java.lang.Override
@@ -849,6 +872,7 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
     }
 
     private byte memoizedIsInitialized = -1;
+
     @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -860,8 +884,7 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
     }
 
     @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+    public void writeTo(com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
       if (rateId_ != 0L) {
         output.writeInt64(1, rateId_);
       }
@@ -875,8 +898,7 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
 
       size = 0;
       if (rateId_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, rateId_);
+        size += com.google.protobuf.CodedOutputStream.computeInt64Size(1, rateId_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -886,15 +908,14 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof rating.Rating.RateModResponse)) {
         return super.equals(obj);
       }
       rating.Rating.RateModResponse other = (rating.Rating.RateModResponse) obj;
 
-      if (getRateId()
-          != other.getRateId()) return false;
+      if (getRateId() != other.getRateId()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -907,114 +928,113 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + RATE_ID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getRateId());
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(getRateId());
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static rating.Rating.RateModResponse parseFrom(
-        java.nio.ByteBuffer data)
+    public static rating.Rating.RateModResponse parseFrom(java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static rating.Rating.RateModResponse parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        java.nio.ByteBuffer data, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static rating.Rating.RateModResponse parseFrom(
-        com.google.protobuf.ByteString data)
+
+    public static rating.Rating.RateModResponse parseFrom(com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static rating.Rating.RateModResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static rating.Rating.RateModResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static rating.Rating.RateModResponse parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        byte[] data, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static rating.Rating.RateModResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input);
+      return com.google.protobuf.GeneratedMessage.parseWithIOException(PARSER, input);
     }
+
     public static rating.Rating.RateModResponse parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        java.io.InputStream input, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage.parseWithIOException(
+          PARSER, input, extensionRegistry);
     }
 
     public static rating.Rating.RateModResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseDelimitedWithIOException(PARSER, input);
+      return com.google.protobuf.GeneratedMessage.parseDelimitedWithIOException(PARSER, input);
     }
 
     public static rating.Rating.RateModResponse parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        java.io.InputStream input, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage.parseDelimitedWithIOException(
+          PARSER, input, extensionRegistry);
     }
+
     public static rating.Rating.RateModResponse parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input);
+        com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage.parseWithIOException(PARSER, input);
     }
+
     public static rating.Rating.RateModResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage.parseWithIOException(
+          PARSER, input, extensionRegistry);
     }
 
     @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() {
+      return newBuilder();
+    }
+
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
+
     public static Builder newBuilder(rating.Rating.RateModResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+
     @java.lang.Override
     public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
+      return this == DEFAULT_INSTANCE ? new Builder() : new Builder().mergeFrom(this);
     }
 
     @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+    protected Builder newBuilderForType(com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
-    /**
-     * Protobuf type {@code rating.RateModResponse}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+
+    /** Protobuf type {@code rating.RateModResponse} */
+    public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder>
+        implements
         // @@protoc_insertion_point(builder_implements:rating.RateModResponse)
         rating.Rating.RateModResponseOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
         return rating.Rating.internal_static_rating_RateModResponse_descriptor;
       }
 
@@ -1027,15 +1047,12 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       }
 
       // Construct using rating.Rating.RateModResponse.newBuilder()
-      private Builder() {
+      private Builder() {}
 
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      private Builder(com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
-
       }
+
       @java.lang.Override
       public Builder clear() {
         super.clear();
@@ -1045,8 +1062,7 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       }
 
       @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
         return rating.Rating.internal_static_rating_RateModResponse_descriptor;
       }
 
@@ -1067,7 +1083,9 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       @java.lang.Override
       public rating.Rating.RateModResponse buildPartial() {
         rating.Rating.RateModResponse result = new rating.Rating.RateModResponse(this);
-        if (bitField0_ != 0) { buildPartial0(result); }
+        if (bitField0_ != 0) {
+          buildPartial0(result);
+        }
         onBuilt();
         return result;
       }
@@ -1082,7 +1100,7 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof rating.Rating.RateModResponse) {
-          return mergeFrom((rating.Rating.RateModResponse)other);
+          return mergeFrom((rating.Rating.RateModResponse) other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -1120,17 +1138,19 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
               case 0:
                 done = true;
                 break;
-              case 8: {
-                rateId_ = input.readInt64();
-                bitField0_ |= 0x00000001;
-                break;
-              } // case 8
-              default: {
-                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                  done = true; // was an endgroup tag
-                }
-                break;
-              } // default:
+              case 8:
+                {
+                  rateId_ = input.readInt64();
+                  bitField0_ |= 0x00000001;
+                  break;
+                } // case 8
+              default:
+                {
+                  if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                    done = true; // was an endgroup tag
+                  }
+                  break;
+                } // default:
             } // switch (tag)
           } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -1140,19 +1160,24 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
         } // finally
         return this;
       }
+
       private int bitField0_;
 
-      private long rateId_ ;
+      private long rateId_;
+
       /**
        * <code>int64 rate_id = 1;</code>
+       *
        * @return The rateId.
        */
       @java.lang.Override
       public long getRateId() {
         return rateId_;
       }
+
       /**
        * <code>int64 rate_id = 1;</code>
+       *
        * @param value The rateId to set.
        * @return This builder for chaining.
        */
@@ -1163,8 +1188,10 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
         onChanged();
         return this;
       }
+
       /**
        * <code>int64 rate_id = 1;</code>
+       *
        * @return This builder for chaining.
        */
       public Builder clearRateId() {
@@ -1179,6 +1206,7 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
 
     // @@protoc_insertion_point(class_scope:rating.RateModResponse)
     private static final rating.Rating.RateModResponse DEFAULT_INSTANCE;
+
     static {
       DEFAULT_INSTANCE = new rating.Rating.RateModResponse();
     }
@@ -1187,27 +1215,28 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<RateModResponse>
-        PARSER = new com.google.protobuf.AbstractParser<RateModResponse>() {
-      @java.lang.Override
-      public RateModResponse parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        Builder builder = newBuilder();
-        try {
-          builder.mergeFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(builder.buildPartial());
-        } catch (com.google.protobuf.UninitializedMessageException e) {
-          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(e)
-              .setUnfinishedMessage(builder.buildPartial());
-        }
-        return builder.buildPartial();
-      }
-    };
+    private static final com.google.protobuf.Parser<RateModResponse> PARSER =
+        new com.google.protobuf.AbstractParser<RateModResponse>() {
+          @java.lang.Override
+          public RateModResponse parsePartialFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+            Builder builder = newBuilder();
+            try {
+              builder.mergeFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+              throw e.setUnfinishedMessage(builder.buildPartial());
+            } catch (com.google.protobuf.UninitializedMessageException e) {
+              throw e.asInvalidProtocolBufferException()
+                  .setUnfinishedMessage(builder.buildPartial());
+            } catch (java.io.IOException e) {
+              throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                  .setUnfinishedMessage(builder.buildPartial());
+            }
+            return builder.buildPartial();
+          }
+        };
 
     public static com.google.protobuf.Parser<RateModResponse> parser() {
       return PARSER;
@@ -1222,45 +1251,46 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
     public rating.Rating.RateModResponse getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
-
   }
 
-  public interface GetRatesRequestOrBuilder extends
+  public interface GetRatesRequestOrBuilder
+      extends
       // @@protoc_insertion_point(interface_extends:rating.GetRatesRequest)
       com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>int64 mod_id = 1;</code>
+     *
      * @return The modId.
      */
     long getModId();
   }
-  /**
-   * Protobuf type {@code rating.GetRatesRequest}
-   */
-  public static final class GetRatesRequest extends
-      com.google.protobuf.GeneratedMessage implements
+
+  /** Protobuf type {@code rating.GetRatesRequest} */
+  public static final class GetRatesRequest extends com.google.protobuf.GeneratedMessage
+      implements
       // @@protoc_insertion_point(message_implements:rating.GetRatesRequest)
       GetRatesRequestOrBuilder {
-  private static final long serialVersionUID = 0L;
+    private static final long serialVersionUID = 0L;
+
     static {
       com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
-        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
-        /* major= */ 4,
-        /* minor= */ 32,
-        /* patch= */ 1,
-        /* suffix= */ "",
-        GetRatesRequest.class.getName());
+          com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+          /* major= */ 4,
+          /* minor= */ 32,
+          /* patch= */ 1,
+          /* suffix= */ "",
+          GetRatesRequest.class.getName());
     }
+
     // Use GetRatesRequest.newBuilder() to construct.
     private GetRatesRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
-    private GetRatesRequest() {
-    }
 
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    private GetRatesRequest() {}
+
+    public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
       return rating.Rating.internal_static_rating_GetRatesRequest_descriptor;
     }
 
@@ -1274,8 +1304,10 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
 
     public static final int MOD_ID_FIELD_NUMBER = 1;
     private long modId_ = 0L;
+
     /**
      * <code>int64 mod_id = 1;</code>
+     *
      * @return The modId.
      */
     @java.lang.Override
@@ -1284,6 +1316,7 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
     }
 
     private byte memoizedIsInitialized = -1;
+
     @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -1295,8 +1328,7 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
     }
 
     @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+    public void writeTo(com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
       if (modId_ != 0L) {
         output.writeInt64(1, modId_);
       }
@@ -1310,8 +1342,7 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
 
       size = 0;
       if (modId_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, modId_);
+        size += com.google.protobuf.CodedOutputStream.computeInt64Size(1, modId_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -1321,15 +1352,14 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof rating.Rating.GetRatesRequest)) {
         return super.equals(obj);
       }
       rating.Rating.GetRatesRequest other = (rating.Rating.GetRatesRequest) obj;
 
-      if (getModId()
-          != other.getModId()) return false;
+      if (getModId() != other.getModId()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -1342,114 +1372,113 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + MOD_ID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getModId());
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(getModId());
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static rating.Rating.GetRatesRequest parseFrom(
-        java.nio.ByteBuffer data)
+    public static rating.Rating.GetRatesRequest parseFrom(java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static rating.Rating.GetRatesRequest parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        java.nio.ByteBuffer data, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static rating.Rating.GetRatesRequest parseFrom(
-        com.google.protobuf.ByteString data)
+
+    public static rating.Rating.GetRatesRequest parseFrom(com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static rating.Rating.GetRatesRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static rating.Rating.GetRatesRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static rating.Rating.GetRatesRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        byte[] data, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static rating.Rating.GetRatesRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input);
+      return com.google.protobuf.GeneratedMessage.parseWithIOException(PARSER, input);
     }
+
     public static rating.Rating.GetRatesRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        java.io.InputStream input, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage.parseWithIOException(
+          PARSER, input, extensionRegistry);
     }
 
     public static rating.Rating.GetRatesRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseDelimitedWithIOException(PARSER, input);
+      return com.google.protobuf.GeneratedMessage.parseDelimitedWithIOException(PARSER, input);
     }
 
     public static rating.Rating.GetRatesRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        java.io.InputStream input, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage.parseDelimitedWithIOException(
+          PARSER, input, extensionRegistry);
     }
+
     public static rating.Rating.GetRatesRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input);
+        com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage.parseWithIOException(PARSER, input);
     }
+
     public static rating.Rating.GetRatesRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage.parseWithIOException(
+          PARSER, input, extensionRegistry);
     }
 
     @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() {
+      return newBuilder();
+    }
+
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
+
     public static Builder newBuilder(rating.Rating.GetRatesRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+
     @java.lang.Override
     public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
+      return this == DEFAULT_INSTANCE ? new Builder() : new Builder().mergeFrom(this);
     }
 
     @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+    protected Builder newBuilderForType(com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
-    /**
-     * Protobuf type {@code rating.GetRatesRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+
+    /** Protobuf type {@code rating.GetRatesRequest} */
+    public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder>
+        implements
         // @@protoc_insertion_point(builder_implements:rating.GetRatesRequest)
         rating.Rating.GetRatesRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
         return rating.Rating.internal_static_rating_GetRatesRequest_descriptor;
       }
 
@@ -1462,15 +1491,12 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       }
 
       // Construct using rating.Rating.GetRatesRequest.newBuilder()
-      private Builder() {
+      private Builder() {}
 
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      private Builder(com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
-
       }
+
       @java.lang.Override
       public Builder clear() {
         super.clear();
@@ -1480,8 +1506,7 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       }
 
       @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
         return rating.Rating.internal_static_rating_GetRatesRequest_descriptor;
       }
 
@@ -1502,7 +1527,9 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       @java.lang.Override
       public rating.Rating.GetRatesRequest buildPartial() {
         rating.Rating.GetRatesRequest result = new rating.Rating.GetRatesRequest(this);
-        if (bitField0_ != 0) { buildPartial0(result); }
+        if (bitField0_ != 0) {
+          buildPartial0(result);
+        }
         onBuilt();
         return result;
       }
@@ -1517,7 +1544,7 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof rating.Rating.GetRatesRequest) {
-          return mergeFrom((rating.Rating.GetRatesRequest)other);
+          return mergeFrom((rating.Rating.GetRatesRequest) other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -1555,17 +1582,19 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
               case 0:
                 done = true;
                 break;
-              case 8: {
-                modId_ = input.readInt64();
-                bitField0_ |= 0x00000001;
-                break;
-              } // case 8
-              default: {
-                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                  done = true; // was an endgroup tag
-                }
-                break;
-              } // default:
+              case 8:
+                {
+                  modId_ = input.readInt64();
+                  bitField0_ |= 0x00000001;
+                  break;
+                } // case 8
+              default:
+                {
+                  if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                    done = true; // was an endgroup tag
+                  }
+                  break;
+                } // default:
             } // switch (tag)
           } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -1575,19 +1604,24 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
         } // finally
         return this;
       }
+
       private int bitField0_;
 
-      private long modId_ ;
+      private long modId_;
+
       /**
        * <code>int64 mod_id = 1;</code>
+       *
        * @return The modId.
        */
       @java.lang.Override
       public long getModId() {
         return modId_;
       }
+
       /**
        * <code>int64 mod_id = 1;</code>
+       *
        * @param value The modId to set.
        * @return This builder for chaining.
        */
@@ -1598,8 +1632,10 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
         onChanged();
         return this;
       }
+
       /**
        * <code>int64 mod_id = 1;</code>
+       *
        * @return This builder for chaining.
        */
       public Builder clearModId() {
@@ -1614,6 +1650,7 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
 
     // @@protoc_insertion_point(class_scope:rating.GetRatesRequest)
     private static final rating.Rating.GetRatesRequest DEFAULT_INSTANCE;
+
     static {
       DEFAULT_INSTANCE = new rating.Rating.GetRatesRequest();
     }
@@ -1622,27 +1659,28 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<GetRatesRequest>
-        PARSER = new com.google.protobuf.AbstractParser<GetRatesRequest>() {
-      @java.lang.Override
-      public GetRatesRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        Builder builder = newBuilder();
-        try {
-          builder.mergeFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(builder.buildPartial());
-        } catch (com.google.protobuf.UninitializedMessageException e) {
-          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(e)
-              .setUnfinishedMessage(builder.buildPartial());
-        }
-        return builder.buildPartial();
-      }
-    };
+    private static final com.google.protobuf.Parser<GetRatesRequest> PARSER =
+        new com.google.protobuf.AbstractParser<GetRatesRequest>() {
+          @java.lang.Override
+          public GetRatesRequest parsePartialFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+            Builder builder = newBuilder();
+            try {
+              builder.mergeFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+              throw e.setUnfinishedMessage(builder.buildPartial());
+            } catch (com.google.protobuf.UninitializedMessageException e) {
+              throw e.asInvalidProtocolBufferException()
+                  .setUnfinishedMessage(builder.buildPartial());
+            } catch (java.io.IOException e) {
+              throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                  .setUnfinishedMessage(builder.buildPartial());
+            }
+            return builder.buildPartial();
+          }
+        };
 
     public static com.google.protobuf.Parser<GetRatesRequest> parser() {
       return PARSER;
@@ -1657,75 +1695,81 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
     public rating.Rating.GetRatesRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
-
   }
 
-  public interface GetRatesResponseOrBuilder extends
+  public interface GetRatesResponseOrBuilder
+      extends
       // @@protoc_insertion_point(interface_extends:rating.GetRatesResponse)
       com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>int64 rates_total = 1;</code>
+     *
      * @return The ratesTotal.
      */
     long getRatesTotal();
 
     /**
      * <code>int64 rate_1 = 2;</code>
+     *
      * @return The rate1.
      */
     long getRate1();
 
     /**
      * <code>int64 rate_2 = 3;</code>
+     *
      * @return The rate2.
      */
     long getRate2();
 
     /**
      * <code>int64 rate_3 = 4;</code>
+     *
      * @return The rate3.
      */
     long getRate3();
 
     /**
      * <code>int64 rate_4 = 5;</code>
+     *
      * @return The rate4.
      */
     long getRate4();
 
     /**
      * <code>int64 rate_5 = 6;</code>
+     *
      * @return The rate5.
      */
     long getRate5();
   }
-  /**
-   * Protobuf type {@code rating.GetRatesResponse}
-   */
-  public static final class GetRatesResponse extends
-      com.google.protobuf.GeneratedMessage implements
+
+  /** Protobuf type {@code rating.GetRatesResponse} */
+  public static final class GetRatesResponse extends com.google.protobuf.GeneratedMessage
+      implements
       // @@protoc_insertion_point(message_implements:rating.GetRatesResponse)
       GetRatesResponseOrBuilder {
-  private static final long serialVersionUID = 0L;
+    private static final long serialVersionUID = 0L;
+
     static {
       com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
-        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
-        /* major= */ 4,
-        /* minor= */ 32,
-        /* patch= */ 1,
-        /* suffix= */ "",
-        GetRatesResponse.class.getName());
+          com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+          /* major= */ 4,
+          /* minor= */ 32,
+          /* patch= */ 1,
+          /* suffix= */ "",
+          GetRatesResponse.class.getName());
     }
+
     // Use GetRatesResponse.newBuilder() to construct.
     private GetRatesResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
-    private GetRatesResponse() {
-    }
 
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    private GetRatesResponse() {}
+
+    public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
       return rating.Rating.internal_static_rating_GetRatesResponse_descriptor;
     }
 
@@ -1739,8 +1783,10 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
 
     public static final int RATES_TOTAL_FIELD_NUMBER = 1;
     private long ratesTotal_ = 0L;
+
     /**
      * <code>int64 rates_total = 1;</code>
+     *
      * @return The ratesTotal.
      */
     @java.lang.Override
@@ -1750,8 +1796,10 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
 
     public static final int RATE_1_FIELD_NUMBER = 2;
     private long rate1_ = 0L;
+
     /**
      * <code>int64 rate_1 = 2;</code>
+     *
      * @return The rate1.
      */
     @java.lang.Override
@@ -1761,8 +1809,10 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
 
     public static final int RATE_2_FIELD_NUMBER = 3;
     private long rate2_ = 0L;
+
     /**
      * <code>int64 rate_2 = 3;</code>
+     *
      * @return The rate2.
      */
     @java.lang.Override
@@ -1772,8 +1822,10 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
 
     public static final int RATE_3_FIELD_NUMBER = 4;
     private long rate3_ = 0L;
+
     /**
      * <code>int64 rate_3 = 4;</code>
+     *
      * @return The rate3.
      */
     @java.lang.Override
@@ -1783,8 +1835,10 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
 
     public static final int RATE_4_FIELD_NUMBER = 5;
     private long rate4_ = 0L;
+
     /**
      * <code>int64 rate_4 = 5;</code>
+     *
      * @return The rate4.
      */
     @java.lang.Override
@@ -1794,8 +1848,10 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
 
     public static final int RATE_5_FIELD_NUMBER = 6;
     private long rate5_ = 0L;
+
     /**
      * <code>int64 rate_5 = 6;</code>
+     *
      * @return The rate5.
      */
     @java.lang.Override
@@ -1804,6 +1860,7 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
     }
 
     private byte memoizedIsInitialized = -1;
+
     @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -1815,8 +1872,7 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
     }
 
     @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+    public void writeTo(com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
       if (ratesTotal_ != 0L) {
         output.writeInt64(1, ratesTotal_);
       }
@@ -1845,28 +1901,22 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
 
       size = 0;
       if (ratesTotal_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, ratesTotal_);
+        size += com.google.protobuf.CodedOutputStream.computeInt64Size(1, ratesTotal_);
       }
       if (rate1_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(2, rate1_);
+        size += com.google.protobuf.CodedOutputStream.computeInt64Size(2, rate1_);
       }
       if (rate2_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(3, rate2_);
+        size += com.google.protobuf.CodedOutputStream.computeInt64Size(3, rate2_);
       }
       if (rate3_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(4, rate3_);
+        size += com.google.protobuf.CodedOutputStream.computeInt64Size(4, rate3_);
       }
       if (rate4_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(5, rate4_);
+        size += com.google.protobuf.CodedOutputStream.computeInt64Size(5, rate4_);
       }
       if (rate5_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(6, rate5_);
+        size += com.google.protobuf.CodedOutputStream.computeInt64Size(6, rate5_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -1876,25 +1926,19 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof rating.Rating.GetRatesResponse)) {
         return super.equals(obj);
       }
       rating.Rating.GetRatesResponse other = (rating.Rating.GetRatesResponse) obj;
 
-      if (getRatesTotal()
-          != other.getRatesTotal()) return false;
-      if (getRate1()
-          != other.getRate1()) return false;
-      if (getRate2()
-          != other.getRate2()) return false;
-      if (getRate3()
-          != other.getRate3()) return false;
-      if (getRate4()
-          != other.getRate4()) return false;
-      if (getRate5()
-          != other.getRate5()) return false;
+      if (getRatesTotal() != other.getRatesTotal()) return false;
+      if (getRate1() != other.getRate1()) return false;
+      if (getRate2() != other.getRate2()) return false;
+      if (getRate3() != other.getRate3()) return false;
+      if (getRate4() != other.getRate4()) return false;
+      if (getRate5() != other.getRate5()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -1907,129 +1951,123 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + RATES_TOTAL_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getRatesTotal());
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(getRatesTotal());
       hash = (37 * hash) + RATE_1_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getRate1());
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(getRate1());
       hash = (37 * hash) + RATE_2_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getRate2());
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(getRate2());
       hash = (37 * hash) + RATE_3_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getRate3());
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(getRate3());
       hash = (37 * hash) + RATE_4_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getRate4());
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(getRate4());
       hash = (37 * hash) + RATE_5_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getRate5());
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(getRate5());
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static rating.Rating.GetRatesResponse parseFrom(
-        java.nio.ByteBuffer data)
+    public static rating.Rating.GetRatesResponse parseFrom(java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static rating.Rating.GetRatesResponse parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        java.nio.ByteBuffer data, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static rating.Rating.GetRatesResponse parseFrom(
-        com.google.protobuf.ByteString data)
+
+    public static rating.Rating.GetRatesResponse parseFrom(com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static rating.Rating.GetRatesResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static rating.Rating.GetRatesResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static rating.Rating.GetRatesResponse parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        byte[] data, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static rating.Rating.GetRatesResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input);
+      return com.google.protobuf.GeneratedMessage.parseWithIOException(PARSER, input);
     }
+
     public static rating.Rating.GetRatesResponse parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        java.io.InputStream input, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage.parseWithIOException(
+          PARSER, input, extensionRegistry);
     }
 
     public static rating.Rating.GetRatesResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseDelimitedWithIOException(PARSER, input);
+      return com.google.protobuf.GeneratedMessage.parseDelimitedWithIOException(PARSER, input);
     }
 
     public static rating.Rating.GetRatesResponse parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        java.io.InputStream input, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage.parseDelimitedWithIOException(
+          PARSER, input, extensionRegistry);
     }
+
     public static rating.Rating.GetRatesResponse parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input);
+        com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage.parseWithIOException(PARSER, input);
     }
+
     public static rating.Rating.GetRatesResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage.parseWithIOException(
+          PARSER, input, extensionRegistry);
     }
 
     @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() {
+      return newBuilder();
+    }
+
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
+
     public static Builder newBuilder(rating.Rating.GetRatesResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+
     @java.lang.Override
     public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
+      return this == DEFAULT_INSTANCE ? new Builder() : new Builder().mergeFrom(this);
     }
 
     @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+    protected Builder newBuilderForType(com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
-    /**
-     * Protobuf type {@code rating.GetRatesResponse}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+
+    /** Protobuf type {@code rating.GetRatesResponse} */
+    public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder>
+        implements
         // @@protoc_insertion_point(builder_implements:rating.GetRatesResponse)
         rating.Rating.GetRatesResponseOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
         return rating.Rating.internal_static_rating_GetRatesResponse_descriptor;
       }
 
@@ -2042,15 +2080,12 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       }
 
       // Construct using rating.Rating.GetRatesResponse.newBuilder()
-      private Builder() {
+      private Builder() {}
 
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      private Builder(com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
-
       }
+
       @java.lang.Override
       public Builder clear() {
         super.clear();
@@ -2065,8 +2100,7 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       }
 
       @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
         return rating.Rating.internal_static_rating_GetRatesResponse_descriptor;
       }
 
@@ -2087,7 +2121,9 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       @java.lang.Override
       public rating.Rating.GetRatesResponse buildPartial() {
         rating.Rating.GetRatesResponse result = new rating.Rating.GetRatesResponse(this);
-        if (bitField0_ != 0) { buildPartial0(result); }
+        if (bitField0_ != 0) {
+          buildPartial0(result);
+        }
         onBuilt();
         return result;
       }
@@ -2117,7 +2153,7 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof rating.Rating.GetRatesResponse) {
-          return mergeFrom((rating.Rating.GetRatesResponse)other);
+          return mergeFrom((rating.Rating.GetRatesResponse) other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -2170,42 +2206,49 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
               case 0:
                 done = true;
                 break;
-              case 8: {
-                ratesTotal_ = input.readInt64();
-                bitField0_ |= 0x00000001;
-                break;
-              } // case 8
-              case 16: {
-                rate1_ = input.readInt64();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 16
-              case 24: {
-                rate2_ = input.readInt64();
-                bitField0_ |= 0x00000004;
-                break;
-              } // case 24
-              case 32: {
-                rate3_ = input.readInt64();
-                bitField0_ |= 0x00000008;
-                break;
-              } // case 32
-              case 40: {
-                rate4_ = input.readInt64();
-                bitField0_ |= 0x00000010;
-                break;
-              } // case 40
-              case 48: {
-                rate5_ = input.readInt64();
-                bitField0_ |= 0x00000020;
-                break;
-              } // case 48
-              default: {
-                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                  done = true; // was an endgroup tag
-                }
-                break;
-              } // default:
+              case 8:
+                {
+                  ratesTotal_ = input.readInt64();
+                  bitField0_ |= 0x00000001;
+                  break;
+                } // case 8
+              case 16:
+                {
+                  rate1_ = input.readInt64();
+                  bitField0_ |= 0x00000002;
+                  break;
+                } // case 16
+              case 24:
+                {
+                  rate2_ = input.readInt64();
+                  bitField0_ |= 0x00000004;
+                  break;
+                } // case 24
+              case 32:
+                {
+                  rate3_ = input.readInt64();
+                  bitField0_ |= 0x00000008;
+                  break;
+                } // case 32
+              case 40:
+                {
+                  rate4_ = input.readInt64();
+                  bitField0_ |= 0x00000010;
+                  break;
+                } // case 40
+              case 48:
+                {
+                  rate5_ = input.readInt64();
+                  bitField0_ |= 0x00000020;
+                  break;
+                } // case 48
+              default:
+                {
+                  if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                    done = true; // was an endgroup tag
+                  }
+                  break;
+                } // default:
             } // switch (tag)
           } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -2215,19 +2258,24 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
         } // finally
         return this;
       }
+
       private int bitField0_;
 
-      private long ratesTotal_ ;
+      private long ratesTotal_;
+
       /**
        * <code>int64 rates_total = 1;</code>
+       *
        * @return The ratesTotal.
        */
       @java.lang.Override
       public long getRatesTotal() {
         return ratesTotal_;
       }
+
       /**
        * <code>int64 rates_total = 1;</code>
+       *
        * @param value The ratesTotal to set.
        * @return This builder for chaining.
        */
@@ -2238,8 +2286,10 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
         onChanged();
         return this;
       }
+
       /**
        * <code>int64 rates_total = 1;</code>
+       *
        * @return This builder for chaining.
        */
       public Builder clearRatesTotal() {
@@ -2249,17 +2299,21 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
         return this;
       }
 
-      private long rate1_ ;
+      private long rate1_;
+
       /**
        * <code>int64 rate_1 = 2;</code>
+       *
        * @return The rate1.
        */
       @java.lang.Override
       public long getRate1() {
         return rate1_;
       }
+
       /**
        * <code>int64 rate_1 = 2;</code>
+       *
        * @param value The rate1 to set.
        * @return This builder for chaining.
        */
@@ -2270,8 +2324,10 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
         onChanged();
         return this;
       }
+
       /**
        * <code>int64 rate_1 = 2;</code>
+       *
        * @return This builder for chaining.
        */
       public Builder clearRate1() {
@@ -2281,17 +2337,21 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
         return this;
       }
 
-      private long rate2_ ;
+      private long rate2_;
+
       /**
        * <code>int64 rate_2 = 3;</code>
+       *
        * @return The rate2.
        */
       @java.lang.Override
       public long getRate2() {
         return rate2_;
       }
+
       /**
        * <code>int64 rate_2 = 3;</code>
+       *
        * @param value The rate2 to set.
        * @return This builder for chaining.
        */
@@ -2302,8 +2362,10 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
         onChanged();
         return this;
       }
+
       /**
        * <code>int64 rate_2 = 3;</code>
+       *
        * @return This builder for chaining.
        */
       public Builder clearRate2() {
@@ -2313,17 +2375,21 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
         return this;
       }
 
-      private long rate3_ ;
+      private long rate3_;
+
       /**
        * <code>int64 rate_3 = 4;</code>
+       *
        * @return The rate3.
        */
       @java.lang.Override
       public long getRate3() {
         return rate3_;
       }
+
       /**
        * <code>int64 rate_3 = 4;</code>
+       *
        * @param value The rate3 to set.
        * @return This builder for chaining.
        */
@@ -2334,8 +2400,10 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
         onChanged();
         return this;
       }
+
       /**
        * <code>int64 rate_3 = 4;</code>
+       *
        * @return This builder for chaining.
        */
       public Builder clearRate3() {
@@ -2345,17 +2413,21 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
         return this;
       }
 
-      private long rate4_ ;
+      private long rate4_;
+
       /**
        * <code>int64 rate_4 = 5;</code>
+       *
        * @return The rate4.
        */
       @java.lang.Override
       public long getRate4() {
         return rate4_;
       }
+
       /**
        * <code>int64 rate_4 = 5;</code>
+       *
        * @param value The rate4 to set.
        * @return This builder for chaining.
        */
@@ -2366,8 +2438,10 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
         onChanged();
         return this;
       }
+
       /**
        * <code>int64 rate_4 = 5;</code>
+       *
        * @return This builder for chaining.
        */
       public Builder clearRate4() {
@@ -2377,17 +2451,21 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
         return this;
       }
 
-      private long rate5_ ;
+      private long rate5_;
+
       /**
        * <code>int64 rate_5 = 6;</code>
+       *
        * @return The rate5.
        */
       @java.lang.Override
       public long getRate5() {
         return rate5_;
       }
+
       /**
        * <code>int64 rate_5 = 6;</code>
+       *
        * @param value The rate5 to set.
        * @return This builder for chaining.
        */
@@ -2398,8 +2476,10 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
         onChanged();
         return this;
       }
+
       /**
        * <code>int64 rate_5 = 6;</code>
+       *
        * @return This builder for chaining.
        */
       public Builder clearRate5() {
@@ -2414,6 +2494,7 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
 
     // @@protoc_insertion_point(class_scope:rating.GetRatesResponse)
     private static final rating.Rating.GetRatesResponse DEFAULT_INSTANCE;
+
     static {
       DEFAULT_INSTANCE = new rating.Rating.GetRatesResponse();
     }
@@ -2422,27 +2503,28 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<GetRatesResponse>
-        PARSER = new com.google.protobuf.AbstractParser<GetRatesResponse>() {
-      @java.lang.Override
-      public GetRatesResponse parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        Builder builder = newBuilder();
-        try {
-          builder.mergeFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(builder.buildPartial());
-        } catch (com.google.protobuf.UninitializedMessageException e) {
-          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(e)
-              .setUnfinishedMessage(builder.buildPartial());
-        }
-        return builder.buildPartial();
-      }
-    };
+    private static final com.google.protobuf.Parser<GetRatesResponse> PARSER =
+        new com.google.protobuf.AbstractParser<GetRatesResponse>() {
+          @java.lang.Override
+          public GetRatesResponse parsePartialFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+            Builder builder = newBuilder();
+            try {
+              builder.mergeFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+              throw e.setUnfinishedMessage(builder.buildPartial());
+            } catch (com.google.protobuf.UninitializedMessageException e) {
+              throw e.asInvalidProtocolBufferException()
+                  .setUnfinishedMessage(builder.buildPartial());
+            } catch (java.io.IOException e) {
+              throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                  .setUnfinishedMessage(builder.buildPartial());
+            }
+            return builder.buildPartial();
+          }
+        };
 
     public static com.google.protobuf.Parser<GetRatesResponse> parser() {
       return PARSER;
@@ -2457,81 +2539,79 @@ public final class Rating extends com.google.protobuf.GeneratedFile {
     public rating.Rating.GetRatesResponse getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
-
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_rating_RateModRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_rating_RateModRequest_descriptor;
+  private static final com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_rating_RateModRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_rating_RateModResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_rating_RateModResponse_descriptor;
+  private static final com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_rating_RateModResponse_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_rating_GetRatesRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_rating_GetRatesRequest_descriptor;
+  private static final com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_rating_GetRatesRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_rating_GetRatesResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_rating_GetRatesResponse_descriptor;
+  private static final com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_rating_GetRatesResponse_fieldAccessorTable;
 
-  public static com.google.protobuf.Descriptors.FileDescriptor
-      getDescriptor() {
+  public static com.google.protobuf.Descriptors.FileDescriptor getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
-      descriptor;
+
+  private static com.google.protobuf.Descriptors.FileDescriptor descriptor;
+
   static {
     java.lang.String[] descriptorData = {
-      "\n\014rating.proto\022\006rating\"O\n\016RateModRequest" +
-      "\022\016\n\006mod_id\030\001 \001(\003\022\021\n\tauthor_id\030\002 \001(\003\022\032\n\004r" +
-      "ate\030\003 \001(\0162\014.rating.Rate\"\"\n\017RateModRespon" +
-      "se\022\017\n\007rate_id\030\001 \001(\003\"!\n\017GetRatesRequest\022\016" +
-      "\n\006mod_id\030\001 \001(\003\"w\n\020GetRatesResponse\022\023\n\013ra" +
-      "tes_total\030\001 \001(\003\022\016\n\006rate_1\030\002 \001(\003\022\016\n\006rate_" +
-      "2\030\003 \001(\003\022\016\n\006rate_3\030\004 \001(\003\022\016\n\006rate_4\030\005 \001(\003\022" +
-      "\016\n\006rate_5\030\006 \001(\003*X\n\004Rate\022\024\n\020RATE_UNSPECIF" +
-      "IED\020\000\022\n\n\006RATE_1\020\001\022\n\n\006RATE_2\020\002\022\n\n\006RATE_3\020" +
-      "\003\022\n\n\006RATE_4\020\004\022\n\n\006RATE_5\020\0052\212\001\n\rRatingServ" +
-      "ice\022:\n\007RateMod\022\026.rating.RateModRequest\032\027" +
-      ".rating.RateModResponse\022=\n\010GetRates\022\027.ra" +
-      "ting.GetRatesRequest\032\030.rating.GetRatesRe" +
-      "sponseb\006proto3"
+      "\n\014rating.proto\022\006rating\"O\n\016RateModRequest"
+          + "\022\016\n\006mod_id\030\001 \001(\003\022\021\n\tauthor_id\030\002 \001(\003\022\032\n\004r"
+          + "ate\030\003 \001(\0162\014.rating.Rate\"\"\n\017RateModRespon"
+          + "se\022\017\n\007rate_id\030\001 \001(\003\"!\n\017GetRatesRequest\022\016"
+          + "\n\006mod_id\030\001 \001(\003\"w\n\020GetRatesResponse\022\023\n\013ra"
+          + "tes_total\030\001 \001(\003\022\016\n\006rate_1\030\002 \001(\003\022\016\n\006rate_"
+          + "2\030\003 \001(\003\022\016\n\006rate_3\030\004 \001(\003\022\016\n\006rate_4\030\005 \001(\003\022"
+          + "\016\n\006rate_5\030\006 \001(\003*X\n\004Rate\022\024\n\020RATE_UNSPECIF"
+          + "IED\020\000\022\n\n\006RATE_1\020\001\022\n\n\006RATE_2\020\002\022\n\n\006RATE_3\020"
+          + "\003\022\n\n\006RATE_4\020\004\022\n\n\006RATE_5\020\0052\212\001\n\rRatingServ"
+          + "ice\022:\n\007RateMod\022\026.rating.RateModRequest\032\027"
+          + ".rating.RateModResponse\022=\n\010GetRates\022\027.ra"
+          + "ting.GetRatesRequest\032\030.rating.GetRatesRe"
+          + "sponseb\006proto3"
     };
-    descriptor = com.google.protobuf.Descriptors.FileDescriptor
-      .internalBuildGeneratedFileFrom(descriptorData,
-        new com.google.protobuf.Descriptors.FileDescriptor[] {
-        });
-    internal_static_rating_RateModRequest_descriptor =
-      getDescriptor().getMessageTypes().get(0);
-    internal_static_rating_RateModRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_rating_RateModRequest_descriptor,
-        new java.lang.String[] { "ModId", "AuthorId", "Rate", });
-    internal_static_rating_RateModResponse_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_rating_RateModResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_rating_RateModResponse_descriptor,
-        new java.lang.String[] { "RateId", });
-    internal_static_rating_GetRatesRequest_descriptor =
-      getDescriptor().getMessageTypes().get(2);
-    internal_static_rating_GetRatesRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_rating_GetRatesRequest_descriptor,
-        new java.lang.String[] { "ModId", });
-    internal_static_rating_GetRatesResponse_descriptor =
-      getDescriptor().getMessageTypes().get(3);
-    internal_static_rating_GetRatesResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_rating_GetRatesResponse_descriptor,
-        new java.lang.String[] { "RatesTotal", "Rate1", "Rate2", "Rate3", "Rate4", "Rate5", });
+    descriptor =
+        com.google.protobuf.Descriptors.FileDescriptor.internalBuildGeneratedFileFrom(
+            descriptorData, new com.google.protobuf.Descriptors.FileDescriptor[] {});
+    internal_static_rating_RateModRequest_descriptor = getDescriptor().getMessageTypes().get(0);
+    internal_static_rating_RateModRequest_fieldAccessorTable =
+        new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+            internal_static_rating_RateModRequest_descriptor,
+            new java.lang.String[] {
+              "ModId", "AuthorId", "Rate",
+            });
+    internal_static_rating_RateModResponse_descriptor = getDescriptor().getMessageTypes().get(1);
+    internal_static_rating_RateModResponse_fieldAccessorTable =
+        new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+            internal_static_rating_RateModResponse_descriptor,
+            new java.lang.String[] {
+              "RateId",
+            });
+    internal_static_rating_GetRatesRequest_descriptor = getDescriptor().getMessageTypes().get(2);
+    internal_static_rating_GetRatesRequest_fieldAccessorTable =
+        new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+            internal_static_rating_GetRatesRequest_descriptor,
+            new java.lang.String[] {
+              "ModId",
+            });
+    internal_static_rating_GetRatesResponse_descriptor = getDescriptor().getMessageTypes().get(3);
+    internal_static_rating_GetRatesResponse_fieldAccessorTable =
+        new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+            internal_static_rating_GetRatesResponse_descriptor,
+            new java.lang.String[] {
+              "RatesTotal", "Rate1", "Rate2", "Rate3", "Rate4", "Rate5",
+            });
     descriptor.resolveAllFeaturesImmutable();
   }
 

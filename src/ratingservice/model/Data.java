@@ -47,4 +47,3 @@ public final class Data {
     return rate5Count;
   }
 }
-

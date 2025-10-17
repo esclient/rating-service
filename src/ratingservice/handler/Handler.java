@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import rating.Rating;
 import rating.RatingServiceGrpc;
 import ratingservice.constants.Constants;
-import ratingservice.model.Data;
 import ratingservice.service.Service;
 
 @SuppressWarnings({"checkstyle:RedundantModifier", "checkstyle:FinalParameters"})
@@ -161,4 +160,3 @@ public final class Handler extends RatingServiceGrpc.RatingServiceImplBase {
     }
   }
 }
-
