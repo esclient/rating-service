@@ -1,6 +1,7 @@
 package ratingservice;
 
 import io.grpc.netty.shaded.io.grpc.netty.NettyServerBuilder;
+import io.grpc.protobuf.services.ProtoReflectionService;
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -36,8 +37,8 @@ public final class Server {
       return;
     }
 
-    LoggingConfigurator loggingConfigurator =
-        new LoggingConfigurator(config.logLevel(), config.serviceName(), config.environment());
+    LoggingConfigurator loggingConfigurator = new LoggingConfigurator(config.logLevel(), config.serviceName(),
+        config.environment());
     loggingConfigurator.configure();
 
     ExecutorService workerPool = createWorkerPool(config);
@@ -51,7 +52,6 @@ public final class Server {
       io.grpc.Server grpcServer = null;
       try {
         grpcServer = startServer(config.grpcPort(), handler);
-        LOGGER.info("Rating Service started successfully");
         grpcServer.awaitTermination();
       } finally {
         shutdownServer(grpcServer);
@@ -67,7 +67,10 @@ public final class Server {
 
   private static io.grpc.Server startServer(final int port, final Handler handler)
       throws IOException {
-    io.grpc.Server server = NettyServerBuilder.forPort(port).addService(handler).build();
+    io.grpc.Server server = NettyServerBuilder.forPort(port)
+        .addService(handler)
+        .addService(ProtoReflectionService.newInstance())
+        .build();
     server.start();
     LOGGER.info("gRPC server listening on port {}", port);
     Runtime.getRuntime()

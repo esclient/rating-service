@@ -1,6 +1,6 @@
 package ratingservice.constants;
 
-@SuppressWarnings({"checkstyle:HideUtilityClassConstructor", "PMD.UseUtilityClass"})
+@SuppressWarnings({"PMD.UseUtilityClass"})
 public final class Constants {
 
   public static final int RATE_1 = 1;

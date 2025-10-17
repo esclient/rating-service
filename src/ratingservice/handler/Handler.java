@@ -10,7 +10,7 @@ import rating.RatingServiceGrpc;
 import ratingservice.constants.Constants;
 import ratingservice.service.Service;
 
-@SuppressWarnings({"checkstyle:RedundantModifier", "checkstyle:FinalParameters"})
+@SuppressWarnings("checkstyle:RedundantModifier")
 public final class Handler extends RatingServiceGrpc.RatingServiceImplBase {
 
   private final Service service;
