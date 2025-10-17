@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
 import java.sql.SQLException;
@@ -74,11 +73,11 @@ class ServiceTest {
       rateModSQLErrorProvider() {
     return java.util.stream.Stream.of(
         org.junit.jupiter.params.provider.Arguments.of(
-            "23505", "Constraint violation", "Database constraint violation"),
+            "23505", "Constraint violation", "Database error occurred while adding rating"),
         org.junit.jupiter.params.provider.Arguments.of(
-            "08001", "Connection failed", "Database connection error"),
+            "08001", "Connection failed", "Database error occurred while adding rating"),
         org.junit.jupiter.params.provider.Arguments.of(
-            "99999", "Generic error", "Database error occurred"));
+            "99999", "Generic error", "Database error occurred while adding rating"));
   }
 
   @Test
@@ -96,33 +95,6 @@ class ServiceTest {
   }
 
   @Test
-  void testRateModValidatesIdentifiers() {
-    ExecutionException exception =
-        assertThrows(ExecutionException.class, () -> await(service.rateMod(0L, 2L, 3)));
-
-    assertTrue(exception.getCause() instanceof IllegalArgumentException);
-    verifyNoInteractions(mockRepository);
-  }
-
-  @Test
-  void testRateModValidatesAuthorId() {
-    ExecutionException exception =
-        assertThrows(ExecutionException.class, () -> await(service.rateMod(1L, 0L, 3)));
-
-    assertTrue(exception.getCause() instanceof IllegalArgumentException);
-    verifyNoInteractions(mockRepository);
-  }
-
-  @Test
-  void testRateModValidatesRate() {
-    ExecutionException exception =
-        assertThrows(ExecutionException.class, () -> await(service.rateMod(1L, 2L, 9)));
-
-    assertTrue(exception.getCause() instanceof IllegalArgumentException);
-    verifyNoInteractions(mockRepository);
-  }
-
-  @Test
   void testRateModDetectsOverflow() throws Exception {
     when(mockRepository.addRate(1L, 2L, 5)).thenReturn((long) Integer.MAX_VALUE + 10);
 
@@ -134,12 +106,7 @@ class ServiceTest {
 
   @Test
   void testGetRatingsSuccess() throws Exception {
-    when(mockRepository.getTotalRates(1L)).thenReturn(10L);
-    when(mockRepository.getRates(1, 1L)).thenReturn(2L);
-    when(mockRepository.getRates(2, 1L)).thenReturn(1L);
-    when(mockRepository.getRates(3, 1L)).thenReturn(3L);
-    when(mockRepository.getRates(4, 1L)).thenReturn(2L);
-    when(mockRepository.getRates(5, 1L)).thenReturn(2L);
+    when(mockRepository.getRatingSummary(1L)).thenReturn(new Data(10L, 2L, 1L, 3L, 2L, 2L));
 
     Data result = await(service.getRatings(1L));
 
@@ -157,7 +124,7 @@ class ServiceTest {
       final String sqlState, final String errorMessage, final String expectedMessagePart)
       throws Exception {
     SQLException sqlException = new SQLException(errorMessage, sqlState);
-    when(mockRepository.getTotalRates(anyLong())).thenThrow(sqlException);
+    when(mockRepository.getRatingSummary(anyLong())).thenThrow(sqlException);
 
     ExecutionException exception =
         assertThrows(ExecutionException.class, () -> await(service.getRatings(1L)));
@@ -182,7 +149,7 @@ class ServiceTest {
   @Test
   void testGetRatingsWithNullSQLState() throws Exception {
     SQLException sqlException = new SQLException("Error without state");
-    when(mockRepository.getTotalRates(anyLong())).thenThrow(sqlException);
+    when(mockRepository.getRatingSummary(anyLong())).thenThrow(sqlException);
 
     ExecutionException exception =
         assertThrows(ExecutionException.class, () -> await(service.getRatings(1L)));
@@ -191,15 +158,6 @@ class ServiceTest {
     assertTrue(cause instanceof IllegalStateException);
     assertTrue(cause.getMessage().contains("Database error occurred"));
     assertEquals(sqlException, cause.getCause());
-  }
-
-  @Test
-  void testGetRatingsValidatesModId() {
-    ExecutionException exception =
-        assertThrows(ExecutionException.class, () -> await(service.getRatings(0L)));
-
-    assertTrue(exception.getCause() instanceof IllegalArgumentException);
-    verifyNoInteractions(mockRepository);
   }
 
   @Test

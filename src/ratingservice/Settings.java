@@ -26,9 +26,7 @@ import org.slf4j.MDC;
 
 public final class Settings {
 
-  private Settings() {
-    // Utility class
-  }
+  private Settings() {}
 
   public record AppConfig(
       String databaseUrl,

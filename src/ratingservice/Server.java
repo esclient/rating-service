@@ -22,9 +22,7 @@ public final class Server {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Server.class);
 
-  private Server() {
-    // Utility class
-  }
+  private Server() {}
 
   public static void main(final String[] args) {
     AppConfig config;
@@ -37,8 +35,8 @@ public final class Server {
       return;
     }
 
-    LoggingConfigurator loggingConfigurator = new LoggingConfigurator(config.logLevel(), config.serviceName(),
-        config.environment());
+    LoggingConfigurator loggingConfigurator =
+        new LoggingConfigurator(config.logLevel(), config.serviceName(), config.environment());
     loggingConfigurator.configure();
 
     ExecutorService workerPool = createWorkerPool(config);
@@ -67,10 +65,11 @@ public final class Server {
 
   private static io.grpc.Server startServer(final int port, final Handler handler)
       throws IOException {
-    io.grpc.Server server = NettyServerBuilder.forPort(port)
-        .addService(handler)
-        .addService(ProtoReflectionService.newInstance())
-        .build();
+    io.grpc.Server server =
+        NettyServerBuilder.forPort(port)
+            .addService(handler)
+            .addService(ProtoReflectionService.newInstance())
+            .build();
     server.start();
     LOGGER.info("gRPC server listening on port {}", port);
     Runtime.getRuntime()

@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.sql.DataSource;
+import ratingservice.constants.Constants;
+import ratingservice.model.Data;
 
 public class Repository {
   private final DataSource dataSource;
@@ -37,25 +39,37 @@ public class Repository {
     }
   }
 
-  public long getTotalRates(final long modId) throws SQLException {
-    String sql = "SELECT COUNT(*) FROM rates WHERE mod_id = ?";
+  public Data getRatingSummary(final long modId) throws SQLException {
+    String sql =
+        """
+        SELECT COUNT(*) AS total,
+               SUM(CASE WHEN rate = ? THEN 1 ELSE 0 END) AS rate1,
+               SUM(CASE WHEN rate = ? THEN 1 ELSE 0 END) AS rate2,
+               SUM(CASE WHEN rate = ? THEN 1 ELSE 0 END) AS rate3,
+               SUM(CASE WHEN rate = ? THEN 1 ELSE 0 END) AS rate4,
+               SUM(CASE WHEN rate = ? THEN 1 ELSE 0 END) AS rate5
+          FROM rates
+         WHERE mod_id = ?
+        """;
     try (Connection conn = dataSource.getConnection();
         PreparedStatement stmt = conn.prepareStatement(sql)) {
-      stmt.setLong(1, modId);
+      stmt.setInt(1, Constants.RATE_1);
+      stmt.setInt(2, Constants.RATE_2);
+      stmt.setInt(3, Constants.RATE_3);
+      stmt.setInt(4, Constants.RATE_4);
+      stmt.setInt(5, Constants.RATE_5);
+      stmt.setLong(6, modId);
       try (ResultSet rs = stmt.executeQuery()) {
-        return rs.next() ? rs.getLong(1) : 0;
-      }
-    }
-  }
-
-  public long getRates(final long rate, final long modId) throws SQLException {
-    String sql = "SELECT COUNT(*) FROM rates WHERE rate = ? AND mod_id = ?";
-    try (Connection conn = dataSource.getConnection();
-        PreparedStatement stmt = conn.prepareStatement(sql)) {
-      stmt.setLong(1, rate);
-      stmt.setLong(2, modId);
-      try (ResultSet rs = stmt.executeQuery()) {
-        return rs.next() ? rs.getLong(1) : 0;
+        if (rs.next()) {
+          long total = rs.getLong("total");
+          long rate1 = rs.getLong("rate1");
+          long rate2 = rs.getLong("rate2");
+          long rate3 = rs.getLong("rate3");
+          long rate4 = rs.getLong("rate4");
+          long rate5 = rs.getLong("rate5");
+          return new Data(total, rate1, rate2, rate3, rate4, rate5);
+        }
+        return new Data(0, 0, 0, 0, 0, 0);
       }
     }
   }

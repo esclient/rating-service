@@ -25,6 +25,22 @@ public final class Handler extends RatingServiceGrpc.RatingServiceImplBase {
       final StreamObserver<Rating.RateModResponse> responseObserver) {
     long modId = request.getModId();
     long authorId = request.getAuthorId();
+    if (modId <= 0) {
+      respondWithStatus(
+          responseObserver,
+          Status.INVALID_ARGUMENT,
+          "Invalid request parameters: modId must be positive",
+          new IllegalArgumentException("modId must be positive"));
+      return;
+    }
+    if (authorId <= 0) {
+      respondWithStatus(
+          responseObserver,
+          Status.INVALID_ARGUMENT,
+          "Invalid request parameters: authorId must be positive",
+          new IllegalArgumentException("authorId must be positive"));
+      return;
+    }
     int rateValue;
     try {
       rateValue = convertRateEnumToInteger(request.getRate());
@@ -61,6 +77,14 @@ public final class Handler extends RatingServiceGrpc.RatingServiceImplBase {
       final Rating.GetRatesRequest request,
       final StreamObserver<Rating.GetRatesResponse> responseObserver) {
     long modId = request.getModId();
+    if (modId <= 0) {
+      respondWithStatus(
+          responseObserver,
+          Status.INVALID_ARGUMENT,
+          "Invalid request parameters: modId must be positive",
+          new IllegalArgumentException("modId must be positive"));
+      return;
+    }
 
     service
         .getRatings(modId)
