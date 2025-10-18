@@ -7,7 +7,7 @@ LOAD_ENVS_URL := 'https://raw.githubusercontent.com/esclient/tools/refs/heads/ma
 PROTO_TAG := 'v0.1.1'
 PROTO_NAME := 'rating.proto'
 TMP_DIR := '.proto'
-OUT_DIR := 'src/ratingservice'
+OUT_DIR := 'api'
 
 MKDIR_TOOLS := 'mkdir -p tools'
 
