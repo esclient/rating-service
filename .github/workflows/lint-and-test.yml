@@ -12,9 +12,10 @@ permissions:
 
 jobs:
   lint-and-test:
-    uses: esclient/tools/.github/workflows/lint-and-test-java.yml@bfdee984560c575c3817310e891d7aa96f270dfe
+    uses: esclient/tools/.github/workflows/lint-and-test-java.yml@3ff18c8825d0ccb9f77fcecff194197acf8c14fd
     with:
-      java-version: '21'
-      java-distribution: 'temurin'
+      java-version: "21"
+      java-distribution: "temurin"
+      source: "ratingservice"
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
