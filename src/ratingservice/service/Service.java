@@ -97,4 +97,9 @@ public final class Service {
       }
     }
   }
+
+  @Override
+  public String toString() {
+    return "Service{" + "repository=" + repository + '}';
+  }
 }
