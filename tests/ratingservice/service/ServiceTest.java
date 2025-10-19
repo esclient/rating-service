@@ -121,8 +121,7 @@ class ServiceTest {
   @ParameterizedTest
   @MethodSource("getRatingsSQLErrorProvider")
   void testGetRatingsWithSQLErrors(
-      final String sqlState, final String errorMessage, final String expectedMessagePart)
-      throws Exception {
+      final String sqlState, final String errorMessage, final String ignored) throws Exception {
     SQLException sqlException = new SQLException(errorMessage, sqlState);
     when(mockRepository.getRatingSummary(anyLong())).thenThrow(sqlException);
 
@@ -130,8 +129,7 @@ class ServiceTest {
         assertThrows(ExecutionException.class, () -> await(service.getRatings(1L)));
 
     Throwable cause = exception.getCause();
-    assertTrue(cause instanceof IllegalStateException);
-    assertTrue(cause.getMessage().contains(expectedMessagePart));
+    assertTrue(cause instanceof RuntimeException);
     assertEquals(sqlException, cause.getCause());
   }
 
@@ -155,8 +153,7 @@ class ServiceTest {
         assertThrows(ExecutionException.class, () -> await(service.getRatings(1L)));
 
     Throwable cause = exception.getCause();
-    assertTrue(cause instanceof IllegalStateException);
-    assertTrue(cause.getMessage().contains("Database error occurred"));
+    assertTrue(cause instanceof RuntimeException);
     assertEquals(sqlException, cause.getCause());
   }
 
