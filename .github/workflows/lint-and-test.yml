@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   lint-and-test:
-    uses: esclient/tools/.github/workflows/lint-and-test-java.yml@v1.0.5
+    uses: esclient/tools/.github/workflows/lint-and-test-java.yml@da288a3abcc8d096f3ba7814f0eba34822a453ba
     with:
       java-version: "21"
       java-distribution: "temurin"
